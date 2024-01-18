@@ -2,7 +2,7 @@
 <nav th:fragment="nav" class="sb-topnav navbar navbar-expand navbar-dark fixed-top">
 	<!-- Navbar Brand-->
 	<div class="toggle icon-nav fixed-top" onclick="toggleMenu();"><i class="bi bi-list text-center text-white "></i></div>
-	<a class="navbar-brand" th:href="@{/}">Libras Academy </a>
+	<a class="navbar-brand title-nav" th:href="@{/}">Libras Academy - <span th:include="*{title}"> Dashboard </span></a>
 
 	<!-- Navbar-->
 	<!-- Sidebar Toggle-->

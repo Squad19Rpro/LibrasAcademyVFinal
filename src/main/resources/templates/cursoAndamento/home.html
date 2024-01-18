@@ -16,22 +16,22 @@
 							<thead class="table-dark">
 								<tr>
 									<th>Matricula</th>
-									<th>Curso</th>									
+									<th>Curso</th>
 									<th>Aluno</th>
 									<th>Cpf</th>
 									<th colspan="2">Ações</th>
 								</tr>
 							</thead>
 							<tbody>
-								<tr th:each=" ca : ${curso_andamento}">									
-									<td th:text="${ca.matricula}"></td>									
+								<tr th:each=" ca : ${curso_andamento}">
+									<td th:text="${ca.matricula}"></td>
 									<td th:text="${ca.curso.nomeCurso}"></td>
 									<td th:text="${ca.aluno.nome}"></td>
 									<td th:text="${ca.aluno.cpf}"></td>
-									
-									<td>
+
+									<td class="text-center w-100 align-items-center">
 										<div class="btn-group">
-											
+
 											<a type="button" class="btn btn-warning"
 												th:href="@{/cursoAndamento/{id}/editar (id=${ca.matricula})}">
 												<i class="bi bi-pencil-square"></i>

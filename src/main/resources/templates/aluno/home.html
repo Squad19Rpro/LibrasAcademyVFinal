@@ -10,7 +10,7 @@
 		<div class="row">
 			<div class="col-sm-12">
 				<div class="card">
-					<div class="p-2">
+					<div class="p-0">
 						<div class="card-body table-responsive p-0">
 							<table class="table table-hover table-striped text-nowrap">
 								<thead class="table-dark w-100">
@@ -33,7 +33,7 @@
 										<td th:text="${aluno.telefone}">(84) 99999-9999</td>
 										<td th:text="${aluno.sexo}">Masculino, Feminino, Outro</td>
 
-										<td class="text-center">
+										<td class="text-center w-100 align-items-center">
 											<div class="btn-group align-items-center">
 												<a type="button" class="btn btn-primary"
 													th:href="@{/alunos/{id} (id=${aluno.id})}">

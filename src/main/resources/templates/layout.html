@@ -17,24 +17,24 @@
 </head>
 
 <body>
-	<!-- Sidenav -->
-	<div th:replace="~{fragments/_sidenav :: sidenav}"></div>
 	<!-- Conteudo ajustado com Sidenav -->
-	<div class="margem-conteudo m-auto">
+	<div class="container">
+		<!-- Sidenav -->
+		<div th:replace="~{fragments/_sidenav :: sidenav}"></div>
 		<!-- Navbar -->
 		<nav th:replace="~{fragments/_navbar :: nav}"></nav>
 		<!-- Titulo do conteudo -->
-		<div th:replace="~{fragments/_header :: content-header (${title})}">
+		<div th:replace="~{fragments/_header :: content-header (${title})}" class="m-auto">
 		</div>
 		<!-- Conteudo das paginas -->
 		<section class="m-auto p-4">
 			<div th:insert="${content}"></div>
 		</section>
-		<!-- Footer -->
-		<footer th:replace="~{fragments/_footer :: footer}"></footer>
 
 		<!-- VLibras -->
 		<div th:replace="~{fragments/_vlibras :: vlibras}"></div>
+		<!-- Footer -->
+		<footer th:replace="~{fragments/_footer :: footer}"></footer>
 	</div>
 
 

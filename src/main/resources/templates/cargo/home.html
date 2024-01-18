@@ -1,57 +1,59 @@
 <!DOCTYPE html>
 <html th:replace="~{layout :: layout (~{::title}, ~{::main}, _, ~{::scripts})}">
-<head>
-  <title>Lista de Cargos</title>
-</head>
-<body>
-  <main>
-    <div class="row">
-      <div class="col-sm-12">
-        <div class="card">
-          <!-- /.card-header -->
-          <div class="card-body table-responsive p-0">
-            <table class="table table-hover table-striped">
-              <thead class="table-dark">
-                <tr>
-                  <th>ID</th>
-                  <th>Nome</th>
-                  <th colspan="2" >Ações</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr th:each="cargo : ${cargos}">
-                  <td th:text="${cargo.id}">183</td>
-                  <td th:text="${cargo.nome}">Desenvolvedor(a) Back End Jr.</td>
-                  <td>
-                    <div class="btn-group">
-                      <a  type="button"  class="btn btn-warning" th:href="@{/cargos/{id}/editar (id=${cargo.id})}">
-                        <i class="bi bi-pencil-square"></i>
-                      </a>
-                      <a 
-                        type="button"  class="btn btn-danger" 
-                        th:href="@{/cargos/{id}/excluir (id=${cargo.id})}" 
-                        onclick="return confirm('Tem certeza que deseja excluir o cargo?');"
-                      >
-                        <i class="bi bi-trash"></i>
-                      </a>
-                    </div>
-                  <td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-          <!-- /.card-body -->
-        </div>
-      </div>
-    </div>
-  </main>
 
-  <th:block th:fragment="scripts">
-    <script>
-      $(function () {
-        $('[data-toggle="popover"]').popover()
-      })
-    </script>
-  </th:block>
+<head>
+	<title>Lista de Cargos</title>
+</head>
+
+<body>
+	<main>
+		<div class="row">
+			<div class="col-sm-12">
+				<div class="card">
+					<!-- /.card-header -->
+					<div class="card-body table-responsive p-0">
+						<table class="table table-hover table-striped">
+							<thead class="table-dark">
+								<tr>
+									<th>ID</th>
+									<th>Nome</th>
+									<th colspan="2">Ações</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr th:each="cargo : ${cargos}">
+									<td th:text="${cargo.id}">183</td>
+									<td th:text="${cargo.nome}">Desenvolvedor(a) Back End Jr.</td>
+									<td class="text-center w-100 align-items-center">
+										<div class="btn-group">
+											<a type="button" class="btn btn-warning"
+												th:href="@{/cargos/{id}/editar (id=${cargo.id})}">
+												<i class="bi bi-pencil-square"></i>
+											</a>
+											<a type="button" class="btn btn-danger"
+												th:href="@{/cargos/{id}/excluir (id=${cargo.id})}"
+												onclick="return confirm('Tem certeza que deseja excluir o cargo?');">
+												<i class="bi bi-trash"></i>
+											</a>
+										</div>
+									<td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<!-- /.card-body -->
+				</div>
+			</div>
+		</div>
+	</main>
+
+	<th:block th:fragment="scripts">
+		<script>
+			$(function () {
+				$('[data-toggle="popover"]').popover()
+			})
+		</script>
+	</th:block>
 </body>
+
 </html>

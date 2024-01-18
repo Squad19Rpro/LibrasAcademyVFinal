@@ -3,6 +3,9 @@
 html,
 body {
 	height: calc(100% - 60px);
+	padding-top: 45px;
+	width: calc(100% - 60px);
+	margin-left: 45px;
 }
 
 
@@ -135,17 +138,6 @@ li .item {
 	background: #5279bb;
 }
 
-@media (max-width:767px) {
-	.navigation {
-		left: -60px;
-	}
-
-	.navigation.active {
-		left: 0px;
-		width: 100%;
-	}
-
-}
 
 .giro {
 	transform: rotate(-90deg);
@@ -155,23 +147,19 @@ li .item {
 	display: flex;
 	justify-content: center;
 	align-content: center;
+	margin-right: -50px;
 }
 
 .title {
-	width: calc(100% - 30px);
+	width: 100%;
 }
 
-.bi-chevron-right {
-	padding-left: 30px;
-}
-
-.margem-conteudo {
-	width: calc(100% - 60px);
+.title-nav{
+	margin-left: 65px;
 }
 
 footer {
 	width: 100%;
-	margin: auto;
 	background: #37517e;
 	color: white;
 }

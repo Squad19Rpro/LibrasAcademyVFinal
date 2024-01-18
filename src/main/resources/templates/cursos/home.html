@@ -1,64 +1,67 @@
 <!DOCTYPE html>
 <html th:replace="~{layout :: layout (~{::title}, ~{::main}, _, ~{::scripts})}" xmlns:th="http://www.thymeleaf.org">
+
 <head>
-  <title>Lista de Cursos</title>
+	<title>Lista de Cursos</title>
 </head>
+
 <body>
-  <main>
-    <div class="row">
-      <div class="col-sm-12">
-        <div class="card">
-			<div class="p-2">
-          <!-- /card-header -->
-          <div class="card-body table-responsive p-0">
-            <table class="table table-hover table-striped text-nowrap">
-              <thead class="table-dark w-100">
-                <tr class="text-center">
-                  <th>ID</th>
-                  <th>Nome</th>
-                  <th>Lançamento</th>
-                  <th>Horas</th>
-                  <th>Nº de Aulas</th>
-                  <th>Descrição</th>
-                  <th>Professor</th>
-                  <th colspan="2">Ações</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr th:each="curso : ${cursos}">
-                  <td th:text="${curso.id}">01</td>
-                  <td th:text="${curso.nomeCurso}">Curso</td>
-                  <td th:text="${curso.anoLancamento}">2020</td>
-                  <td th:text="${curso.num_aulas}">40 H</td>
-                  <td th:text="${curso.carga_horaria}">15</td>
-                  <td th:text="${curso.descricao}">Texto</td>
-                  <td th:text="${curso.professor.nome == null ? '-' : curso.professor.nome}">Prof</td>
-                  
-                  <td>
-                    <div class="btn-group">
-                      <a type="button" class="btn btn-primary" th:href="@{/cursos/{id} (id=${curso.id})}">
-                        <i class="bi bi-eye"></i>
-                      </a>
-                      <a  type="button" class="btn btn-warning" th:href="@{/cursos/{id}/editar (id=${curso.id})}">
-                        <i class="bi bi-pencil-square"></i>
-                      </a>
-                      <a 
-                        type="button" class="btn btn-danger" 
-                        th:href="@{/cursos/{id}/excluir (id=${curso.id})}" 
-                        onclick="return confirm('Tem certeza que deseja excluir o curso?');"
-                      >
-                        <i class="bi bi-trash"></i>
-                      </a>
-                    </div>
-                  <td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-    </div>
-  </main>
+	<main>
+		<div class="row">
+			<div class="col-sm-12">
+				<div class="card">
+					<div class="p-0">
+						<div class="card-body table-responsive p-0">
+							<table class="table table-hover table-striped text-nowrap">
+								<thead class="table-dark w-100">
+									<tr class="text-center">
+										<th>ID</th>
+										<th>Nome</th>
+										<th>Lançamento</th>
+										<th>Horas</th>
+										<th>Nº de Aulas</th>
+										<th>Descrição</th>
+										<th>Professor</th>
+										<th colspan="2">Ações</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr th:each="curso : ${cursos}">
+										<td th:text="${curso.id}">01</td>
+										<td th:text="${curso.nomeCurso}">Curso</td>
+										<td th:text="${curso.anoLancamento}">2020</td>
+										<td th:text="${curso.num_aulas}">40 H</td>
+										<td th:text="${curso.carga_horaria}">15</td>
+										<td th:text="${curso.descricao}">Texto</td>
+										<td th:text="${curso.professor.nome == null ? '-' : curso.professor.nome}">Prof
+										</td>
+
+										<td class="text-center w-100 align-items-center">
+											<div class="btn-group">
+												<a type="button" class="btn btn-primary"
+													th:href="@{/cursos/{id} (id=${curso.id})}">
+													<i class="bi bi-eye"></i>
+												</a>
+												<a type="button" class="btn btn-warning"
+													th:href="@{/cursos/{id}/editar (id=${curso.id})}">
+													<i class="bi bi-pencil-square"></i>
+												</a>
+												<a type="button" class="btn btn-danger"
+													th:href="@{/cursos/{id}/excluir (id=${curso.id})}"
+													onclick="return confirm('Tem certeza que deseja excluir o curso?');">
+													<i class="bi bi-trash"></i>
+												</a>
+											</div>
+										<td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+	</main>
 
 </body>
+
 </html>
