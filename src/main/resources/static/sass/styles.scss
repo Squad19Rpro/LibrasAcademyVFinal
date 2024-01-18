@@ -1,0 +1,27 @@
+//variáveis
+
+$primary:       #63b0f2 !default;
+$secondary:     #37517e !default;
+$success:       #23b317 !default;
+$info:          #8c9299 !default;
+$warning:       #d5c002 !default;
+$danger:        #f73030 !default;
+$light:         #accaf2 !default;
+$dark:          #010b40 !default;
+
+@import "../node_modules/bootstrap/scss/bootstrap.scss";
+@import "../node_modules/bootstrap-icons/font/bootstrap-icons.css";
+@import "../node_modules/material-icons/iconfont/material-icons.css";
+@import "../node_modules/bootstrap/scss/transitions";
+@import "../node_modules/bootstrap/scss/variables";
+
+.border-rad{
+    border-radius: 1rem;
+}
+
+.card{
+    &:hover {
+        opacity: 85%;
+    }
+}
+

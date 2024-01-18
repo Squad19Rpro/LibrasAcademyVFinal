@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html th:replace="~{layout :: layout (~{::title}, ~{::main}, _, ~{::scripts})}" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <title> Curso</title>
+</head>
+
+<body>
+  <main>
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="card">
+         
+          <form method="POST" th:object="${cursos}">			  
+            <div class="card-body">           
+
+              <div class="row">
+                <div class="col-sm-12">
+                  <div class="form-group">
+                    <label for="nome">Nome</label>
+                    <input type="text" class="form-control" th:value="${nomeCurso}" th:field="*{nomeCurso}">
+                    
+                  </div>
+                </div>
+              </div>
+
+              <div class="row my-2">
+                <div class="col-sm-12">
+                  <div class="form-group">
+                    <label for="descricao">Descrição</label>
+                    <textarea class="form-control" rows="2" th:field="*{descricao}" th:value="${descricao}" ></textarea>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="row my-2">
+                <div class="col-md-6 col-sm-12">
+                  <div class="form-group">
+                    <label for="carga_horaria">Carga horária</label>
+                    <input type="number" class="form-control" th:field="*{carga_horaria}" th:value="${carga_horaria}">
+                  </div>
+                </div>
+                <div class="col-md-6 col-sm-12">
+                  <div class="form-group">
+                    <label for="num_aulas">Quantidade de aulas</label>
+                    <input type="number" class="form-control" th:field="*{num_aulas}" th:value="${num_aulas}">
+                  </div>
+                </div>
+              </div>
+              
+              <div class="row my-2">
+                <div class="col-md-6 col-sm-12">
+                  <div class="form-group">
+                    <label for="anoLancamento">Ano de Lançamento</label>
+                    <input type="number"  class="form-control" th:field="*{anoLancamento}" th:value="${anoLancamento}">
+                  </div>
+                </div>
+                <div class="col-md-6 col-sm-12">
+                  <div class="form-group">
+                    <label for="prof">Professor</label>
+                    <select th:field="*{professor}" class="form-select" style="width: 100%;">						
+						<option th:each="professor : ${professores}" th:text="${professor.nome}" 
+						th:value="${professor.id}">Professor</option>											
+					</select>
+                  </div>
+                </div>
+              </div>
+
+
+            <div class="py-2">
+              <button type="submit" class="btn btn-primary">Salvar</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </main>
+</body>
+
+</html>

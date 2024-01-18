@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html th:replace="~{layout :: layout (~{::title}, ~{::main}, _, ~{::scripts})}" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<title>Editar Mensagem</title>
+</head>
+
+<body>
+	<main>
+		<div class="row py-5">
+			<div class="col-sm-12">
+				<div class="card">
+					<form method="POST" th:object="${msg}">
+						<div class="card-body">
+							<fieldset>
+								<legend>Dados da Mensagem</legend>
+								<input type="hidden" th:field="*{id}">
+								
+								<div class="row my-2">									
+									<div class="col-md-6 col-sm-12">
+										<div class="form-group">
+											<label for="nome">Nome</label>
+											<input type="text" class="form-control" th:value="${nome_msg}"
+												th:field="*{nome_msg}" th:required>
+										</div>
+									</div>
+									<div class="col-md-6 col-sm-12">
+										<div class="form-group">
+											<label for="email">E-mail</label>
+											<input type="email" class="form-control" th:value="${email_msg}"
+												th:field="*{email_msg}">
+										</div>
+									</div>
+								</div>
+									
+								<div class="row my-2">
+									<div class="col-md-12 col-sm-12">
+										<div class="form-group">
+											<label for="Assunto">Assunto</label>
+											<input type="text" class="form-control" th:value="${assunto}"
+												th:field="*{assunto}" th:required>
+										</div>
+									</div>
+									
+								</div>
+								<div class="row my-2">
+									<div class="col-md-12 col-sm-12">
+										<div class="form-group">
+											<label for="mensagem">Mensagem</label>
+											<textarea class="form-control" th:field="*{mensagem}" th:value="${mensagem}" rows="4"></textarea>
+										</div>
+									</div>
+															
+								</div>								
+							</fieldset>
+
+							
+						</div>
+						<!-- /.card-body -->
+
+						<div class="mx-3 py-2">
+							<button type="submit" class="btn btn-primary">Salvar</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</main>
+
+</body>
+
+</html>

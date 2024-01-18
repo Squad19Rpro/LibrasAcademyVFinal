@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org" lang="pt-br">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Entrar</title>
+	<link rel="shortcut icon" href="../images/favicon_2.ico" type="image/x-icon">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+		crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+		integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+		crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+		integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+		crossorigin="anonymous"></script>
+	<!-- Custom CSS -->
+	<link rel="stylesheet" href="../sass/styles.css" />
+</head>
+<style>
+	body {
+		background-color: rgb(191, 188, 188);
+	}
+</style>
+
+<body>
+	<header class="header">
+		<div class="container-fluid px-0 mx-0">
+			<!-- Navbar -->
+			<nav class="navbar navbar-expand-md px-2 navbar-dark fixed-top">
+				<a class="navbar-brand d-flex px-3 align-items-center justify-content-center" href="#">
+					<img src="images/logo-navbar.png" alt="Logo" width="120" height="auto"
+						class="d-inline-block align-text-top">
+				</a>
+				<button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarNav"
+					aria-controls="navbarNav" aria-expanded="false" aria-label="Alterna navegação">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="navbar-collapse justify-content-end px-3 collapse" id="navbarNav">
+					<ul class="navbar-nav text-center">
+						<li class="nav-item px-3">
+							<a class="nav-link" href="/">Home</a>
+						</li>
+						<li class="nav-item px-3">
+							<a class="nav-link " href="/sobre">Sobre</a>
+						</li>
+						<li class="nav-item px-3">
+							<a class="nav-link" href="/curso">Cursos</a>
+						</li>
+						<li class="nav-item px-3">
+							<a class="nav-link" href="/contato">Contato</a>
+						</li>
+						<li class="nav-item dropdown" sec:authorize="!isAuthenticated()">
+							<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+								data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+								Login
+							</a>
+							<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+								<a class="dropdown-item" href="/login">Entrar</a>
+								<a class="dropdown-item" href="/cadastro">Cadastre-se</a>
+							</div>
+						</li>
+						<li class="nav-item">
+							<form th:action="@{/logout}" method="post" class="form-inline mt-2 mt-md-0"
+								sec:authorize="isAuthenticated()">
+								<div class="btn-group mr-sm-2">
+									<button type="button" class="btn btn-light">
+										<i class="bi bi-user"></i> <span class="" sec:authentication="name">Bob</span>
+									</button>
+									<button type="button" class="btn btn-danger dropdown-toggle dropdown-toggle-split"
+										data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+									</button>
+									<div class="dropdown-menu">
+										<button type="submit" class="dropdown-item">Sair</button>
+									</div>
+								</div>
+							</form>
+
+						</li>
+
+
+					</ul>
+				</div>
+			</nav>
+			<!-- End Navbar -->
+		</div>
+	</header>
+	<!-- background com foto concedida por:
+        <a href="https://storyset.com/online">Online illustrations by Storyset</a>    
+    -->
+	<main class="container m-auto login-body row d-flex align-content-center main-login">
+		<div class="login-body-child login">
+			<div class="login-form row ">
+				<div th:if="${param.error}">
+					Email ou senha inválidos!
+				</div>
+				<div th:if="${param.logout}">
+					You have been logged out.
+				</div>
+				<form class="form" th:action="@{/login}" method="post">
+					<div class="d-block m-auto text-center w-100 ">
+						<img src="../images/Design_sem_nome-removebg-preview.png" alt="IMagem da logo"
+							style="width: 120px;">
+					</div>
+					<div class="form-group">
+						<label for="username" class=" ">Email:</label><br>
+						<input type="text" name="username" id="username" class="form-control">
+					</div>
+					<div class="form-group">
+						<label for="password" class=" ">Senha:</label><br>
+						<input type="password" name="password" id="password" class="form-control">
+					</div>
+					<div class="form-group">
+						<input type="submit" name="submit" class="btn bg-secondary text-white container btn-lg btn-md"
+							value="login">
+					</div>
+				</form>
+				<div class="text-center">
+					<p>É novo por aqui? <a th:href="@{/cadastro}" class="link">Cadastre-se</a></p>
+				</div>
+			</div>
+
+		</div>
+	</main>
+
+	<!-- VLibras -->
+	<div vw class="enabled">
+		<div vw-access-button class="active"></div>
+		<div vw-plugin-wrapper>
+			<div class="vw-plugin-top-wrapper"></div>
+		</div>
+	</div>
+	<script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+	<script>
+		new window.VLibras.Widget("https://vlibras.gov.br/app");
+	</script>
+	<!-- VLibras end -->
+
+
+	<script src="../scripts/script.js"></script>
+
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+		crossorigin="anonymous"></script>
+</body>
+
+</html>

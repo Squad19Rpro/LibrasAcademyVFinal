@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html th:replace="~{layout :: layout (~{::title}, ~{::main}, _, _)}">
+
+<head>
+  <title>Cargo</title>
+</head>
+
+<body>
+  <main>
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="card">
+          <!-- /.card-header -->
+          <!-- form start -->
+          <form method="POST" th:object="${cargo}" th:action="@{/cargos/cadastrar}">
+            <div class="card-body">
+                <div class="row">
+                  <div class="col-sm-12">
+                    <div class="form-group">
+                      <label for="nome">Nome</label>
+                      <input type="text" class="form-control" placeholder="Desenvolvedor(a) Front End Jr" th:field="*{nome}">
+                    </div>
+                  </div>
+                </div>
+            </div>
+            <!-- /.card-body -->
+
+            <div class="card-footer">
+              <button type="submit" class="btn btn-primary">Salvar</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </main>
+</body>
+
+</html>

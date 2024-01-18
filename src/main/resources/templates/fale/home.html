@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html th:replace="~{layout :: layout (~{::title}, ~{::main}, _, ~{::scripts})}" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Mensagens Recebidas</title>
+</head>
+<body>
+  <main>   
+    <div class="row mt-3">
+      <div class="col-sm-12">
+        <div class="card">
+          <div class="card-body table-responsive p-0">
+            <table class="table table-hover table-striped">
+              <thead>
+                <tr class="table-dark text-nowrap text-center">
+                  <th>ID</th>
+                  <th>Nome</th>
+                  <th>Email</th>
+                  <th>Assunto</th>
+                  <th>Mensagem</th>
+                  <th colspan="2">Ações</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr th:each="fale : ${msgs}">
+                  <td class="text-nowrap" th:text="${fale.id}">01</td>
+                  <td class="text-nowrap" th:text="${fale.nome_msg}">Nome</td>
+                  <td class="text-nowrap" th:text="${fale.email_msg}">email@exemplo.com</td>
+                  <td class="text-nowrap" th:text="${fale.assunto}">Assunto</td>
+                  <td th:text="${fale.mensagem}">Texto</td>                  
+                  <td>
+                    <div class="btn-group">                      
+                      <a  type="button" class="btn btn-warning" th:href="@{/faleMsg/{id}/editar (id=${fale.id})}">
+                        <i class="bi bi-pencil-square"></i>
+                      </a>
+                      <a 
+                        type="button" class="btn btn-danger" 
+                        th:href="@{/faleMsg/{id}/excluir (id=${fale.id})}" 
+                        onclick="return confirm('Tem certeza que deseja excluir a mensagem?');"
+                      >
+                        <i class="bi bi-trash"></i>
+                      </a>
+                    </div>
+                  <td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+  </main>
+
+</body>
+</html>

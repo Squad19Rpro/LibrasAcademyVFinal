@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html th:replace="~{layout :: layout (~{::title}, ~{::main}, _, ~{::scripts})}" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<title>Cadastro de Aluno</title>
+</head>
+
+<body>
+	<main>
+		<div class="row py-5">
+			<div class="col-sm-12">
+				<div class="card">
+					<form method="POST" th:object="${aluno}" th:action="@{/alunos/cadastrar}">
+						<div class="card-body">
+							<fieldset>
+								<legend>Dados Pessoais</legend>
+								<div class="row my-2">
+									<div class="col-md-6 col-sm-12">
+										<div class="form-group">
+											<label for="nome">Nome</label>
+											<input type="text" class="form-control" placeholder="Nome do aluno"
+												th:field="*{nome}" required>
+										</div>
+									</div>
+									<div class="col-md-6 col-sm-12">
+										<div class="form-group">
+											<label for="cpf">CPF</label>
+											<input type="text" class="form-control" placeholder="999.999.999-99"
+												th:field="*{cpf}" id="inputCpf" onkeyup="formataCPF(event)"
+												minlength="14" maxlength="14" required>
+										</div>
+									</div>
+								</div>
+									<p>Sexo: </p>
+								<div class="col-sm-12 d-flex ">
+									<div class="form-check px-3">
+										
+										<input class="form-check-input" type="radio" name="sexo" id="gridRadios1"
+											th:field="*{sexo}" value="masculino" th:checked="true">
+										<label class="form-check-label" for="gridRadios1">
+											Masculino
+										</label>
+									</div>
+									<div class="form-check px-3">
+										<input class="form-check-input" type="radio" name="sexo" id="gridRadios2"
+											th:field="*{sexo}" value="feminino">
+										<label class="form-check-label" for="gridRadios2">
+											Feminino
+										</label>
+									</div>
+									<div class="form-check">
+										<input class="form-check-input" type="radio" name="sexo" id="gridRadios3"
+											th:field="*{sexo}" value="outro">
+										<label class="form-check-label" for="gridRadios3">
+											Outro
+										</label>
+									</div>
+								</div>
+
+								<div class="row my-2">
+									<div class="col-md-6 col-sm-12">
+										<div class="form-group">
+											<label for="telefone">Telefone</label>
+											<input type="text" class="form-control" placeholder="(11) 99999-9999"
+												th:field="*{telefone}" id="inputTel" onkeyup="formataTEL(event)"
+												minlength="14" maxlength="15" required>
+										</div>
+									</div>
+									<div class="col-md-6 col-sm-12">
+										<div class="form-group">
+											<label for="email">E-mail</label>
+											<input type="email" class="form-control" placeholder="email@exemplo.com"
+												th:field="*{email}">
+										</div>
+									</div>
+								</div>
+								<div class="row my-2">
+									<div class="col-md-6 col-sm-12">
+										<div class="form-group">
+											<label for="dataNascimento">Data de Nascimento</label>
+											<input type="date" class="form-control" th:field="*{dataNascimento}">
+										</div>
+									</div>
+									<div class="col-md-6 col-sm-12">
+									<div class="form-group ">
+										<label for="senha">Senha</label>
+										<input type="password" class="form-control" th:field="*{senha}" id="inputSenha">
+									</div>
+									<div class="form-group">
+										<input class="col-1 form-check-input" type="checkbox" id="verSenha"
+											onclick="mostrarSenha()">
+										<label class="col form-check-label" for="verSenha">Mostrar senha</label>
+									</div>
+								</div>								
+								</div>								
+							</fieldset>
+
+							
+						</div>
+						<!-- /.card-body -->
+
+						<div class="mx-3 py-2">
+							<button type="submit" class="btn btn-primary">Salvar</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</main>
+
+</body>
+
+</html>

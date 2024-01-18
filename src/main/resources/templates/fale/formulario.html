@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html th:replace="~{layout :: layout (~{::title}, ~{::main}, _, ~{::scripts})}" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<title>Cadastro de Aluno</title>
+</head>
+
+<body>
+	<main>
+		<div class="row py-5">
+			<div class="col-sm-12">
+				<div class="card">
+					<form method="POST" th:object="${msg}" th:action="@{/faleMsg/cadastrar}">
+						<div class="card-body">
+							<fieldset>
+								<legend>Dados da Mensagem</legend>
+								<div class="row my-2">
+									<div class="col-md-6 col-sm-12">
+										<div class="form-group">
+											<label for="nome">Nome</label>
+											<input type="text" class="form-control" placeholder="Nome completo"
+												th:field="*{nome_msg}" th:required>
+										</div>
+									</div>
+									<div class="col-md-6 col-sm-12">
+										<div class="form-group">
+											<label for="email">E-mail</label>
+											<input type="email" class="form-control" placeholder="email@exemplo.com"
+												th:field="*{email_msg}">
+										</div>
+									</div>
+								</div>
+									
+								<div class="row my-2">
+									<div class="col-md-12 col-sm-12">
+										<div class="form-group">
+											<label for="Assunto">Assunto</label>
+											<input type="text" class="form-control" placeholder="Título da mensagem"
+												th:field="*{assunto}" th:required>
+										</div>
+									</div>
+									
+								</div>
+								<div class="row my-2">
+									<div class="col-md-12 col-sm-12">
+										<div class="form-group">
+											<label for="mensagem">Mensagem</label>
+											<textarea class="form-control" th:field="*{mensagem}" rows="4"></textarea>
+										</div>
+									</div>
+															
+								</div>								
+							</fieldset>
+
+							
+						</div>
+						<!-- /.card-body -->
+
+						<div class="mx-3 py-2">
+							<button type="submit" class="btn btn-primary">Salvar</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</main>
+
+</body>
+
+</html>

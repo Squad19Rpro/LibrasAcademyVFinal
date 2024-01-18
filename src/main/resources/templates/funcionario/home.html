@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html th:replace="~{layout :: layout (~{::title}, ~{::main}, _, ~{::scripts})}" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Lista de Funcionários</title>
+</head>
+<body>
+  <main>
+    <div class="row">
+          
+      <div class="col-sm-12">
+        <div class="card">
+          <!-- /card-header -->
+          
+          <div class="card-body table-responsive p-0">
+            <table class="table table-hover table-striped text-nowrap w-100">
+              <thead class="table-dark w-100">
+                <tr class="text-center w-100">
+                  <th>ID</th>
+                  <th>Nome</th>
+                  <th>E-mail</th>
+                  <th>CPF</th>
+                  <th>Telefone</th>
+                  <th>Sexo</th>
+                  <th>Admissão</th>
+                  <th>Demissão</th>
+                  <th>Cargo</th>
+                  <th>Salário</th>
+                  <th colspan="2">Ações</th>
+                </tr>
+              </thead>
+              <tbody >
+                <tr th:each="funcionario : ${funcionarios}">
+                  <td th:text="${funcionario.id}">01</td>
+                  <td th:text="${funcionario.nome}">Nome completo</td>
+                  <td th:text="${funcionario.email}">email@email.com</td>
+                  <td th:text="${funcionario.cpf}">000.000.000-00</td>
+                  <td th:text="${funcionario.telefone}">(84) 99999-9999</td>
+                  <td th:text="${funcionario.sexo}">Masculino, Feminino, Outro</td>
+                  <td th:text="${#temporals.format(funcionario.dataAdmissao)}">01/01/2020</td>
+                  <td 
+                    th:text="${funcionario.dataDemissao == null ? '-' : #temporals.format(funcionario.dataDemissao)}"
+                  >01/01/2021</td>
+                  <td th:text="${funcionario.cargo.nome}">Desenvolvedor(a) Full-stack Jr</td>
+                  <td th:text="${#numbers.formatCurrency(funcionario.salario)}">R$ 2.000,00</td>
+                  <td>
+                    <div class="btn-group">
+                      <a type="button" class="btn btn-primary" th:href="@{/funcionarios/{id} (id=${funcionario.id})}">
+                        <i class="bi bi-eye"></i>
+                      </a>
+                      <a  type="button" class="btn btn-warning" th:href="@{/funcionarios/{id}/editar (id=${funcionario.id})}">
+                        <i class="bi bi-pencil-square"></i>
+                      </a>
+                      <a 
+                        type="button" class="btn btn-danger" 
+                        th:href="@{/funcionarios/{id}/excluir (id=${funcionario.id})}" 
+                        onclick="return confirm('Tem certeza que deseja excluir o funcionario?');"
+                      >
+                        <i class="bi bi-trash"></i>
+                      </a>
+                    </div>
+                  <td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+</body>
+</html>
