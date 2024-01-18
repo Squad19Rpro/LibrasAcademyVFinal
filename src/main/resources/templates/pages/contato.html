@@ -60,7 +60,7 @@
                   <a class="dropdown-item" href="/cadastro">Cadastre-se</a>
                 </div>
               </li>
-               <li>
+               <li class="nav-item">
 				  <div class="mt-2 mt-md-0" sec:authorize="isAuthenticated()">
 					<div class="btn-group mr-sm-2">
 						<button type="button" class="btn btn-light">
@@ -132,27 +132,27 @@
 						</div>
 
 						<div class="col-lg-7 mt-5 mt-lg-0 d-flex align-items-stretch">
-							<form action="cadastroMsg" method="post" role="form" class="php-email-form">
+							<form th:action="@{/contato/cadastroMsg}" th:object="${msg}" method="post" role="form" class="php-email-form">
 								<div class="row">
 									<div class="form-group col-md-6">
 										<label for="nome"><strong>Seu Nome</strong></label>
-										<input type="text" name="nome_msg" class="form-control" id="nome"
+										<input type="text" th:field="*{nome_msg}" name="nome_msg" class="form-control" id="nome"
 											placeholder="Digite seu nome aqui" autofocus required>
 									</div>
 									<div class="form-group col-md-6">
 										<label for="email"><strong>Seu Email</strong></label>
-										<input type="email" class="form-control" name="email_msg" id="email"
+										<input type="email" th:field="*{email_msg}" class="form-control" name="email_msg" id="email"
 											placeholder="email@exemplo.com" required>
 									</div>
 								</div>
 								<div class="form-group">
 									<label for="assunto"><strong>Assunto</strong></label>
-									<input type="text" class="form-control" name="assunto" id="assunto"
+									<input type="text" th:field="*{assunto}" class="form-control" name="assunto" id="assunto"
 										placeholder="Título da mensagem" required>
 								</div>
 								<div class="form-group">
 									<label for="mensagem"><strong>Mensagem</strong></label>
-									<textarea class="form-control" name="mensagem" id="mensagem" rows="10"
+									<textarea class="form-control" th:field="*{mensagem}" name="mensagem" id="mensagem" rows="10"
 										placeholder="Olá, estou entrando em contato porque..."></textarea>
 								</div>
 								<div class="text-center"><button class=" btn bg-dark" type="submit"

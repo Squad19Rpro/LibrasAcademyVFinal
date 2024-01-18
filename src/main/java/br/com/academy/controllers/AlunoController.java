@@ -67,19 +67,11 @@ public class AlunoController {
         return "redirect:/alunos";
     }
 	
-	@SuppressWarnings("unlikely-arg-type")
 	@PostMapping("/{id}/editar")
     public String editar(Aluno aluno, @PathVariable Long id) throws Exception {
 		String senhaAtual = alunoRepository.getReferenceById(id).getSenha();
         aluno.setSenha(senhaAtual);
         alunoRepository.save(aluno);
-        if (alunoRepository.equals(aluno.getCpf())) {
-            throw new Exception("Cpf já existe");
-        }
-
-        if (alunoRepository.equals(aluno.getEmail())) {
-            throw new Exception("Email já existe");
-        }
 
         return "redirect:/alunos";
     }

@@ -37,7 +37,7 @@ public class UserDetailsImpl implements UserDetails {
 	    	Perfil perfil = (professor.getCargo() != null && "Gerente".equals(professor.getCargo().getNome())) ? Perfil.ADMIN : Perfil.USER;
 	        authorities.add(new SimpleGrantedAuthority(perfil.toString()));
 	    } else if(userType == UserType.ALUNO) {
-	    	Perfil perfil = (aluno != null) ? Perfil.COMUM : Perfil.COMUM;
+	    	Perfil perfil = (aluno.getNome() != null) ? Perfil.COMUM : Perfil.COMUM;
 	        authorities.add(new SimpleGrantedAuthority(perfil.toString()));
 	    }
 
@@ -75,7 +75,7 @@ public class UserDetailsImpl implements UserDetails {
 	          return professor.getEmail();
 	      } else if (userType == UserType.ALUNO) {
 	          // Retorna a senha do professor
-	          return aluno.getSenha();
+	          return aluno.getEmail();
 	      }
 	      return null;
 	//	return funcionario.getEmail();

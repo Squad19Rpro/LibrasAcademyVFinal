@@ -6,36 +6,37 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="description" content="Area de administração do site libras academy" />
 	<meta name="author" content="Squad--19" />
-	<title>Libras Academy - ADM <th:block th:include="*{title}"> Dashboard </th:block>
+	<title>ADM - <th:block th:include="*{title}"> Dashboard </th:block>
 	</title>
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
 		integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
-	
-		<script th:src="@{/js/script.js}"></script>
-		<link rel="stylesheet" th:href="@{/css/styles.css}">
+	<link rel="shortcut icon" th:href="@{/images/favicon_2.ico}" type="image/x-icon">
+	<script th:src="@{/js/script.js}"></script>
+	<link rel="stylesheet" th:href="@{/css/styles.css}">
 </head>
 
 <body>
-	<div class="margem-conteudo d-block m-auto">
+	<!-- Sidenav -->
+	<div th:replace="~{fragments/_sidenav :: sidenav}"></div>
+	<!-- Conteudo ajustado com Sidenav -->
+	<div class="margem-conteudo m-auto">
+		<!-- Navbar -->
 		<nav th:replace="~{fragments/_navbar :: nav}"></nav>
-		
-		<div th:replace="~{fragments/_header :: content-header (${title})}">			
+		<!-- Titulo do conteudo -->
+		<div th:replace="~{fragments/_header :: content-header (${title})}">
 		</div>
-		<div th:replace="~{fragments/_sidenav :: sidenav}"></div>
-
-		<!-- Main-->
-		<section class="content m-auto" >
-			<div class="container" th:insert="${content}">
-
-			</div><!-- /.container-fluid -->
+		<!-- Conteudo das paginas -->
+		<section class="m-auto p-4">
+			<div th:insert="${content}"></div>
 		</section>
-		<footer class="container" th:replace="~{fragments/_footer :: footer}"></footer>
-		
-	<!-- VLibras -->
-	<div th:replace="~{fragments/_vlibras :: vlibras}"></div>
-	<!-- VLibras end -->
+		<!-- Footer -->
+		<footer th:replace="~{fragments/_footer :: footer}"></footer>
+
+		<!-- VLibras -->
+		<div th:replace="~{fragments/_vlibras :: vlibras}"></div>
 	</div>
+
 
 
 	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
