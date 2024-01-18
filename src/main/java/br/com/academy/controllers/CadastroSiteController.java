@@ -34,7 +34,7 @@ public class CadastroSiteController {
         aluno.setSenha(senhaEncriptada);
         alunoRepository.save(aluno);
 
-        return "redirect:/";
+        return "redirect:/login";
     }
 	
 }
