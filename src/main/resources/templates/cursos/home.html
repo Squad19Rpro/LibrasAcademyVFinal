@@ -36,17 +36,17 @@
 										<td th:text="${curso.professor.nome == null ? '-' : curso.professor.nome}">Prof
 										</td>
 
-										<td class="text-center w-100 align-items-center">
+										<td class="text-center align-items-center">
 											<div class="btn-group">
 												<a type="button" class="btn btn-primary"
 													th:href="@{/cursos/{id} (id=${curso.id})}">
 													<i class="bi bi-eye"></i>
 												</a>
-												<a type="button" class="btn btn-warning"
+												<a type="button" class="btn btn-warning" sec:authorize="hasAuthority('ADMIN')"
 													th:href="@{/cursos/{id}/editar (id=${curso.id})}">
 													<i class="bi bi-pencil-square"></i>
 												</a>
-												<a type="button" class="btn btn-danger"
+												<a type="button" class="btn btn-danger" sec:authorize="hasAuthority('ADMIN')"
 													th:href="@{/cursos/{id}/excluir (id=${curso.id})}"
 													onclick="return confirm('Tem certeza que deseja excluir o curso?');">
 													<i class="bi bi-trash"></i>

@@ -19,7 +19,7 @@
 									<th>Curso</th>
 									<th>Aluno</th>
 									<th>Cpf</th>
-									<th colspan="2">Ações</th>
+									<th colspan="2" sec:authorize="hasAuthority('ADMIN')">Ações</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -29,7 +29,7 @@
 									<td th:text="${ca.aluno.nome}"></td>
 									<td th:text="${ca.aluno.cpf}"></td>
 
-									<td class="text-center w-100 align-items-center">
+									<td class="text-center align-items-center" sec:authorize="hasAuthority('ADMIN')">
 										<div class="btn-group">
 
 											<a type="button" class="btn btn-warning"

@@ -19,7 +19,7 @@
 									<th>Email</th>
 									<th>Assunto</th>
 									<th>Mensagem</th>
-									<th colspan="2">Ações</th>
+									<th colspan="2" sec:authorize="hasAuthority('ADMIN')">Ações</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -29,7 +29,7 @@
 									<td class="text-nowrap" th:text="${fale.email_msg}">email@exemplo.com</td>
 									<td class="text-nowrap" th:text="${fale.assunto}">Assunto</td>
 									<td th:text="${fale.mensagem}">Texto</td>
-									<td class="text-center w-100 align-items-center">
+									<td class="text-center align-items-center" sec:authorize="hasAuthority('ADMIN')">
 										<div class="btn-group">
 											<a type="button" class="btn btn-warning"
 												th:href="@{/faleMsg/{id}/editar (id=${fale.id})}">

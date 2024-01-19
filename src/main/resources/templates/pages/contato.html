@@ -26,66 +26,75 @@
 	<div class="container-fluid mx-0 px-0 bg-body-secondary">
 		<header class="header">
 			<div class="container-fluid px-0 mx-0 bg-primary">
-        <!-- Navbar -->
-        <nav class="navbar navbar-expand-lg px-2 navbar-dark fixed-top">
-          <a class="navbar-brand d-flex px-3 align-items-center justify-content-center" href="#">
-            <img src="images/logo-navbar.png" alt="Logo" width="120" height="auto"
-              class="d-inline-block align-text-top">
-          </a>
-          <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarNav"
-            aria-controls="navbarNav" aria-expanded="false" aria-label="Alterna navegação">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="navbar-collapse justify-content-end px-3 collapse" id="navbarNav">
-            <ul class="navbar-nav text-center">
-              <li class="nav-item px-3">
-                <a class="nav-link" href="/">Home</a>
-              </li>
-              <li class="nav-item px-3">
-                <a class="nav-link " href="/sobre">Sobre</a>
-              </li>
-              <li class="nav-item px-3">
-                <a class="nav-link" href="/curso">Cursos</a>
-              </li>
-              <li class="nav-item px-3">
-                <a class="nav-link active" href="/contato">Contato</a>
-              </li>
-              <li class="nav-item dropdown" sec:authorize="!isAuthenticated()">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
-                  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  Login
-                </a>
-                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-                  <a class="dropdown-item" href="/login">Entrar</a>
-                  <a class="dropdown-item" href="/cadastro">Cadastre-se</a>
-                </div>
-              </li>
-               <li class="nav-item">
-				  <div class="mt-2 mt-md-0" sec:authorize="isAuthenticated()">
-					<div class="btn-group mr-sm-2">
-						<button type="button" class="btn btn-light">
-							<i class="bi bi-user"></i> <span sec:authentication="name">Bob</span>
-						</button>
-						<button type="button"
-							class="btn btn-primary dropdown-toggle dropdown-toggle-split"
-							data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-						</button>
-						<div class="dropdown-menu">
-							<a th:href="@{/funcionarios}" class="dropdown-item" sec:authorize="hasAuthority('ADMIN')"><i class="bi bi-file-earmark-lock px-2"></i>Area adminstrativa</a>
-							<a th:href="@{/perfil}" class="dropdown-item"><i class="bi bi-people-fill px-2"></i>Perfil</a>
-							<a th:href="@{/perfil/edit}" class="dropdown-item"><i class="bi bi-gear-fill px-2"></i>Editar dados pessoais</a>
-							<hr>
-							<a th:href="@{/logout}" class="dropdown-item"><i class="bi bi-box-arrow-left px-2"></i>Sair</a>
-						</div>
+				<!-- Navbar -->
+				<nav class="navbar navbar-expand-lg px-2 navbar-dark fixed-top">
+					<a class="navbar-brand d-flex px-3 align-items-center justify-content-center" href="#">
+						<img src="images/logo-navbar.png" alt="Logo" width="120" height="auto"
+							class="d-inline-block align-text-top">
+					</a>
+					<button class="navbar-toggler collapsed" type="button" data-toggle="collapse"
+						data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
+						aria-label="Alterna navegação">
+						<span class="navbar-toggler-icon"></span>
+					</button>
+					<div class="navbar-collapse justify-content-end px-3 collapse" id="navbarNav">
+						<ul class="navbar-nav text-center">
+							<li class="nav-item px-3">
+								<a class="nav-link" href="/">Home</a>
+							</li>
+							<li class="nav-item px-3">
+								<a class="nav-link " href="/sobre">Sobre</a>
+							</li>
+							<li class="nav-item px-3">
+								<a class="nav-link" href="/curso">Cursos</a>
+							</li>
+							<li class="nav-item px-3">
+								<a class="nav-link active" href="/contato">Contato</a>
+							</li>
+							<li class="nav-item dropdown" sec:authorize="!isAuthenticated()">
+								<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+									data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+									Login
+								</a>
+								<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+									<a class="dropdown-item" href="/login">Entrar</a>
+									<a class="dropdown-item" href="/cadastro">Cadastre-se</a>
+								</div>
+							</li>
+							<li class="nav-item">
+								<div class="mt-2 mt-md-0" sec:authorize="isAuthenticated()">
+									<div class="btn-group mr-sm-2">
+										<button type="button" class="btn btn-light">
+											<i class="bi bi-user"></i> <span sec:authentication="name">Bob</span>
+										</button>
+										<button type="button"
+											class="btn btn-primary dropdown-toggle dropdown-toggle-split"
+											data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+										</button>
+										<div class="dropdown-menu">
+											<a th:href="@{/funcionarios}" class="dropdown-item"
+												sec:authorize="hasAuthority('ADMIN')"><i
+													class="bi bi-file-earmark-lock px-2"></i>Area adminstrativa</a>
+											<a th:href="@{/cursos}" class="dropdown-item"
+												sec:authorize="hasAuthority('USER')"><i
+													class="bi bi-file-earmark-lock px-2"></i>Listagem de Cursos</a>
+											<a th:href="@{/perfil}" class="dropdown-item"><i
+													class="bi bi-people-fill px-2"></i>Perfil</a>
+											<a th:href="@{/perfil/edit}" class="dropdown-item"><i
+													class="bi bi-gear-fill px-2"></i>Editar dados pessoais</a>
+											<hr>
+											<a th:href="@{/logout}" class="dropdown-item"><i
+													class="bi bi-box-arrow-left px-2"></i>Sair</a>
+										</div>
+									</div>
+								</div>
+							</li>
+
+
+						</ul>
 					</div>
-				</div>				  
-			  </li>
-              
-			  
-            </ul>
-          </div>
-        </nav>
-        <!-- End Navbar -->
+				</nav>
+				<!-- End Navbar -->
 			</div>
 
 		</header>
@@ -132,95 +141,117 @@
 						</div>
 
 						<div class="col-lg-7 mt-5 mt-lg-0 d-flex align-items-stretch">
-							<form action="https://formsubmit.co/librasacademyrecode@gmail.com" th:action="@{/contato/cadastroMsg}" th:object="${msg}" method="post" role="form" class="php-email-form" >
+							<form id="meuFormulario" onsubmit="return onSubmitHandler();" th:action="@{/contato/cadastroMsg}"
+								th:object="${msg}" method="post" role="form" class="php-email-form">
 								<div class="row">
 									<div class="form-group col-md-6">
 										<label for="nome"><strong>Seu Nome</strong></label>
-										<input type="text" th:field="*{nome_msg}" name="nome_msg" class="form-control" id="nome"
-											placeholder="Digite seu nome aqui" autofocus required>
+										<input type="text" th:field="*{nome_msg}" name="nome_msg" class="form-control"
+											id="nome" placeholder="Digite seu nome aqui" autofocus required>
 									</div>
 									<div class="form-group col-md-6">
 										<label for="email"><strong>Seu Email</strong></label>
-										<input type="email" th:field="*{email_msg}" class="form-control" name="email_msg" id="email"
-											placeholder="email@exemplo.com" required>
+										<input type="email" th:field="*{email_msg}" class="form-control"
+											name="email_msg" id="email" placeholder="email@exemplo.com" required>
 									</div>
 								</div>
 								<div class="form-group">
 									<label for="assunto"><strong>Assunto</strong></label>
-									<input type="text" th:field="*{assunto}" class="form-control" name="assunto" id="assunto"
-										placeholder="Título da mensagem" required>
+									<input type="text" th:field="*{assunto}" class="form-control" name="assunto"
+										id="assunto" placeholder="Título da mensagem" required>
 								</div>
 								<div class="form-group">
 									<label for="mensagem"><strong>Mensagem</strong></label>
-									<textarea class="form-control" th:field="*{mensagem}" name="mensagem" id="mensagem" rows="10"
-										placeholder="Olá, estou entrando em contato porque..."></textarea>
+									<textarea class="form-control" th:field="*{mensagem}" name="mensagem" id="mensagem"
+										rows="10" placeholder="Olá, estou entrando em contato porque..." required></textarea>
 								</div>
 								<div class="text-center"><button class=" btn bg-dark" type="submit"
-										onclick="return confirm('Mensagem enviada com sucesso!')">Enviar
+										onclick="return alert('Mensagem enviada com sucesso!')">Enviar
 										Mensagem</button></div>
 							</form>
 						</div>
+						<script>
+							async function onSubmitHandler() {
+								// Intercepta o envio do formulário
+								event.preventDefault();
 
+								// Coleta os dados do formulário
+								const formulario = document.getElementById('meuFormulario');
+								const dados = new FormData(formulario);
+
+								// Envia os dados para o FormSubmit
+								await fetch('https://formsubmit.co/ajax/heitorpimentel@hotmail.com', {
+									method: 'POST',
+									body: dados,
+								});
+
+								// Pode adicionar aqui qualquer lógica adicional após o envio do formulário
+
+								// Continua com a ação padrão do formulário
+								formulario.submit();
+							}
+						</script>
 					</div>
 
 				</div>
 			</section><!-- End Contact Section -->
 		</main>
 
-    <!-- footer -->
-    <footer class="text-white py-3 px-5 bg-info">
-      <div class="row justify-content-center">
-        <div class="text-left p-3 d-flex align-items-center" style="width: 130px;">
-          <img src="./images/favicon_2.ico" style="width: 100%;" alt="">
-        </div>
-        <div class="col-sm-12 col-md-5 mb-3 text-left">
-          <h3 class="text-center">Libras Academy</h3>
-          <ul class="nav flex-column text-center align-content-center text-white">
-            <li class="nav-link pb-1"><a href="/" class="nav-link p-0 fs-5 text-white">Home</a></li>
-            <li class="nav-link pb-1"><a href="/sobre" class="nav-link p-0 fs-5 text-white">Sobre</a></li>
-            <li class="nav-link pb-1"><a href="/curso" class="nav-link p-0 fs-5 text-white">Cursos</a></li>
-            <li class="nav-link pb-1"><a href="/contato" class="nav-link p-0 fs-5 text-white">Contato</a></li>
+		<!-- footer -->
+		<footer class="text-white py-3 px-5 bg-info">
+			<div class="row justify-content-center">
+				<div class="text-left p-3 d-flex align-items-center" style="width: 130px;">
+					<img src="./images/favicon_2.ico" style="width: 100%;" alt="">
+				</div>
+				<div class="col-sm-12 col-md-5 mb-3 text-left">
+					<h3 class="text-center">Libras Academy</h3>
+					<ul class="nav flex-column text-center align-content-center text-white">
+						<li class="nav-link pb-1"><a href="/" class="nav-link p-0 fs-5 text-white">Home</a></li>
+						<li class="nav-link pb-1"><a href="/sobre" class="nav-link p-0 fs-5 text-white">Sobre</a></li>
+						<li class="nav-link pb-1"><a href="/curso" class="nav-link p-0 fs-5 text-white">Cursos</a></li>
+						<li class="nav-link pb-1"><a href="/contato" class="nav-link p-0 fs-5 text-white">Contato</a>
+						</li>
 
-          </ul>
-        </div>
+					</ul>
+				</div>
 
 
-        <div class="col-sm-12 col-md-5 mb-3 text-center">
-          <form>
-            <h3 class="text-center">Inscreva-se</h3>
-            <p class="mt-5">E receba notícias e novidades do Libras Academy</p>
-            <div class="d-flex flex-column flex-sm-row w-100 gap-2">
-              <label for="newsletter1" class="visually-hidden">Seu e-mail</label>
-              <input id="newsletter1" type="text" class="form-control" placeholder="Email address">
-              <button class="btn btn-dark fw-bolder " type="button">Enviar</button>
-            </div>
-          </form>
-        </div>
-      </div>
-      <div class="border-top"></div>
-      <div class="d-flex justify-content-center mt-4 ">
-        <p class="text-center">© 2023 Libras Academy. Todos os direitos reservados.</p>
-      </div>
-    </footer>
-    <!-- footer end -->
+				<div class="col-sm-12 col-md-5 mb-3 text-center">
+					<form>
+						<h3 class="text-center">Inscreva-se</h3>
+						<p class="mt-5">E receba notícias e novidades do Libras Academy</p>
+						<div class="d-flex flex-column flex-sm-row w-100 gap-2">
+							<label for="newsletter1" class="visually-hidden">Seu e-mail</label>
+							<input id="newsletter1" type="text" class="form-control" placeholder="Email address">
+							<button class="btn btn-dark fw-bolder " type="button">Enviar</button>
+						</div>
+					</form>
+				</div>
+			</div>
+			<div class="border-top"></div>
+			<div class="d-flex justify-content-center mt-4 ">
+				<p class="text-center">© 2024 Libras Academy. Todos os direitos reservados.</p>
+			</div>
+		</footer>
+		<!-- footer end -->
 
-    <!-- VLibras -->
-    <div vw class="enabled position-fixed">
-      <div vw-access-button class="active"></div>
-      <div vw-plugin-wrapper>
-        <div class="vw-plugin-top-wrapper"></div>
-      </div>
-    </div>
-    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
-    <script>
-      new window.VLibras.Widget('https://vlibras.gov.br/app');
-    </script>
-    <!-- VLibras end -->
+		<!-- VLibras -->
+		<div vw class="enabled position-fixed">
+			<div vw-access-button class="active"></div>
+			<div vw-plugin-wrapper>
+				<div class="vw-plugin-top-wrapper"></div>
+			</div>
+		</div>
+		<script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+		<script>
+			new window.VLibras.Widget('https://vlibras.gov.br/app');
+		</script>
+		<!-- VLibras end -->
 
-    <a href="#" class="up-scroll active d-flex align-items-center justify-content-center"><i
-        class="bi bi-arrow-up-short"></i></a>
+		<a href="#" class="up-scroll active d-flex align-items-center justify-content-center"><i
+				class="bi bi-arrow-up-short"></i></a>
 
-    <script th:src="@{/scripts/script.js}"></script>
+		<script th:src="@{/scripts/script.js}"></script>
 
 	</div>
 </body>

@@ -16,37 +16,37 @@ import br.com.academy.utils.SenhaUtils;
 @Configuration
 public class Runner implements CommandLineRunner {
 	@Autowired
-	private FuncionarioRepository fR;
+	private FuncionarioRepository funcionarioRepository;
 	
 	@Autowired
 	private CargoRepository cR;
 	
 	@Override
 	public void run(String... args) throws Exception{
-		Cargo c = new Cargo();
-		Funcionario f = new Funcionario();
+		Cargo cargo = new Cargo();
+		Funcionario funcionario = new Funcionario();
 		
-		c.setId((long) 1);
-		c.setNome("Gerente");
-		f.setId((long) 1);
-		f.setNome("admin");
-		f.setCpf("000.000.000-00");
-		f.setSexo("Outro");
-		f.setDataNascimento(LocalDate.now());
-		f.setTelefone("(00) 00000-0000");
-		f.setSalario(new BigDecimal("5000.00"));
-		f.setDataAdmissao(LocalDate.now());
-		f.setDataDemissao(null);		
-		f.setEmail("admin@academy.com");
+		cargo.setId((long) 1);
+		cargo.setNome("Gerente");
+		funcionario.setId((long) 1);
+		funcionario.setNome("Administrador");
+		funcionario.setCpf("000.000.000-00");
+		funcionario.setSexo("Outro");
+		funcionario.setDataNascimento(LocalDate.now());
+		funcionario.setTelefone("(00) 00000-0000");
+		funcionario.setSalario(new BigDecimal("5000.00"));
+		funcionario.setDataAdmissao(LocalDate.now());
+		funcionario.setDataDemissao(null);		
+		funcionario.setEmail("admin@academy.com");
 		String senhaEncriptada = SenhaUtils.encode("12345");
-		f.setSenha(senhaEncriptada);
-		f.setCargo(c);
+		funcionario.setSenha(senhaEncriptada);
+		funcionario.setCargo(cargo);
 		
-		if(c != cR.findAll()) {
-			cR.save(c);
+		if(cargo != cR.findAll()) {
+			cR.save(cargo);
 		}
-		if (f != fR.findAll()) {
-			fR.save(f);
+		if (funcionario != funcionarioRepository.findAll()) {
+			funcionarioRepository.save(funcionario);
 		}	
 	
 	

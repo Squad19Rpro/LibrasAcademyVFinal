@@ -12,7 +12,7 @@
 
       <div class="accordion" id="accordionPanelsStayOpenExample">
         <li>
-          <a href="#">
+          <a href="#" sec:authorize="hasAuthority('ADMIN')">
             <span class="icon"><i class="bi bi-people-fill"></i></span>
             <span class="title">Alunos</span>
             <span id="seta1" onclick="giro1()" class="icon d-inline-flex title seta" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
@@ -33,7 +33,7 @@
           </a>
         </li>
         <li>
-          <a href="#">
+          <a href="#" sec:authorize="hasAuthority('ADMIN')">
             <span class="icon"><i class="bi bi-person-lines-fill"></i></span>
             <span class="title d-inline-flex">Professores
             </span>
@@ -55,7 +55,7 @@
           </a>
         </li>
         <li>
-          <a href="#">
+          <a href="#" sec:authorize="hasAuthority('ADMIN')">
             <span class="icon"><i class="bi bi-person-lines-fill"></i></span>
             <span class="title d-inline-flex">Funcionários
             </span>
@@ -77,7 +77,7 @@
           </a>
         </li>
         <li>
-          <a href="#">
+          <a href="#" sec:authorize="hasAuthority('ADMIN')">
             <span class="icon"><i class="bi bi-briefcase"></i></span>
             <span class="title d-inline-flex">Cargos
             </span>
@@ -99,7 +99,7 @@
           </a>
         </li>
         <li>
-          <a href="#">
+          <a href="#" sec:authorize="hasAnyAuthority('ADMIN', 'USER')">
             <span class="icon"><i class="bi bi-book"></i></span>
             <span class="title d-inline-flex">Cursos
             </span>
@@ -112,7 +112,7 @@
                 <span class="title">Listar
                 </span>
               </a>
-              <a th:href="@{/cursos/cadastrar}">
+              <a th:href="@{/cursos/cadastrar}" sec:authorize="hasAuthority('ADMIN')">
                 <span class="icon item"><i class="bi bi-pencil-square"></i></span>
                 <span class="title">Cadastrar
                 </span>
@@ -121,7 +121,7 @@
           </a>
         </li>
         <li>
-          <a href="#">
+          <a href="#" sec:authorize="hasAnyAuthority('ADMIN', 'USER')">
             <span class="icon"><i class="bi bi-book-half"></i></span>
             <span class="title d-inline-flex">Cursos feitos
             </span>
@@ -134,7 +134,7 @@
                 <span class="title">Listar
                 </span>
               </a>
-              <a th:href="@{/cursoAndamento/cadastrar}">
+              <a th:href="@{/cursoAndamento/cadastrar}" sec:authorize="hasAuthority('ADMIN')">
                 <span class="icon item"><i class="bi bi-pencil-square"></i></span>
                 <span class="title">Cadastrar
                 </span>
@@ -142,7 +142,7 @@
             </p>
           </a>
         </li>
-        <li>
+        <li sec:authorize="hasAuthority('ADMIN')">
           <a href="#">
             <span class="icon"><i class="bi bi-person-vcard"></i></span>
             <span class="title d-inline-flex">Mensagens

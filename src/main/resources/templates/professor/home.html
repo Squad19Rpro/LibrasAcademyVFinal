@@ -25,7 +25,7 @@
 									<th>Demissão</th>
 									<th>Cargo</th>
 									<th>Salário</th>
-									<th colspan="2">Ações</th>
+									<th colspan="2" sec:authorize="hasAuthority('ADMIN')">Ações</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -42,7 +42,7 @@
 										01/01/2021</td>
 									<td th:text="${professor.cargo.nome}">Desenvolvedor(a) Full-stack Jr</td>
 									<td th:text="${#numbers.formatCurrency(professor.salario)}">R$ 2.000,00</td>
-									<td class="text-center w-100 align-items-center">
+									<td class="text-center align-items-center" sec:authorize="hasAuthority('ADMIN')">
 										<div class="btn-group">
 											<a type="button" class="btn btn-primary"
 												th:href="@{/professores/{id} (id=${professor.id})}">

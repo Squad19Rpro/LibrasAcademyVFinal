@@ -34,22 +34,11 @@ public class WebSecurityConfig {
                 .cors(Customizer.withDefaults())
                 .csrf(Customizer.withDefaults())
                 .authorizeHttpRequests(authorize -> authorize
-                		.requestMatchers("/css/**").permitAll()
-                        .requestMatchers("/images/**").permitAll()
-                        .requestMatchers("/js/**").permitAll()
-                        .requestMatchers("/sass/**").permitAll()
-                        .requestMatchers("/scripts/**").permitAll()
-                        .requestMatchers("/").permitAll()
-                        .requestMatchers("/sobre").permitAll()
-                        .requestMatchers("/contato").permitAll()
-                        .requestMatchers("/cadastro").permitAll()
-                        .requestMatchers("/curso").permitAll()
-                        .requestMatchers("/**/cadastroSite").permitAll()
-                        .requestMatchers("/**/cadastroMsg").permitAll()
-                        .requestMatchers("/templates/**").permitAll()
-                        .requestMatchers("/**/cadastrar").hasAuthority(Perfil.ADMIN.toString())
-        	            .requestMatchers("/**/editar").hasAuthority(Perfil.ADMIN.toString())
-        	            .requestMatchers("/**/excluir").hasAuthority(Perfil.ADMIN.toString())
+                		.requestMatchers("/css/**", "/images/**", "/js/**", "/sass/**", "/scripts/**").permitAll()                        
+                        .requestMatchers("/", "/sobre", "/contato", "/cadastro", "/curso", "/**/cadastroSite", "/**/cadastroMsg").permitAll()
+                        .requestMatchers("/cursos", "/cursoAndamento").hasAnyAuthority(Perfil.USER.toString(), Perfil.ADMIN.toString())
+                        .requestMatchers("/alunos/**","/funcionarios/**","/professores/**","/cargos/**","/faleMsg/**").hasAuthority(Perfil.ADMIN.toString())
+                        .requestMatchers("/**/cadastrar","/**/excluir", "/**/editar").hasAuthority(Perfil.ADMIN.toString())
                         .anyRequest().authenticated());
 
         http.formLogin(login -> login

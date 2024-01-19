@@ -72,7 +72,20 @@ public class UserDetailsImpl implements UserDetails {
 	          return aluno.getEmail();
 	      }
 	      return null;
-	//	return funcionario.getEmail();
+	}
+	
+	public String getNome() {
+	      if (userType == UserType.FUNCIONARIO) {
+	          // Retorna o email do funcionário
+	          return funcionario.getNome();
+	      } else if (userType == UserType.PROFESSOR) {
+	          // Retorna o email do professor
+	          return professor.getNome();
+	      } else if (userType == UserType.ALUNO) {
+	          // Retorna a senha do professor
+	          return aluno.getNome();
+	      }
+	      return null;
 	}
 
 	@Override

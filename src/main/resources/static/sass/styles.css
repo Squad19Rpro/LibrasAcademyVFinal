@@ -12016,15 +12016,15 @@ textarea.form-control-lg {
   }
 }
 
-@keyframes up-down {
-  0% {
-    transform: translateY(15px);
-  }
+/*@keyframes up-down {*/
+/*  0% {*/
+/*    transform: translateY(15px);*/
+/*  }*/
 
-  100% {
-    transform: translateY(-15px);
-  }
-}
+/*  100% {*/
+/*    transform: translateY(-15px);*/
+/*  }*/
+/*}*/
 
  /*--------------------------------------------------------------
   # Preloader
@@ -12164,7 +12164,7 @@ body::-webkit-scrollbar-thumb:hover {
   width: 40px;
   margin-top: 10px;
 }
-.diClose span{
+.divClose span{
   border-radius: 50%;
   border-color: white;
   color: white;
@@ -12415,10 +12415,7 @@ nav{
   justify-content: center;
   align-items: center;
 }
-/* Sobre */
-.margin-sobre{
-  margin-top: -350px;
-}
+
 /* Apoie */
 .apoie{
   width: 98%;
