@@ -37,14 +37,10 @@ public class UserDetailsImpl implements UserDetails {
 	    	Perfil perfil = (professor.getCargo() != null && "Gerente".equals(professor.getCargo().getNome())) ? Perfil.ADMIN : Perfil.USER;
 	        authorities.add(new SimpleGrantedAuthority(perfil.toString()));
 	    } else if(userType == UserType.ALUNO) {
-	    	Perfil perfil = (aluno.getNome() != null) ? Perfil.COMUM : Perfil.COMUM;
-	        authorities.add(new SimpleGrantedAuthority(perfil.toString()));
+	        authorities.add(new SimpleGrantedAuthority(Perfil.COMUM.toString()));
 	    }
 
 	    return authorities;
-//		Perfil perfil = funcionario.getCargo().getNome().equals("Gerente") ? Perfil.ADMIN :	Perfil.USER;
-//		//Perfil perfil2 = professor.getCargo().getNome().equals("Professor") ?	Perfil.USER : Perfil.USER;
-//		return AuthorityUtils.createAuthorityList(perfil.toString());
     }
 
 
@@ -53,16 +49,14 @@ public class UserDetailsImpl implements UserDetails {
       if (userType == UserType.FUNCIONARIO) {
       // Retorna a senha do funcionário
       return funcionario.getSenha();
-  } else if (userType == UserType.PROFESSOR) {
-      // Retorna a senha do professor
-      return professor.getSenha();
-  } else if (userType == UserType.ALUNO) {
-      // Retorna a senha do professor
-      return aluno.getSenha();
-  }
-  return null;
-
-  //      return funcionario.getSenha();
+		  } else if (userType == UserType.PROFESSOR) {
+			  // Retorna a senha do professor
+			  return professor.getSenha();
+		  } else if (userType == UserType.ALUNO) {
+			  // Retorna a senha do professor
+			  return aluno.getSenha();
+	  }
+	  return null;
     }
 
 	@Override

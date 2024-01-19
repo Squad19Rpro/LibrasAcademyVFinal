@@ -69,10 +69,8 @@ public class AlunoController {
 	
 	@PostMapping("/{id}/editar")
     public String editar(Aluno aluno, @PathVariable Long id) throws Exception {
-		String senhaAtual = alunoRepository.getReferenceById(id).getSenha();
-        aluno.setSenha(senhaAtual);
+        //todo validação dos campos dentro do service
         alunoRepository.save(aluno);
-
         return "redirect:/alunos";
     }
 

@@ -52,7 +52,6 @@ public class FaleController {
 	@PostMapping("/{id}/editar")
     public String editar(FaleConosco fale, @PathVariable Long id) {
         faleRepository.save(fale);
-
         return "redirect:/faleMsg";
     }
 

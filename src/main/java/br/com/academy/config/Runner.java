@@ -45,7 +45,7 @@ public class Runner implements CommandLineRunner {
 		if(c != cR.findAll()) {
 			cR.save(c);
 		}
-		if (c != fR.findAll()) {
+		if (f != fR.findAll()) {
 			fR.save(f);
 		}	
 	

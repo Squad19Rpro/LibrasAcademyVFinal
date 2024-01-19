@@ -29,12 +29,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
 	@Override
 	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-//        Funcionario funcionario = funcionarioRepository.findByEmail(email)
-//                .orElseThrow(() -> new UsernameNotFoundException("Funcionário não encontrado"));
-////        Professor professor = professorRepository.findByEmail(email)
-////        		.orElseThrow(() -> new UsernameNotFoundException("Professor não encontrado"));
-//
-//            return new UserDetailsImpl(funcionario);
+
 	    Funcionario funcionario = funcionarioRepository.findByEmail(email).orElse(null);
 	    Professor professor = professorRepository.findByEmail(email).orElse(null);
 	    Aluno aluno = alunoRepository.findByEmail(email).orElse(null);
