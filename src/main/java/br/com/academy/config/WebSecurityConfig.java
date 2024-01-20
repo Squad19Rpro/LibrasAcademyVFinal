@@ -35,7 +35,8 @@ public class WebSecurityConfig {
                 .csrf(Customizer.withDefaults())
                 .authorizeHttpRequests(authorize -> authorize
                 		.requestMatchers("/css/**", "/images/**", "/js/**", "/sass/**", "/scripts/**").permitAll()                        
-                        .requestMatchers("/", "/sobre", "/contato", "/cadastro", "/curso", "/**/cadastroSite", "/**/cadastroMsg").permitAll()
+                        .requestMatchers("/", "/sobre", "/contato", "/cadastro", "/curso", "/**/cadastroSite",
+                        				"/**/cadastroMsg", "/curso-java", "/curso-php").permitAll()
                         .requestMatchers("/cursos", "/cursoAndamento").hasAnyAuthority(Perfil.USER.toString(), Perfil.ADMIN.toString())
                         .requestMatchers("/alunos/**","/funcionarios/**","/professores/**","/cargos/**","/faleMsg/**").hasAuthority(Perfil.ADMIN.toString())
                         .requestMatchers("/**/cadastrar","/**/excluir", "/**/editar").hasAuthority(Perfil.ADMIN.toString())

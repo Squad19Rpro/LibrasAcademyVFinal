@@ -1,178 +1,199 @@
 <!-- Side navbar -->
-<div th:fragment="sidenav" >
-	<div class="toggle icon-nav fixed-top" onclick="toggleMenu();"><i class="bi bi-list text-center text-white "></i></div>
-  <div class="navigation fixed-bottom">
-    <ul>
-      <li>
-        <a th:href="@{/cursos}">
-          <span class="icon"><i class="bi bi-house-door"></i></span>
-          <span class="title" id="link1">Home</span>
-        </a>
-      </li>
+<div th:fragment="sidenav">
+	<div class="toggle icon-nav fixed-top" onclick="toggleMenu();"><i class="bi bi-list text-center text-white "></i>
+	</div>
+	<div class="navigation fixed-bottom">
+		<ul>
+			<li sec:authorize="hasAnyAuthority('ADMIN', 'USER')">
+				<a th:href="@{/cursos}">
+					<span class="icon"><i class="bi bi-house-door"></i></span>
+					<span class="title" id="link1">Home</span>
+				</a>
+			</li>
+			<li sec:authorize="hasAuthority('COMUM')">
+				<a th:href="@{/}">
+					<span class="icon"><i class="bi bi-house-door"></i></span>
+					<span class="title" id="link1">Home</span>
+				</a>
+			</li>
 
-      <div class="accordion" id="accordionPanelsStayOpenExample">
-        <li>
-          <a href="#" sec:authorize="hasAuthority('ADMIN')">
-            <span class="icon"><i class="bi bi-people-fill"></i></span>
-            <span class="title">Alunos</span>
-            <span id="seta1" onclick="giro1()" class="icon d-inline-flex title seta" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-              <i class="bi bi-chevron-right text-white "></i>
-            </span>
-            <p id="collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-              <a th:href="@{/alunos}">
-                <span class="icon item"><i class="bi bi-list-ul"></i></span>
-                <span class="title">Listar
-                </span>
-              </a>
-              <a th:href="@{/alunos/cadastrar}">
-                <span class="icon item"><i class="bi bi-pencil-square"></i></span>
-                <span class="title">Cadastrar
-                </span>
-              </a>
-            </p>
-          </a>
-        </li>
-        <li>
-          <a href="#" sec:authorize="hasAuthority('ADMIN')">
-            <span class="icon"><i class="bi bi-person-lines-fill"></i></span>
-            <span class="title d-inline-flex">Professores
-            </span>
-            <span id="seta2" onclick="giro2()" class="icon d-inline-flex title seta" data-bs-toggle="collapse" data-bs-target="#collapse2" aria-expanded="false" aria-controls="collapse2">
-              <i  class="bi bi-chevron-right text-white "></i>
-            </span>
-            <p id="collapse2" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-              <a th:href="@{/professores}">
-                <span class="icon item"><i class="bi bi-list-ul"></i></span>
-                <span class="title">Listar
-                </span>
-              </a>
-              <a th:href="@{/professores/cadastrar}">
-                <span class="icon item"><i class="bi bi-pencil-square"></i></span>
-                <span class="title">Cadastrar
-                </span>
-              </a>
-            </p>
-          </a>
-        </li>
-        <li>
-          <a href="#" sec:authorize="hasAuthority('ADMIN')">
-            <span class="icon"><i class="bi bi-person-lines-fill"></i></span>
-            <span class="title d-inline-flex">Funcionários
-            </span>
-            <span id="seta3" onclick="giro3()" class="icon d-inline-flex title seta" data-bs-toggle="collapse" data-bs-target="#collapse3" aria-expanded="false" aria-controls="collapse3">
-              <i  class="bi bi-chevron-right text-white "></i>
-            </span>
-            <p id="collapse3" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-              <a th:href="@{/funcionarios}">
-                <span class="icon item"><i class="bi bi-list-ul"></i></span>
-                <span class="title">Listar
-                </span>
-              </a>
-              <a th:href="@{/funcionarios/cadastrar}">
-                <span class="icon item"><i class="bi bi-pencil-square"></i></span>
-                <span class="title">Cadastrar
-                </span>
-              </a>
-            </p>
-          </a>
-        </li>
-        <li>
-          <a href="#" sec:authorize="hasAuthority('ADMIN')">
-            <span class="icon"><i class="bi bi-briefcase"></i></span>
-            <span class="title d-inline-flex">Cargos
-            </span>
-            <span id="seta4" onclick="giro4()" class="icon d-inline-flex title seta" data-bs-toggle="collapse" data-bs-target="#collapse4" aria-expanded="false" aria-controls="collapse4">
-              <i  class="bi bi-chevron-right text-white "></i>
-            </span>
-            <p id="collapse4" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-              <a th:href="@{/cargos}">
-                <span class="icon item"><i class="bi bi-list-ul"></i></span>
-                <span class="title">Listar
-                </span>
-              </a>
-              <a th:href="@{/cargos/cadastrar}">
-                <span class="icon item"><i class="bi bi-pencil-square"></i></span>
-                <span class="title">Cadastrar
-                </span>
-              </a>
-            </p>
-          </a>
-        </li>
-        <li>
-          <a href="#" sec:authorize="hasAnyAuthority('ADMIN', 'USER')">
-            <span class="icon"><i class="bi bi-book"></i></span>
-            <span class="title d-inline-flex">Cursos
-            </span>
-            <span id="seta5" onclick="giro5()" class="icon d-inline-flex title seta" data-bs-toggle="collapse" data-bs-target="#collapse5" aria-expanded="false" aria-controls="collapse5">
-              <i  class="bi bi-chevron-right text-white "></i>
-            </span>
-            <p id="collapse5" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-              <a th:href="@{/cursos}">
-                <span class="icon item"><i class="bi bi-list-ul"></i></span>
-                <span class="title">Listar
-                </span>
-              </a>
-              <a th:href="@{/cursos/cadastrar}" sec:authorize="hasAuthority('ADMIN')">
-                <span class="icon item"><i class="bi bi-pencil-square"></i></span>
-                <span class="title">Cadastrar
-                </span>
-              </a>
-            </p>
-          </a>
-        </li>
-        <li>
-          <a href="#" sec:authorize="hasAnyAuthority('ADMIN', 'USER')">
-            <span class="icon"><i class="bi bi-book-half"></i></span>
-            <span class="title d-inline-flex">Cursos feitos
-            </span>
-            <span id="seta6" onclick="giro6()" class="icon d-inline-flex title seta" data-bs-toggle="collapse" data-bs-target="#collapse6" aria-expanded="false" aria-controls="collapse6">
-              <i class="bi bi-chevron-right text-white "></i>
-            </span>
-            <p id="collapse6" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-              <a th:href="@{/cursoAndamento}">
-                <span class="icon item"><i class="bi bi-list-ul"></i></span>
-                <span class="title">Listar
-                </span>
-              </a>
-              <a th:href="@{/cursoAndamento/cadastrar}" sec:authorize="hasAuthority('ADMIN')">
-                <span class="icon item"><i class="bi bi-pencil-square"></i></span>
-                <span class="title">Cadastrar
-                </span>
-              </a>
-            </p>
-          </a>
-        </li>
-        <li sec:authorize="hasAuthority('ADMIN')">
-          <a href="#">
-            <span class="icon"><i class="bi bi-person-vcard"></i></span>
-            <span class="title d-inline-flex">Mensagens
-            </span>
-            <span id="seta7" onclick="giro7()" class="icon d-inline-flex title seta" data-bs-toggle="collapse" data-bs-target="#collapse7" aria-expanded="false" aria-controls="collapse7">
-              <i class="bi bi-chevron-right text-white "></i>
-            </span>
-            <p id="collapse7" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-              <a th:href="@{/faleMsg}">
-                <span class="icon item"><i class="bi bi-list-ul"></i></span>
-                <span class="title">Listar
-                </span>
-              </a>
-              <a th:href="@{/faleMsg/cadastrar}">
-                <span class="icon item"><i class="bi bi-pencil-square"></i></span>
-                <span class="title">Cadastrar
-                </span>
-              </a>
-            </p>
-          </a>
-        </li>
-      </div>
+			<div class="accordion" id="accordionPanelsStayOpenExample">
+				<li>
+					<a href="#" sec:authorize="hasAuthority('ADMIN')">
+						<span class="icon"><i class="bi bi-people-fill"></i></span>
+						<span class="title">Alunos</span>
+						<span id="seta1" onclick="giro1()" class="icon d-inline-flex title seta"
+							data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false"
+							aria-controls="collapseOne">
+							<i class="bi bi-chevron-right text-white "></i>
+						</span>
+						<p id="collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+							<a th:href="@{/alunos}">
+								<span class="icon item"><i class="bi bi-list-ul"></i></span>
+								<span class="title">Listar
+								</span>
+							</a>
+							<a th:href="@{/alunos/cadastrar}">
+								<span class="icon item"><i class="bi bi-pencil-square"></i></span>
+								<span class="title">Cadastrar
+								</span>
+							</a>
+						</p>
+					</a>
+				</li>
+				<li>
+					<a href="#" sec:authorize="hasAuthority('ADMIN')">
+						<span class="icon"><i class="bi bi-person-lines-fill"></i></span>
+						<span class="title d-inline-flex">Professores
+						</span>
+						<span id="seta2" onclick="giro2()" class="icon d-inline-flex title seta"
+							data-bs-toggle="collapse" data-bs-target="#collapse2" aria-expanded="false"
+							aria-controls="collapse2">
+							<i class="bi bi-chevron-right text-white "></i>
+						</span>
+						<p id="collapse2" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+							<a th:href="@{/professores}">
+								<span class="icon item"><i class="bi bi-list-ul"></i></span>
+								<span class="title">Listar
+								</span>
+							</a>
+							<a th:href="@{/professores/cadastrar}">
+								<span class="icon item"><i class="bi bi-pencil-square"></i></span>
+								<span class="title">Cadastrar
+								</span>
+							</a>
+						</p>
+					</a>
+				</li>
+				<li>
+					<a href="#" sec:authorize="hasAuthority('ADMIN')">
+						<span class="icon"><i class="bi bi-person-lines-fill"></i></span>
+						<span class="title d-inline-flex">Funcionários
+						</span>
+						<span id="seta3" onclick="giro3()" class="icon d-inline-flex title seta"
+							data-bs-toggle="collapse" data-bs-target="#collapse3" aria-expanded="false"
+							aria-controls="collapse3">
+							<i class="bi bi-chevron-right text-white "></i>
+						</span>
+						<p id="collapse3" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+							<a th:href="@{/funcionarios}">
+								<span class="icon item"><i class="bi bi-list-ul"></i></span>
+								<span class="title">Listar
+								</span>
+							</a>
+							<a th:href="@{/funcionarios/cadastrar}">
+								<span class="icon item"><i class="bi bi-pencil-square"></i></span>
+								<span class="title">Cadastrar
+								</span>
+							</a>
+						</p>
+					</a>
+				</li>
+				<li>
+					<a href="#" sec:authorize="hasAuthority('ADMIN')">
+						<span class="icon"><i class="bi bi-briefcase"></i></span>
+						<span class="title d-inline-flex">Cargos
+						</span>
+						<span id="seta4" onclick="giro4()" class="icon d-inline-flex title seta"
+							data-bs-toggle="collapse" data-bs-target="#collapse4" aria-expanded="false"
+							aria-controls="collapse4">
+							<i class="bi bi-chevron-right text-white "></i>
+						</span>
+						<p id="collapse4" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+							<a th:href="@{/cargos}">
+								<span class="icon item"><i class="bi bi-list-ul"></i></span>
+								<span class="title">Listar
+								</span>
+							</a>
+							<a th:href="@{/cargos/cadastrar}">
+								<span class="icon item"><i class="bi bi-pencil-square"></i></span>
+								<span class="title">Cadastrar
+								</span>
+							</a>
+						</p>
+					</a>
+				</li>
+				<li>
+					<a href="#" sec:authorize="hasAnyAuthority('ADMIN', 'USER')">
+						<span class="icon"><i class="bi bi-book"></i></span>
+						<span class="title d-inline-flex">Cursos
+						</span>
+						<span id="seta5" onclick="giro5()" class="icon d-inline-flex title seta"
+							data-bs-toggle="collapse" data-bs-target="#collapse5" aria-expanded="false"
+							aria-controls="collapse5">
+							<i class="bi bi-chevron-right text-white "></i>
+						</span>
+						<p id="collapse5" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+							<a th:href="@{/cursos}">
+								<span class="icon item"><i class="bi bi-list-ul"></i></span>
+								<span class="title">Listar
+								</span>
+							</a>
+							<a th:href="@{/cursos/cadastrar}" sec:authorize="hasAuthority('ADMIN')">
+								<span class="icon item"><i class="bi bi-pencil-square"></i></span>
+								<span class="title">Cadastrar
+								</span>
+							</a>
+						</p>
+					</a>
+				</li>
+				<li>
+					<a href="#" sec:authorize="hasAnyAuthority('ADMIN', 'USER')">
+						<span class="icon"><i class="bi bi-book-half"></i></span>
+						<span class="title d-inline-flex">Cursos feitos
+						</span>
+						<span id="seta6" onclick="giro6()" class="icon d-inline-flex title seta"
+							data-bs-toggle="collapse" data-bs-target="#collapse6" aria-expanded="false"
+							aria-controls="collapse6">
+							<i class="bi bi-chevron-right text-white "></i>
+						</span>
+						<p id="collapse6" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+							<a th:href="@{/cursoAndamento}">
+								<span class="icon item"><i class="bi bi-list-ul"></i></span>
+								<span class="title">Listar
+								</span>
+							</a>
+							<a th:href="@{/cursoAndamento/cadastrar}" sec:authorize="hasAuthority('ADMIN')">
+								<span class="icon item"><i class="bi bi-pencil-square"></i></span>
+								<span class="title">Cadastrar
+								</span>
+							</a>
+						</p>
+					</a>
+				</li>
+				<li sec:authorize="hasAuthority('ADMIN')">
+					<a href="#">
+						<span class="icon"><i class="bi bi-person-vcard"></i></span>
+						<span class="title d-inline-flex">Mensagens
+						</span>
+						<span id="seta7" onclick="giro7()" class="icon d-inline-flex title seta"
+							data-bs-toggle="collapse" data-bs-target="#collapse7" aria-expanded="false"
+							aria-controls="collapse7">
+							<i class="bi bi-chevron-right text-white "></i>
+						</span>
+						<p id="collapse7" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+							<a th:href="@{/faleMsg}">
+								<span class="icon item"><i class="bi bi-list-ul"></i></span>
+								<span class="title">Listar
+								</span>
+							</a>
+							<a th:href="@{/faleMsg/cadastrar}">
+								<span class="icon item"><i class="bi bi-pencil-square"></i></span>
+								<span class="title">Cadastrar
+								</span>
+							</a>
+						</p>
+					</a>
+				</li>
+			</div>
 
-      <li>
-	        <a th:href="@{/logout}">
-          <span class="icon"><i class="bi bi-box-arrow-left"></i></i></span>
-          <span class="title">Sair</span>
-        </a>
-      </li>
-    </ul>
+			<li>
+				<a th:href="@{/logout}">
+					<span class="icon"><i class="bi bi-box-arrow-left"></i></i></span>
+					<span class="title">Sair</span>
+				</a>
+			</li>
+		</ul>
 
-  </div>
+	</div>
 </div>
