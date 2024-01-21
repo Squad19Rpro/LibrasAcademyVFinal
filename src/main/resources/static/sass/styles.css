@@ -11966,7 +11966,7 @@ textarea.form-control-lg {
 }
 
 #hero .animated {
-  animation: up-down 1.5s ease-in-out infinite alternate-reverse both;
+  animation: up-down 0s ease-in-out infinite alternate-reverse both;
 }
 
 @media (max-width: 991px) {
