@@ -53,7 +53,7 @@ public class AlunoController {
 	@GetMapping("/{id}/editar")
     public ModelAndView editar(@PathVariable Long id) {
         ModelAndView modelAndView = new ModelAndView("aluno/editAluno");
-        modelAndView.addObject("aluno", alunoRepository.getReferenceById(id));
+        modelAndView.addObject("aluno", alunoRepository.findById(id));
 
         return modelAndView;
     }
@@ -69,7 +69,6 @@ public class AlunoController {
 	
 	@PostMapping("/{id}/editar")
     public String editar(Aluno aluno, @PathVariable Long id) throws Exception {
-        //todo validação dos campos dentro do service
         alunoRepository.save(aluno);
         return "redirect:/alunos";
     }

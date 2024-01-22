@@ -42,11 +42,17 @@ public class CargoController {
         return modelAndView;
     }
 
-    @PostMapping({"/cadastrar", "/{id}/editar"})
+    @PostMapping("/cadastrar")
     public String salvar(Cargo cargo) {
         cargoRepository.save(cargo);
 
         return "redirect:/cargos";
+    }
+    
+    @PostMapping("/{id}/editar")
+    public String edicao(Cargo cargo, @PathVariable Long id) {
+    	cargoRepository.save(cargo);
+    	return "redirect:/cargos";
     }
 
     @GetMapping("/{id}/excluir")

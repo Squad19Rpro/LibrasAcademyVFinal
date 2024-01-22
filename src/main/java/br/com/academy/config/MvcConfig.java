@@ -12,10 +12,10 @@ public class MvcConfig implements WebMvcConfigurer {
 		registry.addViewController("/contato").setViewName("pages/contato");
 		registry.addViewController("/cadastro").setViewName("pages/cadastro");
 		registry.addViewController("/curso").setViewName("pages/cursos");
-		registry.addViewController("/curso-java").setViewName("pages/cursos/java/introducao");
-		registry.addViewController("/curso-java/modulo-1").setViewName("pages/cursos/java/Java");
-		registry.addViewController("/curso-php").setViewName("pages/cursos/php/introducao");
-		registry.addViewController("/curso-php/modulo-1").setViewName("pages/cursos/php/PHP");
+		registry.addViewController("/curso/curso-java").setViewName("pages/cursos/java/introducao");
+		registry.addViewController("/curso/curso-java/modulo-1").setViewName("pages/cursos/java/Java");
+		registry.addViewController("/curso/curso-php").setViewName("pages/cursos/php/introducao");
+		registry.addViewController("/curso/curso-php/modulo-1").setViewName("pages/cursos/php/PHP");
 		registry.addViewController("/perfil").setViewName("usuario/perfil");
 		
 	}
