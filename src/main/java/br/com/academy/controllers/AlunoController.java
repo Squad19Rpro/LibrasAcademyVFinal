@@ -8,76 +8,74 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import br.com.academy.entidades.Aluno;
-import br.com.academy.repository.AlunoRepository;
+import br.com.academy.dto.AlunoDTO;
 import br.com.academy.repository.CursosRepository;
+import br.com.academy.service.AlunoService;
 import br.com.academy.utils.SenhaUtils;
 
 @Controller
 @RequestMapping("/alunos")
 public class AlunoController {
-	
+
 	@Autowired
-	private AlunoRepository alunoRepository;
-	
+	private AlunoService alunoService;
+
 	@Autowired
 	private CursosRepository cursosRepository;
-	
+
 	@GetMapping
-    public ModelAndView home() {
-        ModelAndView modelAndView = new ModelAndView("aluno/home");
-        
-        modelAndView.addObject("estudantes", cursosRepository.findAll());
-        modelAndView.addObject("alunos", alunoRepository.findAll());
-        
-        return modelAndView;
+	public ModelAndView home() {
+		ModelAndView modelAndView = new ModelAndView("aluno/home");
+
+		modelAndView.addObject("estudantes", cursosRepository.findAll());
+		modelAndView.addObject("alunos", alunoService.findAll());
+
+		return modelAndView;
 	}
-	
+
 	@GetMapping("/{id}")
-    public ModelAndView detalhes(@PathVariable Long id) {
-        ModelAndView modelAndView = new ModelAndView("aluno/detalhes");
-        modelAndView.addObject("cursos", cursosRepository.getReferenceById(id));
-        modelAndView.addObject("aluno", alunoRepository.getReferenceById(id));
+	public ModelAndView detalhes(@PathVariable Long id) {
+		ModelAndView modelAndView = new ModelAndView("aluno/detalhes");
+		modelAndView.addObject("cursos", cursosRepository.getReferenceById(id));
+		modelAndView.addObject("aluno", alunoService.findById(id));
 
-        return modelAndView;
-    }
-	
+		return modelAndView;
+	}
+
 	@GetMapping("/cadastrar")
-    public ModelAndView cadastrar() {
-        ModelAndView modelAndView = new ModelAndView("aluno/formulario");
-        modelAndView.addObject("aluno", new Aluno());      
+	public ModelAndView cadastrar() {
+		ModelAndView modelAndView = new ModelAndView("aluno/formulario");
+		modelAndView.addObject("aluno", new AlunoDTO());
 
-        return modelAndView;
-    }
-	
+		return modelAndView;
+	}
+
 	@GetMapping("/{id}/editar")
-    public ModelAndView editar(@PathVariable Long id) {
-        ModelAndView modelAndView = new ModelAndView("aluno/editAluno");
-        modelAndView.addObject("aluno", alunoRepository.findById(id));
+	public ModelAndView editar(@PathVariable Long id) {
+		ModelAndView modelAndView = new ModelAndView("aluno/editAluno");
+		modelAndView.addObject("aluno", alunoService.findById(id));
 
-        return modelAndView;
-    }
-    
+		return modelAndView;
+	}
+
     @PostMapping("/cadastrar")
-    public String cadastrar(Aluno aluno) {
-    	String senhaEncriptada = SenhaUtils.encode(aluno.getSenha());
-        aluno.setSenha(senhaEncriptada);
-        alunoRepository.save(aluno);
-
+    public String cadastrar(AlunoDTO alunoDTO) {
+        alunoService.save(alunoDTO);
         return "redirect:/alunos";
     }
-	
+
 	@PostMapping("/{id}/editar")
-    public String editar(Aluno aluno, @PathVariable Long id) throws Exception {
-        alunoRepository.save(aluno);
-        return "redirect:/alunos";
-    }
+	public String editar(AlunoDTO alunoUpdate, @PathVariable Long id) throws Exception {
+		AlunoDTO alunoAlvo = alunoService.findById(id);
+		alunoService.update(alunoUpdate, alunoAlvo);
+		return "redirect:/alunos";
+	}
 
-    @GetMapping("/{id}/excluir")
-    public String excluir(@PathVariable Long id) {
-        alunoRepository.deleteById(id);
+	@GetMapping("/{id}/excluir")
+	public String excluir(@PathVariable Long id) {
+		alunoService.deleteById(id);
 
-        return "redirect:/alunos";
-    }
-	
+		return "redirect:/alunos";
+	}
+
 }

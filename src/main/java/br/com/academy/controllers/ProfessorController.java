@@ -8,17 +8,17 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import br.com.academy.dto.ProfessorDTO;
 import br.com.academy.entidades.Professor;
 import br.com.academy.repository.CargoRepository;
-import br.com.academy.repository.ProfessorRepository;
-import br.com.academy.utils.SenhaUtils;
+import br.com.academy.service.ProfessorService;
 
 @Controller
 @RequestMapping("/professores")
 public class ProfessorController {
 
     @Autowired
-    private ProfessorRepository professorRepository;
+    private ProfessorService professorService;
 
     @Autowired
     private CargoRepository cargoRepository;
@@ -26,7 +26,7 @@ public class ProfessorController {
     @GetMapping
     public ModelAndView home() {
         ModelAndView modelAndView = new ModelAndView("professor/home");
-        modelAndView.addObject("professores", professorRepository.findAll());
+        modelAndView.addObject("professores", professorService.findAll());
 
         return modelAndView;
     }
@@ -34,7 +34,7 @@ public class ProfessorController {
     @GetMapping("/{id}")
     public ModelAndView detalhes(@PathVariable Long id) {
         ModelAndView modelAndView = new ModelAndView("professor/detalhes");
-        modelAndView.addObject("professor", professorRepository.getReferenceById(id));
+        modelAndView.addObject("professor", professorService.findById(id));
 
         return modelAndView;
     }
@@ -51,35 +51,32 @@ public class ProfessorController {
     @GetMapping("/{id}/editar")
     public ModelAndView editar(@PathVariable Long id) {
         ModelAndView modelAndView = new ModelAndView("professor/editProf");
-        modelAndView.addObject("professor", professorRepository.getReferenceById(id));
+        modelAndView.addObject("professor", professorService.findById(id));
         modelAndView.addObject("cargos", cargoRepository.findAll());
 
         return modelAndView;
     }
     
     @PostMapping("/cadastrar")
-    public String cadastrar(Professor professor) {
-    	String senhaEncriptada = SenhaUtils.encode(professor.getSenha());
-        professor.setSenha(senhaEncriptada);
-        professorRepository.save(professor);
+    public String cadastrar(ProfessorDTO professorDTO) {
+        professorService.save(professorDTO);
 
         return "redirect:/professores";
     }
 
     @PostMapping("/{id}/editar")
-    public String editar(Professor professor, @PathVariable Long id) {
-    	String senhaEncriptada = SenhaUtils.encode(professor.getSenha());
-        professor.setSenha(senhaEncriptada);
-        professorRepository.save(professor);
+    public String editar(ProfessorDTO professorUpdate, @PathVariable Long id) throws Exception {
+        ProfessorDTO professorAlvo = professorService.findById(id);
+        professorService.update(professorUpdate, professorAlvo);
 
         return "redirect:/professores";
     }
 
     @GetMapping("/{id}/excluir")
     public String excluir(@PathVariable Long id) {
-    	professorRepository.deleteById(id);
+    	professorService.deleteById(id);
 
-        return "redirect:/funcionarios";
+        return "redirect:/professores";
     }
     
 }

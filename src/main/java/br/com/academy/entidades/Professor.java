@@ -5,11 +5,13 @@ import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
 import org.springframework.format.annotation.NumberFormat;
 import org.springframework.format.annotation.NumberFormat.Style;
 
+import br.com.academy.dto.ProfessorDTO;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -40,6 +42,11 @@ public class Professor extends Pessoa {
 	@ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "cargo_id_fk", nullable = false)
     private Cargo cargo;
+	
+	public Professor(){};
+	public Professor(ProfessorDTO professorDTO){
+		BeanUtils.copyProperties(professorDTO, this);
+	};
 
 	public Set<Cursos> getCursos() {
 		return cursos;
