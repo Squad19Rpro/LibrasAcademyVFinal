@@ -1,32 +1,23 @@
-package br.com.academy.entidades;
+package br.com.academy.dto;
 
 import org.springframework.beans.BeanUtils;
 
-import br.com.academy.dto.FaleConoscoDTO;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import br.com.academy.entidades.FaleConosco;
 
-@Entity
-@Table(name = "fale_conosco")
-public class FaleConosco extends Entidade {
-	@Column(name = "nome_msg", columnDefinition = "VARCHAR (100) NOT NULL")
+public class FaleConoscoDTO {
 	private String nome_msg;
 	
-	@Column(name = "email_msg", columnDefinition = "VARCHAR (100) NOT NULL")
 	private String email_msg;
 	
-	@Column(name = "assunto", columnDefinition = "VARCHAR (100) NOT NULL")
 	private String assunto;
 	
-	@Column(name = "mensagem", columnDefinition = "TEXT")
 	private String mensagem;
 	
-	public FaleConosco(FaleConoscoDTO faleConoscoDTO){
-		BeanUtils.copyProperties(faleConoscoDTO, this);
-	};
-
-	public FaleConosco(){};
+	public FaleConoscoDTO() {};
+	
+	public FaleConoscoDTO(FaleConosco faleConosco) {
+		BeanUtils.copyProperties(faleConosco, this);
+	}
 
 	public String getNome_msg() {
 		return nome_msg;
@@ -59,6 +50,7 @@ public class FaleConosco extends Entidade {
 	public void setMensagem(String mensagem) {
 		this.mensagem = mensagem;
 	}
+	
 	
 	
 }
