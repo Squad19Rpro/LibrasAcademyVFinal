@@ -21,7 +21,8 @@
 										<th>CPF</th>
 										<th>Telefone</th>
 										<th>Sexo</th>
-										<th class="text-center" colspan="2" sec:authorize="hasAuthority('ADMIN')">Ações</th>
+										<th class="text-center" colspan="2" sec:authorize="hasAuthority('ADMIN')">Ações
+										</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -33,7 +34,8 @@
 										<td th:text="${aluno.telefone}">(84) 99999-9999</td>
 										<td th:text="${aluno.sexo}">Masculino, Feminino, Outro</td>
 
-										<td class="text-center align-items-center" sec:authorize="hasAuthority('ADMIN')">
+										<td class="text-center align-items-center"
+											sec:authorize="hasAuthority('ADMIN')">
 											<div class="btn-group align-items-center">
 												<a type="button" class="btn btn-primary"
 													th:href="@{/alunos/{id} (id=${aluno.id})}">
@@ -44,8 +46,8 @@
 													<i class="bi bi-pencil-square"></i>
 												</a>
 												<a type="button" class="btn btn-danger"
-													th:href="@{/alunos/{id}/excluir (id=${aluno.id})}"
-													onclick="return confirm('Tem certeza que deseja excluir o aluno?');">
+													th:attr="data-url=@{/alunos/{id}/excluir (id=${aluno.id})}"
+													onclick="confirmDelete(event, '${fale.id}');">
 													<i class="bi bi-trash"></i>
 												</a>
 											</div>

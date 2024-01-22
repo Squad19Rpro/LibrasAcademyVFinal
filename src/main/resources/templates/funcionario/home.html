@@ -55,8 +55,8 @@
 												<i class="bi bi-pencil-square"></i>
 											</a>
 											<a type="button" class="btn btn-danger"
-												th:href="@{/funcionarios/{id}/excluir (id=${funcionario.id})}"
-												onclick="return confirm('Tem certeza que deseja excluir o funcionario?');">
+												th:attr="data-url=@{/funcionarios/{id}/excluir (id=${funcionario.id})}"
+												onclick="confirmDelete(event, '${funcionario.id}');">
 												<i class="bi bi-trash"></i>
 											</a>
 										</div>

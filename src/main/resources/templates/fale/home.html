@@ -36,9 +36,9 @@
 												<i class="bi bi-pencil-square"></i>
 											</a>
 											<a type="button" class="btn btn-danger"
-											href="/faleMsg/fale.id/exluir"
+												title="Excluir mensagem"
 												th:attr="data-url=@{/faleMsg/{id}/excluir (id=${fale.id})}"
-												onclick="confirmDelete(event, '${fale.id}');">
+												onclick="confirmDelet(event, '${fale.id}');">
 												<i class="bi bi-trash"></i>
 											</a>
 										</div>
@@ -51,14 +51,14 @@
 			</div>
 		</div>
 		<script>
-			function confirmDelete(event, messageId) {
+			function confirmDelet(event, messageId) {
 				event.preventDefault();
 
 				var deleteUrl = event.currentTarget.getAttribute('data-url');
 
 				// Use o SweetAlert para exibir a mensagem de confirmação
 				Swal.fire({
-					title: "Tem certeza?",
+					title: "Tem certeza que deseja excluir? ID: ",
 					text: "Uma vez excluída, você não poderá recuperar esta mensagem!",
 					icon: "warning",
 					showCancelButton: true,
@@ -71,7 +71,7 @@
 					.then((willDelete) => {
 						if (willDelete.isConfirmed) {
 							// Se o usuário confirmar, redirecione para a URL de exclusão
-							// Exiba a mensagem de sucesso após 2 segundos e redirecione
+							// Exibe a mensagem de sucesso após 2 segundos e redirecione
 							Swal.fire({
 								title: "Sua mensagem está sendo excluída...",
 								icon: "success",

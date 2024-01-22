@@ -42,13 +42,15 @@
 													th:href="@{/cursos/{id} (id=${curso.id})}">
 													<i class="bi bi-eye"></i>
 												</a>
-												<a type="button" class="btn btn-warning" sec:authorize="hasAuthority('ADMIN')"
+												<a type="button" class="btn btn-warning"
+													sec:authorize="hasAuthority('ADMIN')"
 													th:href="@{/cursos/{id}/editar (id=${curso.id})}">
 													<i class="bi bi-pencil-square"></i>
 												</a>
-												<a type="button" class="btn btn-danger" sec:authorize="hasAuthority('ADMIN')"
-													th:href="@{/cursos/{id}/excluir (id=${curso.id})}"
-													onclick="return confirm('Tem certeza que deseja excluir o curso?');">
+												<a type="button" class="btn btn-danger"
+													sec:authorize="hasAuthority('ADMIN')"
+													th:attr="data-url=@{/cursos/{id}/excluir (id=${curso.id})}"
+													onclick="confirmDelete(event, '${curso.id}');">
 													<i class="bi bi-trash"></i>
 												</a>
 											</div>

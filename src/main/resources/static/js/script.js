@@ -143,3 +143,41 @@ document.addEventListener("DOMContentLoaded", function () {
 		}, 1900);
 	});
 });
+
+function confirmDelete(event, dadoId) {
+	event.preventDefault();
+
+	var deleteUrl = event.currentTarget.getAttribute('data-url');
+
+	// Use o SweetAlert para exibir a mensagem de confirmação
+	Swal.fire({
+		title: "Tem certeza que deseja excluir?",
+		text: "Uma vez excluído, você não poderá recuperar este dado!",
+		icon: "warning",
+		showCancelButton: true,
+		reverseButtons: true,
+		cancelButtonColor: "#999999",
+		confirmButtonColor: "#d33",
+		cancelButtonText: "Cancelar",
+		confirmButtonText: "Sim, excluir!"
+	})
+		.then((willDelete) => {
+			if (willDelete.isConfirmed) {
+				// Se o usuário confirmar, redirecione para a URL de exclusão
+				// Exibe a mensagem de sucesso após 2 segundos e redirecione
+				Swal.fire({
+					title: "Seu dado está sendo excluído...",
+					icon: "success",
+					showConfirmButton: false,
+					timer: 1500
+				})
+					.then(() => {
+						// Redirecione para a URL de exclusão após o atraso
+						window.location.href = deleteUrl;
+					});
+			} else {
+				// Se o usuário cancelar, exiba uma mensagem
+				Swal.fire("Ok, os dados não foram excluidos!", "", "info");
+			}
+		});
+}
