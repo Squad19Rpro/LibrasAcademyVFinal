@@ -11,7 +11,6 @@ import org.springframework.web.servlet.ModelAndView;
 import br.com.academy.dto.AlunoDTO;
 import br.com.academy.repository.CursosRepository;
 import br.com.academy.service.AlunoService;
-import br.com.academy.utils.SenhaUtils;
 
 @Controller
 @RequestMapping("/alunos")

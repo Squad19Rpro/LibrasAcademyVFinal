@@ -16,9 +16,6 @@ import jakarta.persistence.Table;
 @Table(name = "alunos")
 public class Aluno extends Pessoa {
 	
-	@Column(name = "senha", nullable = false)
-	private String senha;
-	
 	@OneToMany(mappedBy = "aluno", fetch = FetchType.LAZY)
 	private Set<CursoAluno> estudantes = new HashSet<>();
 	
@@ -38,7 +35,7 @@ public class Aluno extends Pessoa {
 
 	@Override
 	public String toString() {
-		return "Aluno [senha=" + senha + ", getSenha()=" + getSenha() + ", getNome()=" + getNome() + ", getCpf()="
+		return "Aluno [nome=" + ", getNome()=" + getNome() + ", getCpf()="
 				+ getCpf() + ", getSexo()=" + getSexo() + ", getTelefone()=" + getTelefone() + ", getEmail()="
 				+ getEmail() + ", getDataNascimento()=" + getDataNascimento() + ", getId()=" + getId() + ", hashCode()="
 				+ hashCode() + ", toString()=" + super.toString() + ", getClass()=" + getClass() + "]";
