@@ -4,7 +4,9 @@ import br.com.academy.entidades.Cargo;
 import br.com.academy.entidades.Cursos;
 import br.com.academy.entidades.Professor;
 import org.springframework.beans.BeanUtils;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.NumberFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -25,11 +27,14 @@ public class ProfessorDTO {
     private String telefone;
 
     private String sexo;
-
+    
+    @DateTimeFormat(iso = ISO.DATE)
     private LocalDate dataNascimento;
-
+    
+    @DateTimeFormat(iso = ISO.DATE)
     private LocalDate dataAdmissao;
-
+    
+    @DateTimeFormat(iso = ISO.DATE)
     private LocalDate dataDemissao;
 
     @NumberFormat(style = NumberFormat.Style.CURRENCY, pattern = "#,##0.00")

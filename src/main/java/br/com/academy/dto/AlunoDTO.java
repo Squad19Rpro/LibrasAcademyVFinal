@@ -3,6 +3,8 @@ package br.com.academy.dto;
 import br.com.academy.entidades.Aluno;
 import br.com.academy.entidades.CursoAluno;
 import org.springframework.beans.BeanUtils;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
 
 import java.time.LocalDate;
 
@@ -21,7 +23,8 @@ public class AlunoDTO {
     private String telefone;
 
     private String sexo;
-
+    
+    @DateTimeFormat(iso = ISO.DATE)
     private LocalDate dataNascimento;
 
     private CursoAluno estudantes;
