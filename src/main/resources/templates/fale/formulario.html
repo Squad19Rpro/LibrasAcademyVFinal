@@ -10,7 +10,7 @@
 		<div class="row py-5">
 			<div class="col-sm-12">
 				<div class="card">
-					<form method="POST" th:object="${msg}" th:action="@{/faleMsg/cadastrar}">
+					<form id="formCad" method="POST" th:object="${msg}" th:action="@{/faleMsg/cadastrar}">
 						<div class="card-body">
 							<fieldset>
 								<legend>Dados da Mensagem</legend>
@@ -59,7 +59,7 @@
 						<div class="mx-3 py-2">
 							<button type="submit" class="btn btn-primary">Salvar</button>
 						</div>
-					</form>
+					</form id="formCad">
 				</div>
 			</div>
 		</div>

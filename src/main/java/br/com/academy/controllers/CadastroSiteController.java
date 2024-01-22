@@ -7,9 +7,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import br.com.academy.dto.AlunoDTO;
 import br.com.academy.entidades.Aluno;
-import br.com.academy.repository.AlunoRepository;
-import br.com.academy.utils.SenhaUtils;
+import br.com.academy.service.AlunoService;
 
 
 
@@ -18,7 +18,7 @@ import br.com.academy.utils.SenhaUtils;
 public class CadastroSiteController {
 	
 	@Autowired
-	private AlunoRepository alunoRepository;
+	private AlunoService alunoService;
 	
 	@GetMapping
     public ModelAndView cadastrar() {
@@ -29,10 +29,8 @@ public class CadastroSiteController {
     }
 	
 	@PostMapping("/cadastroSite")
-    public String cadastrar(Aluno aluno) {
-		String senhaEncriptada = SenhaUtils.encode(aluno.getSenha());
-        aluno.setSenha(senhaEncriptada);
-        alunoRepository.save(aluno);
+    public String cadastrar(AlunoDTO alunoDTO) {
+        alunoService.save(alunoDTO);
 
         return "redirect:/login";
     }

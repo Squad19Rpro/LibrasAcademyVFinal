@@ -16,6 +16,8 @@
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
 		integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
 		crossorigin="anonymous"></script>
+		<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+		<script th:src="@{/scripts/script.js}"></script>
 	<!-- Custom CSS -->
 	<link rel="stylesheet" href="../sass/styles.css" />
 </head>
@@ -101,7 +103,7 @@
 	<main class="container m-auto login-body row d-flex align-content-center login-body-child">
 		<div class="m-auto cadastro">
 			<div class="login-form row m-auto">
-				<form class="form" onsubmit="swal('Parabéns!', 'Você agora é um aluno do Libras Academy!', 'success');" 
+				<form id="formCadSite" class="form" 
 				th:action="@{/cadastro/cadastroSite}" th:object="${aluno}" method="post">
 					<div class="text-center">
 						<h3>Cadastre-se</h3>
@@ -210,9 +212,6 @@
 		new window.VLibras.Widget('https://vlibras.gov.br/app');
 	</script>
 	<!-- VLibras end -->
-	
-	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-	<script th:src="@{/scripts/script.js}"></script>
 
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"

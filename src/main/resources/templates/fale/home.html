@@ -36,8 +36,9 @@
 												<i class="bi bi-pencil-square"></i>
 											</a>
 											<a type="button" class="btn btn-danger"
-												th:href="@{/faleMsg/{id}/excluir (id=${fale.id})}"
-												onclick="return confirm('Tem certeza que deseja excluir a mensagem?');">
+											href="/faleMsg/fale.id/exluir"
+												th:attr="data-url=@{/faleMsg/{id}/excluir (id=${fale.id})}"
+												onclick="confirmDelete(event, '${fale.id}');">
 												<i class="bi bi-trash"></i>
 											</a>
 										</div>
@@ -49,7 +50,45 @@
 				</div>
 			</div>
 		</div>
+		<script>
+			function confirmDelete(event, messageId) {
+				event.preventDefault();
 
+				var deleteUrl = event.currentTarget.getAttribute('data-url');
+
+				// Use o SweetAlert para exibir a mensagem de confirmação
+				Swal.fire({
+					title: "Tem certeza?",
+					text: "Uma vez excluída, você não poderá recuperar esta mensagem!",
+					icon: "warning",
+					showCancelButton: true,
+					reverseButtons: true,
+					cancelButtonColor: "#999999",
+					confirmButtonColor: "#d33",
+					cancelButtonText: "Cancelar",
+					confirmButtonText: "Sim, excluir!"
+				})
+					.then((willDelete) => {
+						if (willDelete.isConfirmed) {
+							// Se o usuário confirmar, redirecione para a URL de exclusão
+							// Exiba a mensagem de sucesso após 2 segundos e redirecione
+							Swal.fire({
+								title: "Sua mensagem está sendo excluída...",
+								icon: "success",
+								showConfirmButton: false,
+								timer: 1500
+							})
+								.then(() => {
+									// Redirecione para a URL de exclusão após o atraso
+									window.location.href = deleteUrl;
+								});
+						} else {
+							// Se o usuário cancelar, exiba uma mensagem
+							Swal.fire("Ok, sua mensagem não foi excluida!", "", "info");
+						}
+					});
+			}
+		</script>
 	</main>
 
 </body>

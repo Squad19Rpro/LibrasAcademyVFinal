@@ -12,7 +12,7 @@
         <div class="card">
           <!-- /.card-header -->
           <!-- form start -->
-          <form method="POST" th:object="${cargo}" th:action="@{/cargos/cadastrar}">
+          <form id="formCad" method="POST" th:object="${cargo}" th:action="@{/cargos/cadastrar}">
             <div class="card-body">
                 <div class="row">
                   <div class="col-sm-12">
@@ -28,7 +28,7 @@
             <div class="card-footer">
               <button type="submit" class="btn btn-primary">Salvar</button>
             </div>
-          </form>
+          </form id="formCad">
         </div>
       </div>
     </div>

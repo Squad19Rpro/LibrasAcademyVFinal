@@ -108,3 +108,38 @@ function moeda(a, e, r, t) {
 	return !1
 }
 
+document.addEventListener("DOMContentLoaded", function () {
+	document.getElementById("form").addEventListener("submit", function (event) {
+		// Prevenir o envio imediato do formulário
+		event.preventDefault();
+		Swal.fire({
+						title: 'Dados editados com sucesso!',
+						icon: 'success',
+						showConfirmButton: false,
+						timer: 1500
+					})
+		// Aguarde 2 segundos antes de enviar o formulário
+		setTimeout(function () {					
+			// Envie o formulário após o atraso
+			document.getElementById("form").submit();
+		}, 1900);
+	});
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+	document.getElementById("formCad").addEventListener("submit", function (event) {
+		// Prevenir o envio imediato do formulário
+		event.preventDefault();
+		Swal.fire({
+						title: 'Dados cadastrados com sucesso!',
+						icon: 'success',
+						showConfirmButton: false,
+						timer: 1500
+					})
+		// Aguarde 2 segundos antes de enviar o formulário
+		setTimeout(function () {					
+			// Envie o formulário após o atraso
+			document.getElementById("formCad").submit();
+		}, 1900);
+	});
+});

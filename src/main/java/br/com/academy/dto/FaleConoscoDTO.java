@@ -5,6 +5,8 @@ import org.springframework.beans.BeanUtils;
 import br.com.academy.entidades.FaleConosco;
 
 public class FaleConoscoDTO {
+	private Long id;
+	
 	private String nome_msg;
 	
 	private String email_msg;
@@ -17,6 +19,14 @@ public class FaleConoscoDTO {
 	
 	public FaleConoscoDTO(FaleConosco faleConosco) {
 		BeanUtils.copyProperties(faleConosco, this);
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public String getNome_msg() {

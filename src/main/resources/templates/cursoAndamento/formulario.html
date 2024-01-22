@@ -11,7 +11,7 @@
 			<div class="col-sm-12">
 				<div class="card">
 					
-					<form method="POST" th:object="${curso}" th:action="@{/cursoAndamento/cadastrar}">
+					<form id="formCad" method="POST" th:object="${curso}" th:action="@{/cursoAndamento/cadastrar}">
 						<div class="card-body">
 							<fieldset>
 								<legend>Dados</legend>
@@ -44,7 +44,7 @@
 						<div class="mx-3 py-2">
 							<button type="submit" class="btn btn-primary">Salvar</button>
 						</div>
-					</form>
+					</form id="formCad">
 				</div>
 			</div>
 		</div>

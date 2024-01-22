@@ -9,6 +9,8 @@ import br.com.academy.entidades.Professor;
 
 public class CursosDTO {
 	
+	private Long id;
+	
 	private String nomeCurso;
 	
 	private String descricao;
@@ -27,7 +29,15 @@ public class CursosDTO {
 
     public CursosDTO(Cursos curso){
         BeanUtils.copyProperties(curso, this);
-    }
+    }    
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
 
 	public String getNomeCurso() {
 		return nomeCurso;

@@ -10,13 +10,13 @@
 		<div class="row py-5">
 			<div class="col-sm-12">
 				<div class="card">
-					<form method="POST" th:object="${msg}">
+					<form id="form" method="POST" th:object="${msg}">
 						<div class="card-body">
 							<fieldset>
 								<legend>Dados da Mensagem</legend>
 								<input type="hidden" th:field="*{id}">
-								
-								<div class="row my-2">									
+
+								<div class="row my-2">
 									<div class="col-md-6 col-sm-12">
 										<div class="form-group">
 											<label for="nome">Nome</label>
@@ -32,7 +32,7 @@
 										</div>
 									</div>
 								</div>
-									
+
 								<div class="row my-2">
 									<div class="col-md-12 col-sm-12">
 										<div class="form-group">
@@ -41,20 +41,21 @@
 												th:field="*{assunto}" th:required>
 										</div>
 									</div>
-									
+
 								</div>
 								<div class="row my-2">
 									<div class="col-md-12 col-sm-12">
 										<div class="form-group">
 											<label for="mensagem">Mensagem</label>
-											<textarea class="form-control" th:field="*{mensagem}" th:value="${mensagem}" rows="4"></textarea>
+											<textarea class="form-control" th:field="*{mensagem}" th:value="${mensagem}"
+												rows="4"></textarea>
 										</div>
 									</div>
-															
-								</div>								
+
+								</div>
 							</fieldset>
 
-							
+
 						</div>
 						<!-- /.card-body -->
 
