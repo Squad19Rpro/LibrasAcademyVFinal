@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 
 import br.com.academy.dto.ProfessorDTO;
 import br.com.academy.entidades.Professor;
-import br.com.academy.repository.CursosRepository;
 import br.com.academy.repository.ProfessorRepository;
 import br.com.academy.service.ProfessorService;
 import br.com.academy.utils.SenhaUtils;
@@ -17,9 +16,6 @@ import br.com.academy.utils.SenhaUtils;
 public class ProfessorServiceImpl implements ProfessorService {
     @Autowired
     private ProfessorRepository professorRepository;
-
-    @Autowired
-    private CursosRepository cursosRepository;
     
 	@Override
     public void save(ProfessorDTO professorDTO) {

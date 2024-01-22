@@ -10,7 +10,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import br.com.academy.dto.ProfessorDTO;
 import br.com.academy.entidades.Professor;
-import br.com.academy.repository.CargoRepository;
+import br.com.academy.service.CargoService;
 import br.com.academy.service.ProfessorService;
 
 @Controller
@@ -21,7 +21,7 @@ public class ProfessorController {
     private ProfessorService professorService;
 
     @Autowired
-    private CargoRepository cargoRepository;
+    private CargoService cargoService;
 
     @GetMapping
     public ModelAndView home() {
@@ -43,7 +43,7 @@ public class ProfessorController {
     public ModelAndView cadastrar() {
         ModelAndView modelAndView = new ModelAndView("professor/formulario");
         modelAndView.addObject("professor", new Professor());
-        modelAndView.addObject("cargos", cargoRepository.findAll());      
+        modelAndView.addObject("cargos", cargoService.findAll());      
 
         return modelAndView;
     }
@@ -52,7 +52,7 @@ public class ProfessorController {
     public ModelAndView editar(@PathVariable Long id) {
         ModelAndView modelAndView = new ModelAndView("professor/editProf");
         modelAndView.addObject("professor", professorService.findById(id));
-        modelAndView.addObject("cargos", cargoRepository.findAll());
+        modelAndView.addObject("cargos", cargoService.findAll());
 
         return modelAndView;
     }

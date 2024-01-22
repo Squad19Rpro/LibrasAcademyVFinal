@@ -8,27 +8,26 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import br.com.academy.dto.FuncionarioDTO;
 import br.com.academy.entidades.Funcionario;
-import br.com.academy.repository.CargoRepository;
-import br.com.academy.repository.FuncionarioRepository;
-//import br.com.academy.utils.SenhaUtils;
-import br.com.academy.utils.SenhaUtils;
+import br.com.academy.service.CargoService;
+import br.com.academy.service.FuncionarioService;
 
 @Controller
 @RequestMapping("/funcionarios")
 public class FuncionarioController {
 
     @Autowired
-    private FuncionarioRepository funcionarioRepository;
+    private FuncionarioService funcionarioService;
 
     @Autowired
-    private CargoRepository cargoRepository;
+    private CargoService cargoService;
 
     @GetMapping
     public ModelAndView home() {
         ModelAndView modelAndView = new ModelAndView("funcionario/home");
 
-        modelAndView.addObject("funcionarios", funcionarioRepository.findAll());
+        modelAndView.addObject("funcionarios", funcionarioService.findAll());
 
         return modelAndView;
     }
@@ -37,7 +36,7 @@ public class FuncionarioController {
     public ModelAndView detalhes(@PathVariable Long id) {
         ModelAndView modelAndView = new ModelAndView("funcionario/detalhes");
 
-        modelAndView.addObject("funcionario", funcionarioRepository.getReferenceById(id));
+        modelAndView.addObject("funcionario", funcionarioService.findById(id));
 
         return modelAndView;
     }
@@ -47,7 +46,7 @@ public class FuncionarioController {
         ModelAndView modelAndView = new ModelAndView("funcionario/formulario");
 
         modelAndView.addObject("funcionario", new Funcionario());
-        modelAndView.addObject("cargos", cargoRepository.findAll());
+        modelAndView.addObject("cargos", cargoService.findAll());
       
 
         return modelAndView;
@@ -56,33 +55,30 @@ public class FuncionarioController {
     @GetMapping("/{id}/editar")
     public ModelAndView editar(@PathVariable Long id) {
         ModelAndView modelAndView = new ModelAndView("funcionario/editarFunc");
-        modelAndView.addObject("funcionario", funcionarioRepository.getReferenceById(id));
-        modelAndView.addObject("cargos", cargoRepository.findAll());
+        modelAndView.addObject("funcionario", funcionarioService.findById(id));
+        modelAndView.addObject("cargos", cargoService.findAll());
 
         return modelAndView;
     }
     
     @PostMapping("/cadastrar")
-    public String cadastrar(Funcionario funcionario) {
-    	String senhaEncriptada = SenhaUtils.encode(funcionario.getSenha());
-        funcionario.setSenha(senhaEncriptada);
-        funcionarioRepository.save(funcionario);
+    public String cadastrar(FuncionarioDTO FuncionarioDTO) {
+    	funcionarioService.save(FuncionarioDTO);
 
         return "redirect:/funcionarios";
     }
 
     @PostMapping("/{id}/editar")
-    public String editar(Funcionario funcionario, @PathVariable Long id) {
-    	String senhaAtual = funcionarioRepository.getReferenceById(id).getSenha();
-        funcionario.setSenha(senhaAtual);
-        funcionarioRepository.save(funcionario);
-        
+    public String editar(FuncionarioDTO funcionarioUpdate, @PathVariable Long id) throws Exception {
+    	FuncionarioDTO funcionarioAlvo = funcionarioService.findById(id);
+        funcionarioService.update(funcionarioUpdate, funcionarioAlvo);
+
         return "redirect:/funcionarios";
     }
 
     @GetMapping("/{id}/excluir")
     public String excluir(@PathVariable Long id) {
-        funcionarioRepository.deleteById(id);
+        funcionarioService.deleteById(id);
 
         return "redirect:/funcionarios";
     }

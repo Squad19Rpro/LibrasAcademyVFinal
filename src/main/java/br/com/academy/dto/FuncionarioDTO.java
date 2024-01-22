@@ -2,7 +2,6 @@ package br.com.academy.dto;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.Set;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -10,7 +9,6 @@ import org.springframework.format.annotation.DateTimeFormat.ISO;
 import org.springframework.format.annotation.NumberFormat;
 
 import br.com.academy.entidades.Cargo;
-import br.com.academy.entidades.Cursos;
 import br.com.academy.entidades.Funcionario;
 
 public class FuncionarioDTO {
@@ -40,8 +38,6 @@ public class FuncionarioDTO {
 
     @NumberFormat(style = NumberFormat.Style.CURRENCY, pattern = "#,##0.00")
     private BigDecimal salario;
-
-    private Set<Cursos> cursos;
 
     private Cargo cargo;
 
@@ -137,14 +133,6 @@ public class FuncionarioDTO {
 
     public void setSalario(BigDecimal salario) {
         this.salario = salario;
-    }
-
-    public Set<Cursos> getCursos() {
-        return cursos;
-    }
-
-    public void setCursos(Set<Cursos> cursos) {
-        this.cursos = cursos;
     }
 
     public Cargo getCargo() {

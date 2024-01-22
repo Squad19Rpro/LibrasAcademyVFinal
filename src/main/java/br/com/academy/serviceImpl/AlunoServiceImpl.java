@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 import br.com.academy.dto.AlunoDTO;
 import br.com.academy.entidades.Aluno;
 import br.com.academy.repository.AlunoRepository;
-import br.com.academy.repository.CursosRepository;
 import br.com.academy.service.AlunoService;
 import br.com.academy.utils.SenhaUtils;
 
@@ -17,9 +16,6 @@ import br.com.academy.utils.SenhaUtils;
 public class AlunoServiceImpl implements AlunoService {
 	@Autowired
 	private AlunoRepository alunoRepository;
-
-	@Autowired
-	private CursosRepository cursosRepository;
 
 	public void save(AlunoDTO alunoDTO) {
 		Aluno aluno = new Aluno(alunoDTO);
@@ -69,11 +65,11 @@ public class AlunoServiceImpl implements AlunoService {
 		Optional<Aluno> optionalAluno = alunoRepository.findById(id);
 
 		if (optionalAluno.isPresent()) {
-			// O cliente foi encontrado, pode deletar
+			// O aluno foi encontrado, pode deletar
 			Aluno aluno = optionalAluno.get();
 			alunoRepository.delete(aluno);
 		} else {
-			// Cliente não encontrado, lançar exceção ou lidar de outra forma
+			// Aluno não encontrado, lançar exceção ou lidar de outra forma
 			throw new IllegalArgumentException("Aluno não encontrado");
 		}
 	}

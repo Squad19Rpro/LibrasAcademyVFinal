@@ -8,20 +8,21 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import br.com.academy.dto.CargoDTO;
 import br.com.academy.entidades.Cargo;
-import br.com.academy.repository.CargoRepository;
+import br.com.academy.service.CargoService;
 
 @Controller
 @RequestMapping("/cargos")
 public class CargoController {
 	
 	@Autowired
-    private CargoRepository cargoRepository;
+    private CargoService cargoService;
 	
 	@GetMapping
     public ModelAndView home() {
         ModelAndView modelAndView = new ModelAndView("cargo/home");
-        modelAndView.addObject("cargos", cargoRepository.findAll());
+        modelAndView.addObject("cargos", cargoService.findAll());
 
         return modelAndView;
     }
@@ -37,27 +38,28 @@ public class CargoController {
 	@GetMapping("/{id}/editar")
     public ModelAndView editar(@PathVariable Long id) {
         ModelAndView modelAndView = new ModelAndView("cargo/editCargo");
-        modelAndView.addObject("cargo", cargoRepository.getReferenceById(id));
+        modelAndView.addObject("cargo", cargoService.findById(id));
 
         return modelAndView;
     }
 
     @PostMapping("/cadastrar")
-    public String salvar(Cargo cargo) {
-        cargoRepository.save(cargo);
+    public String salvar(CargoDTO cargo) {
+        cargoService.save(cargo);
 
         return "redirect:/cargos";
     }
     
     @PostMapping("/{id}/editar")
-    public String edicao(Cargo cargo, @PathVariable Long id) {
-    	cargoRepository.save(cargo);
+    public String editar(CargoDTO cargoUpdate, @PathVariable Long id) throws Exception {
+    	CargoDTO cargoAlvo = cargoService.findById(id);
+    	cargoService.update(cargoUpdate, cargoAlvo);
     	return "redirect:/cargos";
     }
 
     @GetMapping("/{id}/excluir")
     public String excluir(@PathVariable Long id) {
-        cargoRepository.deleteById(id);
+        cargoService.deleteById(id);
 
         return "redirect:/cargos";
     }

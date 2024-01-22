@@ -3,6 +3,9 @@ package br.com.academy.entidades;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.springframework.beans.BeanUtils;
+
+import br.com.academy.dto.CargoDTO;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -21,6 +24,12 @@ public class Cargo extends Entidade {
 	
 	@OneToMany(mappedBy = "cargo", fetch = FetchType.LAZY)
 	private Set<Funcionario> funcionarios = new HashSet<>();
+	
+	public Cargo(CargoDTO cargoDTO){
+		BeanUtils.copyProperties(cargoDTO, this);
+	};
+
+	public Cargo(){};
 
     public String getNome() {
         return nome;
