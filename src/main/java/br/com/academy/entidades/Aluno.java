@@ -5,7 +5,7 @@ import java.util.Set;
 
 import org.springframework.beans.BeanUtils;
 
-import br.com.academy.dto.AlunoDTO
+import br.com.academy.dto.AlunoDTO;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.OneToMany;

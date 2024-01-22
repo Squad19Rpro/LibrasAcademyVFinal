@@ -61,7 +61,6 @@ public class FuncionarioServiceImpl implements FuncionarioService {
         funcionarioUpdate.setDataAdmissao(funcionarioUpdate.getDataAdmissao() != null ? funcionarioUpdate.getDataAdmissao() : funcionarioAlvo.getDataAdmissao());
         funcionarioUpdate.setDataDemissao(funcionarioUpdate.getDataDemissao() != null ? funcionarioUpdate.getDataDemissao() : funcionarioAlvo.getDataDemissao());
         funcionarioUpdate.setSalario(funcionarioUpdate.getSalario() != null ? funcionarioUpdate.getSalario() : funcionarioAlvo.getSalario());
-        funcionarioUpdate.setCursos(funcionarioUpdate.getCursos() != null ? funcionarioUpdate.getCursos() : funcionarioAlvo.getCursos());
         funcionarioUpdate.setCargo(funcionarioUpdate.getCargo() != null ? funcionarioUpdate.getCargo() : funcionarioAlvo.getCargo());
 
         Funcionario funcionario = new Funcionario(funcionarioUpdate);

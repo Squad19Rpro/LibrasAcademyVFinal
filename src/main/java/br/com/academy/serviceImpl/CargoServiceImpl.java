@@ -4,12 +4,14 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import br.com.academy.dto.CargoDTO;
 import br.com.academy.entidades.Cargo;
 import br.com.academy.repository.CargoRepository;
 import br.com.academy.service.CargoService;
 
+@Service
 public class CargoServiceImpl implements CargoService{
 	
     @Autowired

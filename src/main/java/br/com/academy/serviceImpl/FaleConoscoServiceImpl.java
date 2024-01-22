@@ -4,12 +4,14 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import br.com.academy.dto.FaleConoscoDTO;
 import br.com.academy.entidades.FaleConosco;
 import br.com.academy.repository.FaleRepository;
 import br.com.academy.service.FaleConoscoService;
 
+@Service
 public class FaleConoscoServiceImpl implements FaleConoscoService{
     @Autowired
     private FaleRepository faleRepository;
