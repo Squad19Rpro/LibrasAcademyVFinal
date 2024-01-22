@@ -8,25 +8,26 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import br.com.academy.dto.CursosDTO;
 import br.com.academy.entidades.Cursos;
-import br.com.academy.repository.CursosRepository;
-import br.com.academy.repository.ProfessorRepository;
+import br.com.academy.service.CursosService;
+import br.com.academy.service.ProfessorService;
 
 @Controller
 @RequestMapping("/cursos")
 public class CursosController {
 	
 	@Autowired
-	private CursosRepository cursosRepository;
+	private CursosService cursosService;
 	
 	
 	@Autowired
-	private ProfessorRepository professorRepository;
+	private ProfessorService professorService;
 	
 	@GetMapping
     public ModelAndView home() {
         ModelAndView modelAndView = new ModelAndView("cursos/home");
-        modelAndView.addObject("cursos", cursosRepository.findAll());
+        modelAndView.addObject("cursos", cursosService.findAll());
 
         return modelAndView;
     }
@@ -34,7 +35,7 @@ public class CursosController {
     @GetMapping("/{id}")
     public ModelAndView detalhes(@PathVariable Long id) {
         ModelAndView modelAndView = new ModelAndView("cursos/detalhes");
-        modelAndView.addObject("curso", cursosRepository.getReferenceById(id));
+        modelAndView.addObject("curso", cursosService.findById(id));
 
         return modelAndView;
     }
@@ -43,7 +44,7 @@ public class CursosController {
     public ModelAndView cadastrar() {
         ModelAndView modelAndView = new ModelAndView("cursos/formulario");
         modelAndView.addObject("cursos", new Cursos());
-        modelAndView.addObject("professores", professorRepository.findAll());
+        modelAndView.addObject("professores", professorService.findAll());
 
         return modelAndView;
     }
@@ -51,29 +52,30 @@ public class CursosController {
     @GetMapping("/{id}/editar")
     public ModelAndView editar(@PathVariable Long id) {
         ModelAndView modelAndView = new ModelAndView("cursos/editCursos");
-        modelAndView.addObject("cursos", cursosRepository.getReferenceById(id));
-        modelAndView.addObject("professores", professorRepository.findAll());
+        modelAndView.addObject("cursos", cursosService.findById(id));
+        modelAndView.addObject("professores", professorService.findAll());
 
         return modelAndView;
     }
     
     @PostMapping("/cadastrar")
-    public String cadastrar(Cursos curso) {
-        cursosRepository.save(curso);
+    public String cadastrar(CursosDTO curso) {
+        cursosService.save(curso);
 
         return "redirect:/cursos";
     }
     
     @PostMapping("/{id}/editar")
-    public String editar(Cursos curso, @PathVariable Long id) {
-        cursosRepository.save(curso);
+    public String editar(CursosDTO cursoUpdate, @PathVariable Long id) throws Exception {
+    	CursosDTO cursoAlvo = cursosService.findById(id);
+        cursosService.update(cursoUpdate, cursoAlvo);
 
         return "redirect:/cursos";
     }
 
     @GetMapping("/{id}/excluir")
     public String excluir(@PathVariable Long id) {
-        cursosRepository.deleteById(id);
+        cursosService.deleteById(id);
 
         return "redirect:/cursos";
     }

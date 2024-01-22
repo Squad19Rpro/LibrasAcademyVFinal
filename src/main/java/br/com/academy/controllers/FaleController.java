@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import br.com.academy.dto.CargoDTO;
 import br.com.academy.dto.FaleConoscoDTO;
 import br.com.academy.entidades.FaleConosco;
 import br.com.academy.service.FaleConoscoService;

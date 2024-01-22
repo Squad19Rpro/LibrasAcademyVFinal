@@ -3,6 +3,9 @@ package br.com.academy.entidades;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.springframework.beans.BeanUtils;
+
+import br.com.academy.dto.CursosDTO;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -36,6 +39,12 @@ public class Cursos extends Entidade {
 	@ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "professor_id_fk")
     private Professor professor;
+	
+	public Cursos(CursosDTO cursosDTO){
+		BeanUtils.copyProperties(cursosDTO, this);
+	};
+
+	public Cursos(){};
 
 	public String getNomeCurso() {
 		return nomeCurso;
