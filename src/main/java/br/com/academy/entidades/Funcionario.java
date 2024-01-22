@@ -1,20 +1,21 @@
 package br.com.academy.entidades;
 
+import java.math.BigDecimal;
+import java.time.LocalDate;
+
+import org.springframework.beans.BeanUtils;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
+import org.springframework.format.annotation.NumberFormat;
+import org.springframework.format.annotation.NumberFormat.Style;
+
+import br.com.academy.dto.FuncionarioDTO;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
-
-import java.math.BigDecimal;
-import java.time.LocalDate;
-
-import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.format.annotation.NumberFormat;
-import org.springframework.format.annotation.DateTimeFormat.ISO;
-import org.springframework.format.annotation.NumberFormat.Style;
-
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
 
 @Entity
 @Table(name = "funcionario")
@@ -35,6 +36,12 @@ public class Funcionario extends Pessoa {
 	@ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "cargo_id_fk", nullable = false)
     private Cargo cargo;
+	
+	public Funcionario(FuncionarioDTO funcionarioDTO){
+		BeanUtils.copyProperties(funcionarioDTO, this);
+	};
+
+	public Funcionario(){};
 
 	public Cargo getCargo() {
 		return cargo;
