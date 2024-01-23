@@ -18,7 +18,7 @@ public class CursosServiceImpl implements CursosService {
 	
 	@Override
 	public void save(CursosDTO cursosDTO) {
-		Cursos curso = new Cursos();
+		Cursos curso = new Cursos(cursosDTO);
 		cursosRepository.save(curso);		
 	}
 

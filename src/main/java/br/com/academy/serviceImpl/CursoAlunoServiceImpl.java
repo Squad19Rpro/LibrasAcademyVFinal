@@ -8,13 +8,21 @@ import org.springframework.stereotype.Service;
 
 import br.com.academy.dto.CursoAlunoDTO;
 import br.com.academy.entidades.CursoAluno;
+import br.com.academy.repository.AlunoRepository;
 import br.com.academy.repository.CursoAlunoRepository;
+import br.com.academy.repository.CursosRepository;
 import br.com.academy.service.CursoAlunoService;
 
 @Service
 public class CursoAlunoServiceImpl implements CursoAlunoService{
 	@Autowired
 	private CursoAlunoRepository cursoAlunoRepository;
+	
+	@Autowired
+	private CursosRepository cursosRepository;
+	
+	@Autowired
+	private AlunoRepository alunoRepository;
 	
 	@Override
 	public void save(CursoAlunoDTO cursoAlunoDTO) {

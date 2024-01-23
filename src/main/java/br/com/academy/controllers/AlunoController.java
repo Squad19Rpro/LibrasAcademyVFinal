@@ -10,7 +10,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import br.com.academy.dto.AlunoDTO;
 import br.com.academy.service.AlunoService;
-import br.com.academy.service.CursosService;
 
 @Controller
 @RequestMapping("/alunos")
@@ -19,14 +18,10 @@ public class AlunoController {
 	@Autowired
 	private AlunoService alunoService;
 
-	@Autowired
-	private CursosService cursosService;
-
 	@GetMapping
 	public ModelAndView home() {
 		ModelAndView modelAndView = new ModelAndView("aluno/home");
 
-		modelAndView.addObject("estudantes", cursosService.findAll());
 		modelAndView.addObject("alunos", alunoService.findAll());
 
 		return modelAndView;
@@ -35,7 +30,6 @@ public class AlunoController {
 	@GetMapping("/{id}")
 	public ModelAndView detalhes(@PathVariable Long id) {
 		ModelAndView modelAndView = new ModelAndView("aluno/detalhes");
-		modelAndView.addObject("cursos", cursosService.findById(id));
 		modelAndView.addObject("aluno", alunoService.findById(id));
 
 		return modelAndView;
