@@ -102,7 +102,7 @@
                 data-aos-delay="200">
                 <h1>
 					<span sec:authorize="!isAuthenticated()">Bem vindo(a) ao <br> Libras Academy</span>
-                	<span sec:authorize="isAuthenticated()">Olá, <span th:text="${#authentication.principal.nome}"></span>! <br></span>
+                	<span class="animated-text" sec:authorize="isAuthenticated()">Olá, <span th:text="${#authentication.principal.nome}"></span>! <br></span>
                 </h1>
                 <h2>Explore nossa plataforma inclusiva para capacitar pessoas surdas no mercado de tecnologia. Assista
                   ao vídeo de boas-vindas clicando abaixo e comece sua jornada profissional agora!</h2>

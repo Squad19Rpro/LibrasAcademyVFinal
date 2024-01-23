@@ -24,3 +24,12 @@
     border-radius: 25px;
     background-color: white;
 }
+.imagem-erro{
+    display: block;
+    margin: auto;
+    margin-top: -150px;
+    width: 200px;
+}
+.imagem-erro img{
+    width: 100%;
+}

@@ -2,68 +2,72 @@
 <html th:replace="~{layout :: layout (~{::title}, ~{::main}, _, ~{::scripts})}">
 
 <head>
-  <title>Detalhes do Curso</title>
+	<title>Detalhes do Curso</title>
 </head>
 
 <body>
-  <main>
-    <div class="row">
-      <div class="col-sm-12">
-        <div class="row">
-          <div class="col-md-12">
-			  
-            <div class="card card-primary ">				
-              <div class="card-body">                
-                <h3 class="text-center" th:text="${curso.nomeCurso}">Curso</h3>
-                <p class="text-muted text-center" th:text="${curso.professor.nome}">Professor</p>
-              </div>              
-            </div>
+	<main>
+		<div class="row">
+			<div class="col-sm-12">
+				<div class="row">
+					<div class="col-md-12">
 
-            <div class="card">
-              <div class="card-header">
-                <h3 class="card-title">Dados Pessoais</h3>
-              </div>
-              <div class="card-body d-flex flex-wrap">
-                <div class="mx-3">
-                <strong><i class="bi bi-calendar3 mr-1"></i>Ano de Lançamento</strong>
-                <p class="text-muted" th:text="${curso.anoLancamento}">
-                  2023
-                </p>
-                </div>
+						<div class="card card-primary ">
+							<div class="card-body">
+								<h3 class="text-center" th:text="${curso.nomeCurso}">Curso</h3>
+								<div class="text-center" sec:authorize="hasAnyAuthority('ADMIN', 'USER')">
+									<strong>Professor: </strong>
+									<span class="text-muted text-center"
+										th:text="${curso.professor.nome}">Professor</span>
+								</div>
+							</div>
+						</div>
 
-                
-				<div class="mx-3">
-                <strong><i class="bi bi-clock-history mr-1"></i>Carga horária</strong>
-                <p class="text-muted" th:text="${curso.carga_horaria}">40</p>
+						<div class="card">
+							<div class="card-header">
+								<h3 class="card-title">Dados Pessoais</h3>
+							</div>
+							<div class="card-body d-flex flex-wrap">
+								<div class="mx-3">
+									<strong><i class="bi bi-calendar3 mr-1"></i>Ano de Lançamento</strong>
+									<p class="text-muted" th:text="${curso.anoLancamento}">
+										2023
+									</p>
+								</div>
+
+
+								<div class="mx-3">
+									<strong><i class="bi bi-clock-history mr-1"></i>Carga horária</strong>
+									<p class="text-muted" th:text="${curso.carga_horaria}">40</p>
+								</div>
+
+								<div class="mx-3">
+									<strong><i class="bi bi-list-ol mr-1"></i> Nº de aulas</strong>
+									<p class="text-muted" th:text="${curso.num_aulas}">15</p>
+								</div>
+
+								<div class="mx-3">
+									<strong><i class="bi bi-newspaper mr-1"></i> Descrição</strong>
+									<p class="text-muted" th:text="${curso.descricao}">
+										texto
+									</p>
+								</div>
+
+								<div class="mx-3">
+									<strong><i class="bi bi-person-badge mr-1"></i> Professor</strong>
+									<p class="text-muted" th:text="${curso.professor.nome}">
+										Fulano
+									</p>
+								</div>
+
+							</div>
+						</div>
+
+					</div>
 				</div>
-                
-				<div class="mx-3">
-                <strong><i class="bi bi-list-ol mr-1"></i> Nº de aulas</strong>
-                <p class="text-muted" th:text="${curso.num_aulas}">15</p>
-				</div>
-                
-				<div class="mx-3">
-                <strong><i class="bi bi-newspaper mr-1"></i> Descrição</strong>
-                <p class="text-muted" th:text="${curso.descricao}">
-                  texto
-                </p>
-				</div>
-                
-               	<div class="mx-3"> 
-                <strong><i class="bi bi-person-badge mr-1"></i> Professor</strong>
-                <p class="text-muted" th:text="${curso.professor.nome}">
-                  Fulano
-                </p>
-				</div>				
-			
-              </div>
-            </div>
-            
-          </div>
-        </div>
-      </div>
-    </div>
-  </main>
+			</div>
+		</div>
+	</main>
 </body>
 
 </html>
