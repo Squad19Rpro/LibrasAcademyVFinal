@@ -2,354 +2,408 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org" lang="pt-br">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Libras Academy</title>
-  <link rel="shortcut icon" href="images/favicon_2.ico" type="image/x-icon">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-    crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
-    integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
-    crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
-    integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
-    crossorigin="anonymous"></script>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Libras Academy</title>
+	<link rel="shortcut icon" href="images/favicon_2.ico" type="image/x-icon">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+		crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+		integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+		crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+		integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+		crossorigin="anonymous"></script>
 
-  <!-- Custom CSS -->
-  <link rel="stylesheet" href="./sass/styles.css">
+	<!-- Custom CSS -->
+	<link rel="stylesheet" href="./sass/styles.css">
 </head>
 
 <body onload="loading()">
-  <!-- Preloader -->
-  <div id="preloader"><img style="width: 150px; height: 140px;" src="images/detahes-na-logo-removebg-preview.png"
-      alt="Imagem de pre carregamento da página"></div>
-  <!-- Preloader end -->
+	<!-- Preloader -->
+	<div id="preloader"><img style="width: 150px; height: 140px;" src="images/detahes-na-logo-removebg-preview.png"
+			alt="Imagem de pre carregamento da página"></div>
+	<!-- Preloader end -->
 
-  <div class="container-fluid mx-0 px-0 bg-body-secondary">
-    <header class="header">
-      <div class="container-fluid px-0 mx-0 bg-secondary">
-        <!-- Navbar -->
-        <nav class="navbar navbar-expand-lg px-2 navbar-dark fixed-top">
-          <a class="navbar-brand d-flex px-3 align-items-center justify-content-center" href="#">
-            <img src="images/logo-navbar.png" alt="Logo" width="120" height="auto"
-              class="d-inline-block align-text-top">
-          </a>
-          <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarNav"
-            aria-controls="navbarNav" aria-expanded="false" aria-label="Alterna navegação">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="navbar-collapse justify-content-end px-3 collapse" id="navbarNav">
-            <ul class="navbar-nav text-center">
-              <li class="nav-item px-3">
-                <a class="nav-link active" href="#">Home</a>
-              </li>
-              <li class="nav-item px-3">
-                <a class="nav-link" href="/sobre">Sobre</a>
-              </li>
-              <li class="nav-item px-3">
-                <a class="nav-link" href="/curso">Cursos</a>
-              </li>
-              <li class="nav-item px-3">
-                <a class="nav-link" href="/contato">Contato</a>
-              </li>
-              <li class="nav-item dropdown" sec:authorize="!isAuthenticated()">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
-                  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  Login
-                </a>
-                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-                  <a class="dropdown-item" href="/login">Entrar</a>
-                  <a class="dropdown-item" href="/cadastro">Cadastre-se</a>
-                </div>
-              </li>
-              <li class="nav-item">
-				  <div class="mt-2 mt-md-0" sec:authorize="isAuthenticated()">
-					<div class="btn-group mr-sm-2">
-						<button type="button" class="btn btn-light">
-							<i class="bi bi-user"></i> <span sec:authentication="name">Bob</span>
-						</button>
-						<button type="button"
-							class="btn btn-primary dropdown-toggle dropdown-toggle-split"
-							data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-						</button>
-						<div class="dropdown-menu">
-							<a th:href="@{/funcionarios}" class="dropdown-item" sec:authorize="hasAuthority('ADMIN')"><i class="bi bi-file-earmark-lock px-2"></i>Area adminstrativa</a>
-							<a th:href="@{/cursos}" class="dropdown-item" sec:authorize="hasAuthority('USER')"><i class="bi bi-file-earmark-lock px-2"></i>Listagem de Cursos</a>
-							<a th:href="@{/perfil}" class="dropdown-item"><i class="bi bi-people-fill px-2"></i>Perfil</a>
-							<hr>
-							<a th:href="@{/logout}" class="dropdown-item"><i class="bi bi-box-arrow-left px-2"></i>Sair</a>
+	<div class="container-fluid mx-0 px-0 bg-body-secondary">
+		<header class="header">
+			<div class="container-fluid px-0 mx-0 bg-secondary">
+				<!-- Navbar -->
+				<nav class="navbar navbar-expand-lg px-2 navbar-dark fixed-top">
+					<a class="navbar-brand d-flex px-3 align-items-center justify-content-center" href="#">
+						<img src="images/logo-navbar.png" alt="Logo" width="120" height="auto"
+							class="d-inline-block align-text-top">
+					</a>
+					<button class="navbar-toggler collapsed" type="button" data-toggle="collapse"
+						data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
+						aria-label="Alterna navegação">
+						<span class="navbar-toggler-icon"></span>
+					</button>
+					<div class="navbar-collapse justify-content-end px-3 collapse" id="navbarNav">
+						<ul class="navbar-nav text-center">
+							<li class="nav-item px-3">
+								<a class="nav-link active" href="#">Home</a>
+							</li>
+							<li class="nav-item px-3">
+								<a class="nav-link" href="/sobre">Sobre</a>
+							</li>
+							<li class="nav-item px-3">
+								<a class="nav-link" href="/curso">Cursos</a>
+							</li>
+							<li class="nav-item px-3">
+								<a class="nav-link" href="/contato">Contato</a>
+							</li>
+							<li class="nav-item dropdown" sec:authorize="!isAuthenticated()">
+								<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+									data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+									Login
+								</a>
+								<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+									<a class="dropdown-item" href="/login">Entrar</a>
+									<a class="dropdown-item" href="/cadastro">Cadastre-se</a>
+								</div>
+							</li>
+							<li class="nav-item">
+								<div class="mt-2 mt-md-0" sec:authorize="isAuthenticated()">
+									<div class="btn-group mr-sm-2">
+										<button type="button" class="btn btn-light">
+											<i class="bi bi-user"></i> <span sec:authentication="name">Bob</span>
+										</button>
+										<button type="button"
+											class="btn btn-primary dropdown-toggle dropdown-toggle-split"
+											data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+										</button>
+										<div class="dropdown-menu">
+											<a th:href="@{/funcionarios}" class="dropdown-item"
+												sec:authorize="hasAuthority('ADMIN')"><i
+													class="bi bi-file-earmark-lock px-2"></i>Area adminstrativa</a>
+											<a th:href="@{/cursos}" class="dropdown-item"
+												sec:authorize="hasAuthority('USER')"><i
+													class="bi bi-file-earmark-lock px-2"></i>Listagem de Cursos</a>
+											<a th:href="@{/perfil}" class="dropdown-item"><i
+													class="bi bi-people-fill px-2"></i>Perfil</a>
+											<hr>
+											<a th:href="@{/logout}" class="dropdown-item"><i
+													class="bi bi-box-arrow-left px-2"></i>Sair</a>
+										</div>
+									</div>
+								</div>
+							</li>
+
+
+						</ul>
+					</div>
+				</nav>
+				<!-- End Navbar -->
+
+			</div>
+			<div class="hero container-fluid mx-0 px-0">
+				<!-- ======= Hero Section ======= -->
+				<section id="hero" class="d-flex align-items-center">
+
+					<div class="container">
+						<div class="row">
+							<div class="col-lg-6 d-flex flex-column justify-content-center pt-1 " data-aos="fade-up"
+								data-aos-delay="200">
+								<h1>
+									<span sec:authorize="!isAuthenticated()">Bem vindo(a) ao <br> Libras Academy</span>
+									<span class="animated-text" sec:authorize="isAuthenticated()">Olá, <span
+											th:text="${#authentication.principal.nome}"></span>! <br></span>
+								</h1>
+								<h2>Explore nossa plataforma inclusiva para capacitar pessoas surdas no mercado de
+									tecnologia. Assista
+									ao vídeo de boas-vindas clicando abaixo e comece sua jornada profissional agora!
+								</h2>
+								<div class="d-flex justify-content-center justify-content-lg-start">
+									<a href="/curso" class="btn-get-started nav-link scrollto"><strong>Comece
+											agora</strong></a>
+									<a href="#modalExemplo" class="glightbox btn-watch-video nav-link"
+										data-toggle="modal" data-target="#modalExemplo"><i
+											class="bi bi-play-circle"></i><span>Assita ao Vídeo</span></a>
+								</div>
+							</div>
+							<div class="col-lg-6 order-1 order-lg-2 hero-img text-center">
+								<img src="images/img-logo-home-animation.png" class="img-fluid animated" alt="">
+							</div>
 						</div>
 					</div>
-				</div>				  
-			  </li>
-              
-			  
-            </ul>
-          </div>
-        </nav>
-        <!-- End Navbar -->
 
-      </div>
-      <div class="hero container-fluid mx-0 px-0">
-        <!-- ======= Hero Section ======= -->
-        <section id="hero" class="d-flex align-items-center">
+					<!-- Div do video oculta -->
+					<div class="modal " id="modalExemplo" tabindex="-1" role="dialog"
+						aria-labelledby="exampleModalLabel" aria-hidden="true">
+						<div role="document">
+							<div class="divClose m-auto white">
+								<button type="button" class="close" data-dismiss="modal">
+									<i class="bi bi-x-circle text-white"></i>
+								</button>
+							</div>
+							<div class="divOculta">
+								<iframe src="https://www.youtube.com/embed/fZVT8BpsGAk?si=afh2ip7a-TmP8-fy"
+									title="YouTube video player" frameborder="0"
+									allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+									allowfullscreen></iframe>
+							</div>
+						</div>
+					</div>
+					<!-- Fim da div oculta -->
+				</section>
+				<!-- End Hero -->
+			</div>
+		</header>
+		<main class="main container bg-body-secondary py-5 border-5">
+			<div class="section-title">
+				<h2>Cursos em destaque</h2>
+				<p></p>
 
-          <div class="container">
-            <div class="row">
-              <div class="col-lg-6 d-flex flex-column justify-content-center pt-1 " data-aos="fade-up"
-                data-aos-delay="200">
-                <h1>
-					<span sec:authorize="!isAuthenticated()">Bem vindo(a) ao <br> Libras Academy</span>
-                	<span class="animated-text" sec:authorize="isAuthenticated()">Olá, <span th:text="${#authentication.principal.nome}"></span>! <br></span>
-                </h1>
-                <h2>Explore nossa plataforma inclusiva para capacitar pessoas surdas no mercado de tecnologia. Assista
-                  ao vídeo de boas-vindas clicando abaixo e comece sua jornada profissional agora!</h2>
-                <div class="d-flex justify-content-center justify-content-lg-start">
-                  <a href="/curso" class="btn-get-started nav-link scrollto"><strong>Comece
-                      agora</strong></a>
-                  <a href="#modalExemplo" class="glightbox btn-watch-video nav-link" data-toggle="modal"
-                    data-target="#modalExemplo"><i class="bi bi-play-circle"></i><span>Assita ao Vídeo</span></a>
-                </div>
-              </div>
-              <div class="col-lg-6 order-1 order-lg-2 hero-img text-center">
-                <img src="images/img-logo-home-animation.png" class="img-fluid animated" alt="">
-              </div>
-            </div>
-          </div>
+				<div class="position-card">
+					<div class="card card-curso" style="width: 16rem;">
+						<div class="card-img-top"><img
+								src="https://velog.velcdn.com/images/songyi7091/post/4568d3b4-4799-4010-a70c-63f55256d9fd/d9taiqwp0968js9hcn5u.png"
+								alt="Imagem de capa do card"></div>
+						<div class="card-body">
+							<h6 class="card-title text-center">Desenvolvimento Web</h6>
+							<p class="text-right"><strong>[40 Horas]</strong></p>
+							<p class="card-text py-3">Neste curso você vai aprender a desenvolver sites usando HTML5,
+								CSS3 e JavaScript[...]
+							</p>
+							<a href="/curso" class="btn btn-md container botao-busca">Ver cursos</a>
+						</div>
+					</div>
+					<div class="card card-curso" style="width: 16rem;">
+						<div class="card-img-top"><img
+								src="https://getbootstrap.com.br/docs/4.1/assets/img/bootstrap-stack.png"
+								alt="Imagem de capa do card"></div>
+						<div class="card-body">
+							<h6 class="card-title text-center">BootStrap</h6>
+							<p class="text-right"><strong>[20 Horas]</strong></p>
+							<p class="card-text py-3">Aprenda a usar essa biblioteca que vai agilizar o seu trabalho
+								como Desenvolvedor
+								Web[...] </p>
+							<a href="/curso" class="btn btn-md container botao-busca">Ver cursos</a>
+						</div>
+					</div>
+					<div class="card card-curso" style="width: 16rem;">
+						<div class="card-img-top"><img src="./images/img2_900x600.png" alt="Imagem de capa do card">
+						</div>
+						<div class="card-body">
+							<h6 class="card-title text-center">Curso básico de Libras</h6>
+							<p class="text-right"><strong>[20 Horas]</strong></p>
+							<p class="card-text py-3">Aprenda o alfabeto, comunicações simples e seus primeiros passos
+								em libras.</p>
+							<a href="/curso" class="btn btn-md container botao-busca">Ver cursos</a>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- Libras Acacademy - Explication -->
+			<div class="container ">
 
-          <!-- Div do video oculta -->
-          <div class="modal " id="modalExemplo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-            aria-hidden="true">
-            <div role="document">
-              <div class="divClose m-auto white">
-                <button type="button" class="close" data-dismiss="modal" >
-                  <i class="bi bi-x-circle text-white"></i>
-                </button>
-              </div>
-              <div class="divOculta">
-                <iframe src="https://www.youtube.com/embed/fZVT8BpsGAk?si=afh2ip7a-TmP8-fy" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-              </div>
-            </div>
-          </div>
-          <!-- Fim da div oculta -->
-        </section>
-        <!-- End Hero -->
-      </div>
-    </header>
-    <main class="main container bg-body-secondary py-5 border-5">
-      <div class="section-title">
-        <h2>Cursos em destaque</h2>
-        <p></p>
+				<div class="row  ">
+					<div class="section-title">
+						<h2>Nossos instrutores</h2>
+						<p></p>
+					</div>
+					<div class="col-md-4 my-1">
+						<div class="card py-2">
+							<div class="bg-info img-card-home d-blok m-auto"><img
+									src="https://qikbyte.com.br/assets/img/about/2.jpg"
+									class="card-img-top d-blok m-auto my-3" alt="Imagem do Instrutor"
+									style="width: 150px; border-radius: 50%;"></div>
+							<div class="card-body">
+								<h5 class="card-title">Flávio Mota / Analista de sistemas</h5>
+								<p class="card-text">- Bacharel: Sistemas de Informação <br>
+									- Pós-graduação: Engenharia de Sistemas <br>
+									- Licenciatura: Pedagógica <br>
+									- Especialista: Educação a Distância</p>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-4 my-1">
+						<div class="card py-2">
+							<div class="bg-info img-card-home d-blok m-auto"><img src="images/prof-2.jpeg"
+									class="card-img-top d-blok m-auto my-3" alt="Imagem do Instrutor"
+									style="width: 150px; border-radius: 50%;"></div>
+							<div class="card-body">
+								<h5 class="card-title">Bruna Lins / Desenvolvedora</h5>
+								<p class="card-text">
+									- Bacharelado em Biblioteconomia <br>
+									- Instrutora de Desenvolvimento de Software <br>
+									- Ensino técnico Recode Pro<br>
+									- Pesquisa e Gestão de Dados
+								</p>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-4 my-1">
+						<div class="card py-2">
+							<div class="bg-info img-card-home d-blok m-auto"><img src="images/prof-3.jpeg"
+									class="card-img-top d-blok m-auto my-3" alt="Imagem do Instrutor"
+									style="width: 150px; border-radius: 50%;"></div>
+							<div class="card-body">
+								<h5 class="card-title">Gabriel Mesquita / Desenvolvedor</h5>
+								<p class="card-text">
+									- Instrutor de Desenvolvimento de Software <br>
+									- Ensino técnico Recode Pro<br>
+									- Tecnólogo em Análise de e Desenvolvimento de Sistemas
+								</p>
+							</div>
+						</div>
+					</div>
+					<!-- Adicione mais colunas conforme necessário para outros instrutores -->
 
-        <div class="position-card">
-          <div class="card card-curso" style="width: 16rem;">
-            <div class="card-img-top"><img src="https://velog.velcdn.com/images/songyi7091/post/4568d3b4-4799-4010-a70c-63f55256d9fd/d9taiqwp0968js9hcn5u.png"
-                alt="Imagem de capa do card"></div>
-            <div class="card-body">
-              <h6 class="card-title text-center">Desenvolvimento Web</h6>
-              <p class="text-right"><strong>[40 Horas]</strong></p>
-              <p class="card-text py-3">Neste curso você vai aprender a desenvolver sites usando HTML5, CSS3 e JavaScript[...]
-              </p>
-              <a href="/curso" class="btn btn-md container botao-busca">Ver cursos</a>
-            </div>
-          </div>
-          <div class="card card-curso" style="width: 16rem;">
-            <div class="card-img-top"><img src="https://getbootstrap.com.br/docs/4.1/assets/img/bootstrap-stack.png"
-                alt="Imagem de capa do card"></div>
-            <div class="card-body">
-              <h6 class="card-title text-center">BootStrap</h6>
-              <p class="text-right"><strong>[20 Horas]</strong></p>
-              <p class="card-text py-3">Aprenda a usar essa biblioteca que vai agilizar o seu trabalho como Desenvolvedor
-                Web[...] </p>
-             <a href="/curso" class="btn btn-md container botao-busca">Ver cursos</a>
-            </div>
-          </div>
-          <div class="card card-curso" style="width: 16rem;">
-            <div class="card-img-top"><img src="./images/img2_900x600.png"
-                alt="Imagem de capa do card"></div>
-            <div class="card-body">
-              <h6 class="card-title text-center">Curso básico de Libras</h6>
-              <p class="text-right"><strong>[20 Horas]</strong></p>
-              <p class="card-text py-3">Aprenda o alfabeto, comunicações simples e seus primeiros passos em libras.</p>
-              <a href="/curso" class="btn btn-md container botao-busca">Ver cursos</a>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- Libras Acacademy - Explication -->
-      <div class="container ">
+					<!-- Avaliações -->
+					<div class="col-md-12 py-5">
+						<div class="py-5">
+							<div class="mb-3">
+								<span class="text-dark fw-semi-bold">(4,5/5,0) <i class="bi bi-star-fill "></i><i
+										class="bi bi-star-fill "></i><i class="bi bi-star-fill "></i><i
+										class="bi bi-star-fill "></i><i class="bi bi-star-half "></i></span>
+								<span class="ms-2">(com base em 3.265 avaliações)</span>
+							</div>
+							<h2 class="h1">O que nossos alunos dizem</h2>
+							<p class="mb-3"> Avaliações fictícias para estatísticas apenas para fins ilustrativos.</p>
+							<div class="row">
+								<div class="col-md-4 my-1">
+									<div class="card py-2">
+										<div class="bg-info img-card-home d-blok m-auto"><img src="images/aluno-1.jpg"
+												class="card-img-top d-blok m-auto my-3" alt="Imagem do Instrutor"
+												style="width: 150px; border-radius: 50%;"></div>
+										<div class="card-body">
+											<p>(5,0) <i class="bi bi-star-fill "></i><i class="bi bi-star-fill "></i><i
+													class="bi bi-star-fill "></i><i class="bi bi-star-fill "></i><i
+													class="bi bi-star-fill "></i></p>
+											<h5 class="card-title">Aluno Fictício</h5>
+											<p class="card-text">Os cursos são incríveis! A metodologia excepcional
+												proporcionou aprendizado profundo usando a Língua Brasileira de Sinais.
+												Instrutores altamente qualificados tornaram o processo agradável e mais
+												compreensível.
+												Recomendo a todos que desejam aprender em Libras de forma eficaz.
+												Parabéns para a equipe por esse trabalho excepcional!</p>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-4 my-1">
+									<div class="card py-2">
+										<div class="bg-info img-card-home d-blok m-auto"><img src="images/aluno-2.jpg"
+												class="card-img-top d-blok m-auto my-3" alt="Imagem do Instrutor"
+												style="width: 150px; border-radius: 50%;"></div>
+										<div class="card-body">
+											<p>(4,5) <i class="bi bi-star-fill "></i><i class="bi bi-star-fill "></i><i
+													class="bi bi-star-fill "></i><i class="bi bi-star-fill "></i><i
+													class="bi bi-star-half "></i> </p>
+											<h5 class="card-title">Aluno Fictício</h5>
+											<p class="card-text">Minha experiência no Libras Academy foi positiva.
+												Cursos bem estruturados, instrutores comprometidos. A metodologia é
+												eficaz, proporcionando compreensão sólida da Língua Brasileira de
+												Sinais. Acessibilidade e variedade nas atividades práticas poderiam
+												melhorar, mas atribuo 4,5 estrelas pela qualidade do conteúdo e suporte
+												oferecido.</p>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-4 my-1">
+									<div class="card py-2">
+										<div class="bg-info img-card-home d-blok m-auto"><img src="images/aluno-3.jpg"
+												class="card-img-top d-blok m-auto my-3" alt="Imagem do Instrutor"
+												style="width: 150px; border-radius: 50%;"></div>
+										<div class="card-body">
+											<p>(5,0) <i class="bi bi-star-fill "></i><i class="bi bi-star-fill "></i><i
+													class="bi bi-star-fill "></i><i class="bi bi-star-fill "></i><i
+													class="bi bi-star-fill "></i> </p>
+											<h5 class="card-title">Aluno Fictício</h5>
+											<p class="card-text">O Libras Academy superou expectativas! A qualidade do
+												ensino é impressionante, e o ambiente online é intuitivo. Instrutores
+												são apaixonados e comprometidos em garantir que cada aluno compreenda e
+												domine a Língua Brasileira de Sinais. O Libras Academy é a escolha certa
+												para aprender Libras de forma eficiente e eficaz.</p>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
 
-        <div class="row  ">
-          <div class="section-title">
-            <h2>Nossos instrutores</h2>
-            <p></p>
-          </div>
-          <div class="col-md-4 my-1">
-            <div class="card py-2">
-              <div class="bg-info img-card-home d-blok m-auto"><img src="https://qikbyte.com.br/assets/img/about/2.jpg" class="card-img-top d-blok m-auto my-3" alt="Imagem do Instrutor" style="width: 150px; border-radius: 50%;"></div>
-              <div class="card-body">
-                <h5 class="card-title">Flávio Mota / Analista de sistemas</h5>
-                <p class="card-text">- Bacharel: Sistemas de Informação <br>
-                  - Pós-graduação: Engenharia de Sistemas <br>
-                  - Licenciatura: Pedagógica <br>
-                  - Especialista: Educação a Distância</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4 my-1">
-            <div class="card py-2">
-              <div class="bg-info img-card-home d-blok m-auto"><img src="images/prof-2.jpeg" class="card-img-top d-blok m-auto my-3" alt="Imagem do Instrutor" style="width: 150px; border-radius: 50%;"></div>
-              <div class="card-body">
-                <h5 class="card-title">Bruna Lins / Desenvolvedora</h5>
-                <p class="card-text">
-                  - Bacharelado em Biblioteconomia <br>
-                  - Instrutora de Desenvolvimento de Software <br>
-                  - Ensino técnico Recode Pro<br>
-                  - Pesquisa e Gestão de Dados
-                </p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4 my-1">
-            <div class="card py-2">
-              <div class="bg-info img-card-home d-blok m-auto"><img src="images/prof-3.jpeg" class="card-img-top d-blok m-auto my-3" alt="Imagem do Instrutor" style="width: 150px; border-radius: 50%;"></div>
-              <div class="card-body">
-                <h5 class="card-title">Gabriel Mesquita / Desenvolvedor</h5>
-                <p class="card-text">
-                  - Instrutor de Desenvolvimento de Software <br>
-                  - Ensino técnico Recode Pro<br>
-                  - Tecnólogo em Análise de e Desenvolvimento de Sistemas
-                </p>
-              </div>
-            </div>
-          </div>
-          <!-- Adicione mais colunas conforme necessário para outros instrutores -->
-
-          <!-- Avaliações -->
-          <div class="col-md-12 py-5">
-            <div class="py-5">
-              <div class="mb-3">
-                <span class="text-dark fw-semi-bold">(4,5/5,0) <i class="bi bi-star-fill "></i><i
-                    class="bi bi-star-fill "></i><i class="bi bi-star-fill "></i><i
-                    class="bi bi-star-fill "></i><i class="bi bi-star-half "></i></span>
-                <span class="ms-2">(com base em 3.265 avaliações)</span>
-              </div>
-              <h2 class="h1">O que nossos alunos dizem</h2>
-              <p class="mb-3"> Avaliações fictícias para estatísticas apenas para fins ilustrativos.</p>
-              <div class="row">
-                <div class="col-md-4 my-1">
-                  <div class="card py-2">
-                    <div class="bg-info img-card-home d-blok m-auto"><img src="images/aluno-1.jpg" class="card-img-top d-blok m-auto my-3" alt="Imagem do Instrutor" style="width: 150px; border-radius: 50%;"></div>
-                    <div class="card-body">
-                      <p>(5,0) <i class="bi bi-star-fill "></i><i class="bi bi-star-fill "></i><i class="bi bi-star-fill "></i><i class="bi bi-star-fill "></i><i class="bi bi-star-fill "></i></p>
-                      <h5 class="card-title">Nome do aluno</h5>
-                      <p class="card-text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ex illum quo earum nesciunt, velit error praesentium. Expedita hic quasi culpa qui incidunt dicta at voluptatem cum! Unde labore blanditiis nemo!</p>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-4 my-1">
-                  <div class="card py-2">
-                    <div class="bg-info img-card-home d-blok m-auto"><img src="images/aluno-2.jpg" class="card-img-top d-blok m-auto my-3" alt="Imagem do Instrutor" style="width: 150px; border-radius: 50%;"></div>
-                    <div class="card-body">
-                      <p>(4,5) <i class="bi bi-star-fill "></i><i class="bi bi-star-fill "></i><i class="bi bi-star-fill "></i><i class="bi bi-star-fill "></i><i class="bi bi-star-half "></i> </p>
-                      <h5 class="card-title">Nome do aluno</h5>
-                      <p class="card-text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ex illum quo earum nesciunt, velit error praesentium. Expedita hic quasi culpa qui incidunt dicta at voluptatem cum! Unde labore blanditiis nemo!</p>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-4 my-1">
-                  <div class="card py-2">
-                    <div class="bg-info img-card-home d-blok m-auto"><img src="images/aluno-3.jpg" class="card-img-top d-blok m-auto my-3" alt="Imagem do Instrutor" style="width: 150px; border-radius: 50%;"></div>
-                    <div class="card-body">
-                      <p>(5,0) <i class="bi bi-star-fill "></i><i class="bi bi-star-fill "></i><i class="bi bi-star-fill "></i><i class="bi bi-star-fill "></i><i class="bi bi-star-fill "></i> </p>
-                      <h5 class="card-title">Nome aluno</h5>
-                      <p class="card-text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ex illum quo earum nesciunt, velit error praesentium. Expedita hic quasi culpa qui incidunt dicta at voluptatem cum! Unde labore blanditiis nemo!</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-        </div>
-      </div>
-      <!-- End Libras Acacademy - Explication -->
-
-
-    </main>
-    <!-- Apoie -->
-  
-    <div class="apoie text-center">
-      <div class="imagem-apoie container">
-        <img src="./images/Design_sem_nome-removebg-preview.png" alt="Imagem da logo Libras Academy">
-      </div>
-      <div class="conteudo-apoie p-3">
-        <h3>Seja um apoiador institucional e ajude este projeto a crescer</h3>
-        <div class="text-center botao-apoie">
-          <a href="/contato"><button type="button" class="btn btn-lg btn-outline-dark">Apoie nossa instituição</button></a>
-        </div>        
-      </div>
-    </div>
-  
-  <!-- Fim apoie -->
-
-    <!-- footer -->
-    <footer class="text-white py-3 px-5 bg-info">
-      <div class="row justify-content-center">
-        <div class="text-left p-3 d-flex align-items-center" style="width: 130px;">
-          <img src="./images/favicon_2.ico" style="width: 100%;" alt="">
-        </div>
-        <div class="col-sm-12 col-md-5 mb-3 text-left">
-          <h3 class="text-center">Libras Academy</h3>
-          <ul class="nav flex-column text-center align-content-center text-white">
-            <li class="nav-link pb-1"><a href="/" class="nav-link p-0 fs-5 text-white">Home</a></li>
-            <li class="nav-link pb-1"><a href="/sobre" class="nav-link p-0 fs-5 text-white">Sobre</a></li>
-            <li class="nav-link pb-1"><a href="/curso" class="nav-link p-0 fs-5 text-white">Cursos</a></li>
-            <li class="nav-link pb-1"><a href="/contato" class="nav-link p-0 fs-5 text-white">Contato</a></li>
-
-          </ul>
-        </div>
+				</div>
+			</div>
+			<!-- End Libras Acacademy - Explication -->
 
 
-        <div class="col-sm-12 col-md-5 mb-3 text-center">
-          <form>
-            <h3 class="text-center">Inscreva-se</h3>
-            <p class="mt-5">E receba notícias e novidades do Libras Academy</p>
-            <div class="d-flex flex-column flex-sm-row w-100 gap-2">
-              <label for="newsletter1" class="visually-hidden">Seu e-mail</label>
-              <input id="newsletter1" type="text" class="form-control" placeholder="Email address">
-              <button class="btn btn-dark fw-bolder " type="button">Enviar</button>
-            </div>
-          </form>
-        </div>
-      </div>
-      <div class="border-top"></div>
-      <div class="d-flex justify-content-center mt-4 ">
-        <p class="text-center">© 2024 Libras Academy. Todos os direitos reservados.</p>
-      </div>
-    </footer>
-    <!-- footer end -->
+		</main>
+		<!-- Apoie -->
 
-    <!-- VLibras -->
-    <div vw class="enabled position-fixed">
-      <div vw-access-button class="active"></div>
-      <div vw-plugin-wrapper>
-        <div class="vw-plugin-top-wrapper"></div>
-      </div>
-    </div>
-    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
-    <script>
-      new window.VLibras.Widget('https://vlibras.gov.br/app');
-    </script>
-    <!-- VLibras end -->
+		<div class="apoie text-center">
+			<div class="imagem-apoie container">
+				<img src="./images/Design_sem_nome-removebg-preview.png" alt="Imagem da logo Libras Academy">
+			</div>
+			<div class="conteudo-apoie p-3">
+				<h3>Seja um apoiador institucional e ajude este projeto a crescer</h3>
+				<div class="text-center botao-apoie">
+					<a href="/contato"><button type="button" class="btn btn-lg btn-outline-dark">Apoie nossa
+							instituição</button></a>
+				</div>
+			</div>
+		</div>
 
-    <a href="#" class="up-scroll active d-flex align-items-center justify-content-center"><i
-        class="bi bi-arrow-up-short"></i></a>
+		<!-- Fim apoie -->
 
-    <script th:src="@{/scripts/script.js}"></script>
-  </div>
+		<!-- footer -->
+		<footer class="text-white py-3 px-5 bg-info">
+			<div class="row justify-content-center">
+				<div class="text-left p-3 d-flex align-items-center" style="width: 130px;">
+					<img src="./images/favicon_2.ico" style="width: 100%;" alt="">
+				</div>
+				<div class="col-sm-12 col-md-5 mb-3 text-left">
+					<h3 class="text-center">Libras Academy</h3>
+					<ul class="nav flex-column text-center align-content-center text-white">
+						<li class="nav-link pb-1"><a href="/" class="nav-link p-0 fs-5 text-white">Home</a></li>
+						<li class="nav-link pb-1"><a href="/sobre" class="nav-link p-0 fs-5 text-white">Sobre</a></li>
+						<li class="nav-link pb-1"><a href="/curso" class="nav-link p-0 fs-5 text-white">Cursos</a></li>
+						<li class="nav-link pb-1"><a href="/contato" class="nav-link p-0 fs-5 text-white">Contato</a>
+						</li>
+
+					</ul>
+				</div>
+
+
+				<div class="col-sm-12 col-md-5 mb-3 text-center">
+					<form>
+						<h3 class="text-center">Inscreva-se</h3>
+						<p class="mt-5">E receba notícias e novidades do Libras Academy</p>
+						<div class="d-flex flex-column flex-sm-row w-100 gap-2">
+							<label for="newsletter1" class="visually-hidden">Seu e-mail</label>
+							<input id="newsletter1" type="text" class="form-control" placeholder="Email address">
+							<button class="btn btn-dark fw-bolder " type="button">Enviar</button>
+						</div>
+					</form>
+				</div>
+			</div>
+			<div class="border-top"></div>
+			<div class="d-flex justify-content-center mt-4 ">
+				<p class="text-center">© 2024 Libras Academy. Todos os direitos reservados.</p>
+			</div>
+		</footer>
+		<!-- footer end -->
+
+		<!-- VLibras -->
+		<div vw class="enabled position-fixed">
+			<div vw-access-button class="active"></div>
+			<div vw-plugin-wrapper>
+				<div class="vw-plugin-top-wrapper"></div>
+			</div>
+		</div>
+		<script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+		<script>
+			new window.VLibras.Widget('https://vlibras.gov.br/app');
+		</script>
+		<!-- VLibras end -->
+
+		<a href="#" class="up-scroll active d-flex align-items-center justify-content-center"><i
+				class="bi bi-arrow-up-short"></i></a>
+
+		<script th:src="@{/scripts/script.js}"></script>
+	</div>
 </body>
 
 
