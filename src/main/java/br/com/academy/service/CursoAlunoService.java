@@ -7,7 +7,7 @@ import br.com.academy.dto.CursoAlunoDTO;
 public interface CursoAlunoService {
 	void save(CursoAlunoDTO cursoAlunoDTO);
 	
-	CursoAlunoDTO findById(Long matricula);
+	CursoAlunoDTO findById(Long id);
 	
 	List<CursoAlunoDTO> findAll();
 	

@@ -42,46 +42,31 @@ public class CursoAndamentoController {
         ModelAndView modelAndView = new ModelAndView("cursoAndamento/formulario");
         modelAndView.addObject("alunos", alunoService.findAll());
         modelAndView.addObject("cursos", cursosService.findAll());
+        modelAndView.addObject("cursoAluno", new CursoAlunoDTO());
 
         return modelAndView;
     }
     
     @GetMapping("/{id}/editar")
     public ModelAndView editar(@PathVariable Long id) {
-        ModelAndView modelAndView = new ModelAndView("cursoAndamento/editCursoAndamento");
-        CursoAlunoDTO cursoAluno = caService.findById(id);
-        List<CursoAlunoDTO> relacao = caService.findAll();
-        
-        modelAndView.addObject("curso", caService.findById(id));
-        
-        modelAndView.addObject("cursoAluno", cursoAluno);
-        modelAndView.addObject("alunoSelecionado", cursoAluno);
-        modelAndView.addObject("cursoSelecionado", cursoAluno);
+        ModelAndView modelAndView = new ModelAndView("cursoAndamento/editCursoAndamento");        
         modelAndView.addObject("alunos", alunoService.findAll());
         modelAndView.addObject("cursos", cursosService.findAll());
-        //modelAndView.addObject("matricula", caService.getReferenceById(id));
+        modelAndView.addObject("cursoAluno", caService.findById(id));
         
         return modelAndView;
     }
     
     @PostMapping("/cadastrar")
-    public String cadastrar(CursoAlunoDTO cursoAluno) {
-    	
+    public String cadastrar(CursoAlunoDTO cursoAluno) {   	
     	caService.save(cursoAluno);    	
-//    	Aluno aluno = alunoService.findById(alunoId).orElseThrow();
-//    	Cursos curso = cursosService.findById(cursoId).orElseThrow();
-//    	CursoAluno cursoAluno = new CursoAluno();
-//        cursoAluno.setAluno(aluno);
-//        cursoAluno.setCurso(curso);
-//
-//        caService.save(cursoAluno);
 
         return "redirect:/cursoAndamento";
     }
     
     @PostMapping("/{id}/editar")
-    public String editar(CursoAlunoDTO cursoAluno, @PathVariable Long matricula) throws Exception  {
-    	CursoAlunoDTO caAlvo = caService.findById(matricula);
+    public String editar(CursoAlunoDTO cursoAluno, @PathVariable Long id) throws Exception  {
+    	CursoAlunoDTO caAlvo = caService.findById(id);
         caService.update(cursoAluno, caAlvo);
 
         return "redirect:/cursoAndamento";

@@ -7,7 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.academy.dto.CursoAlunoDTO;
+import br.com.academy.entidades.Aluno;
 import br.com.academy.entidades.CursoAluno;
+import br.com.academy.entidades.Cursos;
 import br.com.academy.repository.AlunoRepository;
 import br.com.academy.repository.CursoAlunoRepository;
 import br.com.academy.repository.CursosRepository;
@@ -26,15 +28,19 @@ public class CursoAlunoServiceImpl implements CursoAlunoService{
 	
 	@Override
 	public void save(CursoAlunoDTO cursoAlunoDTO) {
+		Long alunoId = cursoAlunoDTO.getAluno().getId();
+	    Long cursoId = cursoAlunoDTO.getCurso().getId();
+		Aluno aluno = alunoRepository.findById(alunoId).orElse(null);
+		Cursos curso = cursosRepository.findById(cursoId).orElse(null);
 		CursoAluno relacao = new CursoAluno(cursoAlunoDTO);
-		relacao.setAluno(cursoAlunoDTO.getAluno());
-		relacao.setCurso(cursoAlunoDTO.getCurso());
+		relacao.setAluno(aluno);
+		relacao.setCurso(curso);
 		cursoAlunoRepository.save(relacao);
 	}
 
 	@Override
-	public CursoAlunoDTO findById(Long matricula) {
-        return new CursoAlunoDTO(cursoAlunoRepository.findById(matricula).get());
+	public CursoAlunoDTO findById(Long id) {
+        return new CursoAlunoDTO(cursoAlunoRepository.findById(id).get());
 	}
 
 	@Override
@@ -45,13 +51,10 @@ public class CursoAlunoServiceImpl implements CursoAlunoService{
 
 	@Override
 	public CursoAlunoDTO update(CursoAlunoDTO cursoAlunoUpdate, CursoAlunoDTO cursoAlunoAlvo) throws Exception {
-		if (cursoAlunoRepository.findAll() == cursoAlunoUpdate ) {
-			throw new Exception("Relação já existe");
-		}
-		cursoAlunoUpdate.setAluno(cursoAlunoUpdate.getAluno() != null ? cursoAlunoUpdate.getAluno() : cursoAlunoUpdate.getAluno());
-		cursoAlunoUpdate.setCurso(cursoAlunoUpdate.getCurso() != null ? cursoAlunoUpdate.getCurso() : cursoAlunoUpdate.getCurso());
-		
-		CursoAluno cursoAluno = new CursoAluno(cursoAlunoUpdate);
+	    cursoAlunoUpdate.setAluno(cursoAlunoUpdate.getAluno() != null ? cursoAlunoUpdate.getAluno() : cursoAlunoAlvo.getAluno());
+	    cursoAlunoUpdate.setCurso(cursoAlunoUpdate.getCurso() != null ? cursoAlunoUpdate.getCurso() : cursoAlunoAlvo.getCurso());
+        
+	    CursoAluno cursoAluno = new CursoAluno(cursoAlunoUpdate);
 		return new CursoAlunoDTO(cursoAlunoRepository.save(cursoAluno));
 	}
 

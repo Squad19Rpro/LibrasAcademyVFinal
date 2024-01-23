@@ -1,6 +1,7 @@
 package br.com.academy.repository;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -16,4 +17,6 @@ public interface CursoAlunoRepository extends JpaRepository <CursoAluno, Long> {
 	
 	@Query("SELECT ca.aluno FROM CursoAluno ca WHERE ca.curso.id = :cursoId")
     List<Aluno> findAlunosByCursoId(@Param("cursoId") Long cursoId);
+	
+	Optional<CursoAluno> findByMatricula(Long matricula);
 }

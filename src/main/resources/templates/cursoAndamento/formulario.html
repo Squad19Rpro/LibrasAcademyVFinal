@@ -11,7 +11,7 @@
 			<div class="col-sm-12">
 				<div class="card">
 					
-					<form id="formCad" method="POST" th:object="${curso}" th:action="@{/cursoAndamento/cadastrar}">
+					<form id="formCad" method="POST" th:object="${cursoAluno}" th:action="@{/cursoAndamento/cadastrar}">
 						<div class="card-body">
 							<fieldset>
 								<legend>Dados</legend>
@@ -19,8 +19,8 @@
 								<div class="row my-2">
 									<div class="col-md-6 col-sm-12">
 										<div class="form-group">
-											<label for="aluno">Nome do Aluno</label>
-											<select id="aluno" th:field="*{aluno}" name="alunoId" class="form-select" style="width: 100%;">
+											<label for="alunoId">Nome do Aluno</label>
+											<select id="alunoId" th:field="*{aluno}" class="form-select" style="width: 100%;">
 												<option th:each="aluno : ${alunos}" th:text="${aluno.nome}"
 													th:value="${aluno.id}"> - <span th:text="${aluno.cpf}"></span></option>
 											</select>
@@ -29,7 +29,7 @@
 									<div class="col-md-6 col-sm-12">
 										<div class="form-group">
 											<label for="curso">Nome do Curso</label>
-											<select id="curso" th:field="*{curso}" name="cursoId" class="form-select" style="width: 100%;">
+											<select id="curso" th:field="*{curso}" class="form-select" style="width: 100%;">
 												<option th:each="curso : ${cursos}" th:text="${curso.nomeCurso}"
 													th:value="${curso.id}">Curso</option>
 											</select>

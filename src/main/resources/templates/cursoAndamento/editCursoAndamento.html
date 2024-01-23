@@ -11,7 +11,7 @@
 			<div class="col-sm-12">
 				<div class="card">
 					
-					<form id="form" method="POST" th:object="${curso}">
+					<form id="form" method="POST" th:object="${cursoAluno}">
 						<input type="hidden" th:field="*{matricula}">
 						<div class="card-body">
 							<fieldset>
@@ -21,7 +21,7 @@
 									<div class="col-md-6 col-sm-12">
 										<div class="form-group">
 											<label for="aluno">Nome do Aluno</label>
-											<select id="aluno" th:field="*{aluno}" name="alunoId" class="form-select" style="width: 100%;">
+											<select id="aluno" th:field="*{aluno}" class="form-select" style="width: 100%;">
 												<option th:each="aluno : ${alunos}" th:text="${aluno.nome}"
 													th:value="${aluno.id}">Aluno</option>
 											</select>
@@ -30,7 +30,7 @@
 									<div class="col-md-6 col-sm-12">
 										<div class="form-group">
 											<label for="curso">Nome do Curso</label>
-											<select id="curso" th:field="*{curso}"  name="cursoId" class="form-select" style="width: 100%;">
+											<select id="curso" th:field="*{curso}"  class="form-select" style="width: 100%;">
 												<option th:each="curso : ${cursos}" th:text="${curso.nomeCurso}"
 													th:value="${curso.id}">Curso</option>
 											</select>
