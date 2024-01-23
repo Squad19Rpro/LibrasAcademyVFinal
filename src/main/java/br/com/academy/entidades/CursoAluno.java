@@ -1,5 +1,8 @@
 package br.com.academy.entidades;
 
+import org.springframework.beans.BeanUtils;
+
+import br.com.academy.dto.CursoAlunoDTO;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -22,6 +25,11 @@ public class CursoAluno {
 	@ManyToOne
 	@JoinColumn(name = "curso_fk")
 	private Cursos curso;
+	
+	public CursoAluno() {};
+	public CursoAluno(CursoAlunoDTO cursoAlunoDTO) {
+		BeanUtils.copyProperties(cursoAlunoDTO, this);
+	}
 
 	public Long getMatricula() {
 		return matricula;

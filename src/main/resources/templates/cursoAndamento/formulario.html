@@ -20,16 +20,16 @@
 									<div class="col-md-6 col-sm-12">
 										<div class="form-group">
 											<label for="aluno">Nome do Aluno</label>
-											<select id="aluno" name="alunoId" class="form-select" style="width: 100%;">
+											<select id="aluno" th:field="*{aluno}" name="alunoId" class="form-select" style="width: 100%;">
 												<option th:each="aluno : ${alunos}" th:text="${aluno.nome}"
-													th:value="${aluno.id}">Aluno</option>
+													th:value="${aluno.id}"> - <span th:text="${aluno.cpf}"></span></option>
 											</select>
 										</div>
 									</div>
 									<div class="col-md-6 col-sm-12">
 										<div class="form-group">
 											<label for="curso">Nome do Curso</label>
-											<select id="curso"  name="cursoId" class="form-select" style="width: 100%;">
+											<select id="curso" th:field="*{curso}" name="cursoId" class="form-select" style="width: 100%;">
 												<option th:each="curso : ${cursos}" th:text="${curso.nomeCurso}"
 													th:value="${curso.id}">Curso</option>
 											</select>
