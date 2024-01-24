@@ -19,7 +19,7 @@
 		<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 		<script th:src="@{/scripts/script.js}"></script>
 	<!-- Custom CSS -->
-	<link rel="stylesheet" href="../sass/styles.css" />
+	<link rel="stylesheet" th:href="@{/sass/styles.css}" href="../../static/sass/styles.css" />
 </head>
 <style>
 	body {
@@ -114,7 +114,7 @@
 							<input type="text" class="form-control" id="inputNome" name="nome"
 								placeholder="Nome completo" autofocus required>
 						</div>
-						<div class="col-sm-10 d-flex pb-3">
+						<div class="col-sm-10 d-flex flex-wrap pb-3">
 							<div class="form-check pr-3">
 								<input class="form-check-input" required="true" th:checked="checked" type="radio" name="sexo"
 									id="gridRadios1" value="Masculino" th:field="*{sexo}">
