@@ -18,9 +18,9 @@ public class AlunoServiceImpl implements AlunoService {
 	private AlunoRepository alunoRepository;
 
 	public void save(AlunoDTO alunoDTO) {
-		Aluno aluno = new Aluno(alunoDTO);
 		String senhaEncriptada = SenhaUtils.encode(alunoDTO.getSenha());
 		alunoDTO.setSenha(senhaEncriptada);
+		Aluno aluno = new Aluno(alunoDTO);
 		alunoRepository.save(aluno);
 	}
 	
