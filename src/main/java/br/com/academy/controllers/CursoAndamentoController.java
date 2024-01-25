@@ -1,7 +1,5 @@
 package br.com.academy.controllers;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,9 +8,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import br.com.academy.dto.AlunoDTO;
 import br.com.academy.dto.CursoAlunoDTO;
-import br.com.academy.dto.CursosDTO;
 import br.com.academy.service.AlunoService;
 import br.com.academy.service.CursoAlunoService;
 import br.com.academy.service.CursosService;

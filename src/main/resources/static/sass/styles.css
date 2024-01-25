@@ -12464,7 +12464,7 @@ nav{
 .login-form{
   background-color: white;
   border-radius: 25px;
-  width: 450px;
+  max-width: 450px;
   margin-top: 60px;
   padding: 30px;
 }
