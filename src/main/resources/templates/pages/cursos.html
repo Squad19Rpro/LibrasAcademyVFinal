@@ -58,28 +58,27 @@
                   <a class="dropdown-item" href="/cadastro">Cadastre-se</a>
                 </div>
               </li>
-               <li class="nav-item">
-				  <div class="mt-2 mt-md-0" sec:authorize="isAuthenticated()">
-					<div class="btn-group mr-sm-2">
-						<button type="button" class="btn btn-light">
-							<i class="bi bi-user"></i> <span sec:authentication="name">Bob</span>
-						</button>
-						<button type="button"
-							class="btn btn-primary dropdown-toggle dropdown-toggle-split"
-							data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-						</button>
-						<div class="dropdown-menu">
-							<a th:href="@{/funcionarios}" class="dropdown-item" sec:authorize="hasAuthority('ADMIN')"><i class="bi bi-file-earmark-lock px-2"></i>Area adminstrativa</a>
-							<a th:href="@{/cursos}" class="dropdown-item" sec:authorize="hasAuthority('USER')"><i class="bi bi-file-earmark-lock px-2"></i>Listagem de Cursos</a>
-							<a th:href="@{/perfil}" class="dropdown-item"><i class="bi bi-people-fill px-2"></i>Perfil</a>
-							<hr>
-							<a th:href="@{/logout}" class="dropdown-item"><i class="bi bi-box-arrow-left px-2"></i>Sair</a>
-						</div>
-					</div>
-				</div>				  
-			  </li>
-              
-			  
+              <li class="nav-item dropdown" sec:authorize="isAuthenticated()">
+                <div sec:authorize="isAuthenticated()">
+                  <div class=" dropdown-center">
+                    <a class="btn  nav-link dropdown-toggle " role="button" data-toggle="dropdown"
+                      aria-haspopup="true" aria-expanded="false">
+                      <i class="bi bi-person-circle"></i> <span sec:authentication="name">Bob</span>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+                      <a th:href="@{/funcionarios}" class="dropdown-item" sec:authorize="hasAuthority('ADMIN')"><i
+                          class="bi bi-file-earmark-lock px-2"></i>Area adminstrativa</a>
+                      <a th:href="@{/cursos}" class="dropdown-item" sec:authorize="hasAuthority('USER')"><i
+                          class="bi bi-file-earmark-lock px-2"></i>Listagem de Cursos</a>
+                      <a th:href="@{/perfil}" class="dropdown-item"><i class="bi bi-people-fill px-2"></i>Perfil</a>
+                      <hr class="dropdown-divider">
+                      <a th:href="@{/logout}" class="dropdown-item"><i class="bi bi-box-arrow-left px-2"></i>Sair</a>
+                    </div>
+                  </div>
+                </div>
+              </li>
+
+
             </ul>
           </div>
         </nav>
@@ -153,11 +152,12 @@
             </ol>
           </div>
         </div>
-        
+
 
         <section class="position-card py-5">
           <div class="card card-curso" style="width: 14rem;">
-            <div class="card-img-top"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQPo7l4B7BJYuzYTWSETTna7WmYukPAPhsFoQ5kaAmHBt1s17Bupk2QecyRRiWrmkN_WP0&usqp=CAU"
+            <div class="card-img-top"><img
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQPo7l4B7BJYuzYTWSETTna7WmYukPAPhsFoQ5kaAmHBt1s17Bupk2QecyRRiWrmkN_WP0&usqp=CAU"
                 alt="Imagem de capa do card"></div>
             <div class="card-body">
               <h6 class="card-title text-center">Java para iniciantes</h6>
@@ -168,8 +168,7 @@
           </div>
 
           <div class="card card-curso" style="width: 14rem;">
-            <div class="card-img-top"><img src="../images/php.jpg"
-                alt="Imagem de capa do card"></div>
+            <div class="card-img-top"><img src="../images/php.jpg" alt="Imagem de capa do card"></div>
             <div class="card-body">
               <h6 class="card-title text-center">PHP para iniciantes</h6>
               <p class="text-right"><strong>[40 Horas]</strong></p>
@@ -180,13 +179,16 @@
 
 
           <div class="card card-curso" style="width: 14rem;">
-            <div class="card-img-top"><img src="https://velog.velcdn.com/images/songyi7091/post/4568d3b4-4799-4010-a70c-63f55256d9fd/d9taiqwp0968js9hcn5u.png"
+            <div class="card-img-top"><img
+                src="https://velog.velcdn.com/images/songyi7091/post/4568d3b4-4799-4010-a70c-63f55256d9fd/d9taiqwp0968js9hcn5u.png"
                 alt="Imagem de capa do card"></div>
             <div class="card-body">
               <h6 class="card-title text-center">Desenvolvimento Web</h6>
               <p class="text-right"><strong>[40 Horas]</strong></p>
-              <p class="card-text">Neste curso você vai aprender a desenvolver sites usando HTML5, CSS3 e JavaScript[...] </p>
-              <a href="#" class="btn btn-md container botao-busca bg-body-secondary disabled" tabindex="-1" role="button" aria-disabled="true"> <i class="bi bi-clock-history px-2"></i> Em breve...</a>
+              <p class="card-text">Neste curso você vai aprender a desenvolver sites usando HTML5, CSS3 e
+                JavaScript[...] </p>
+              <a href="#" class="btn btn-md container botao-busca bg-body-secondary disabled" tabindex="-1"
+                role="button" aria-disabled="true"> <i class="bi bi-clock-history px-2"></i> Em breve...</a>
             </div>
           </div>
 
@@ -196,65 +198,72 @@
             <div class="card-body">
               <h6 class="card-title text-center">BootStrap</h6>
               <p class="text-right"><strong>[20 Horas]</strong></p>
-              <p class="card-text">Aprenda a usar essa biblioteca que vai agilizar o seu trabalho como Desenvolvedor Web[...] </p>
-              <a href="#" class="btn btn-md container botao-busca bg-body-secondary disabled" tabindex="-1" role="button" aria-disabled="true"> <i class="bi bi-clock-history px-2"></i> Em breve...</a>
+              <p class="card-text">Aprenda a usar essa biblioteca que vai agilizar o seu trabalho como Desenvolvedor
+                Web[...] </p>
+              <a href="#" class="btn btn-md container botao-busca bg-body-secondary disabled" tabindex="-1"
+                role="button" aria-disabled="true"> <i class="bi bi-clock-history px-2"></i> Em breve...</a>
             </div>
           </div>
 
-          
+
 
           <div class="card card-curso" style="width: 14rem;">
-            <div class="card-img-top"><img src="../images/img2_900x600.png"
-                alt="Imagem de capa do card"></div>
+            <div class="card-img-top"><img src="../images/img2_900x600.png" alt="Imagem de capa do card"></div>
             <div class="card-body">
               <h6 class="card-title text-center">Curso básico de Libras</h6>
               <p class="text-right"><strong>[20 Horas]</strong></p>
               <p class="card-text">Aprenda o alfabeto, comunicações simples e seus primeiros passos em libras.</p>
-              <a href="#" class="btn btn-md container botao-busca bg-body-secondary disabled" tabindex="-1" role="button" aria-disabled="true"> <i class="bi bi-clock-history px-2"></i> Em breve...</a>
+              <a href="#" class="btn btn-md container botao-busca bg-body-secondary disabled" tabindex="-1"
+                role="button" aria-disabled="true"> <i class="bi bi-clock-history px-2"></i> Em breve...</a>
             </div>
           </div>
 
           <div class="card card-curso" style="width: 14rem;">
-            <div class="card-img-top"><img src="../images/avancado_libras.jpg"
-                alt="Imagem de capa do card"></div>
+            <div class="card-img-top"><img src="../images/avancado_libras.jpg" alt="Imagem de capa do card"></div>
             <div class="card-body">
               <h6 class="card-title text-center">Curso avançado de Libras</h6>
               <p class="text-right"><strong>[40 Horas]</strong></p>
               <p class="card-text">Aprenda frases completas, a se comunicar e sua primeira conversa em libras!</p>
-              <a href="#" class="btn btn-md container botao-busca bg-body-secondary disabled" tabindex="-1" role="button" aria-disabled="true"> <i class="bi bi-clock-history px-2"></i> Em breve...</a>
+              <a href="#" class="btn btn-md container botao-busca bg-body-secondary disabled" tabindex="-1"
+                role="button" aria-disabled="true"> <i class="bi bi-clock-history px-2"></i> Em breve...</a>
             </div>
           </div>
 
           <div class="card card-curso" style="width: 14rem;">
-            <div class="card-img-top"><img src="../images/img3_900x600.png"
-                alt="Imagem de capa do card"></div>
+            <div class="card-img-top"><img src="../images/img3_900x600.png" alt="Imagem de capa do card"></div>
             <div class="card-body">
               <h6 class="card-title text-center">Comunicação inclusiva </h6>
-                <p class="text-right"><strong>[40 Horas]</strong></p>
-              <p class="card-text">Aprenda como se comunicar melhor com funcionários surdos, lidar com situações do [...]</p>
-              <a href="#" class="btn btn-md container botao-busca bg-body-secondary disabled" tabindex="-1" role="button" aria-disabled="true"> <i class="bi bi-clock-history px-2"></i> Em breve...</a>
+              <p class="text-right"><strong>[40 Horas]</strong></p>
+              <p class="card-text">Aprenda como se comunicar melhor com funcionários surdos, lidar com situações do
+                [...]</p>
+              <a href="#" class="btn btn-md container botao-busca bg-body-secondary disabled" tabindex="-1"
+                role="button" aria-disabled="true"> <i class="bi bi-clock-history px-2"></i> Em breve...</a>
             </div>
           </div>
 
           <div class="card card-curso" style="width: 14rem;">
-            <div class="card-img-top"><img src="../images/logica.jpg"
-                alt="Imagem de capa do card"></div>
+            <div class="card-img-top"><img src="../images/logica.jpg" alt="Imagem de capa do card"></div>
             <div class="card-body">
               <h6 class="card-title text-center">Lógica de Programação</h6>
               <p class="text-right"><strong>[40 Horas]</strong></p>
-              <p class="card-text">Aprenda lógica de programação de maneira simples com raciocínio lógico e algoritmo [...]</p>
-              <a href="#" class="btn btn-md container botao-busca bg-body-secondary disabled" tabindex="-1" role="button" aria-disabled="true"> <i class="bi bi-clock-history px-2"></i> Em breve...</a>
+              <p class="card-text">Aprenda lógica de programação de maneira simples com raciocínio lógico e algoritmo
+                [...]</p>
+              <a href="#" class="btn btn-md container botao-busca bg-body-secondary disabled" tabindex="-1"
+                role="button" aria-disabled="true"> <i class="bi bi-clock-history px-2"></i> Em breve...</a>
             </div>
           </div>
 
           <div class="card card-curso" style="width: 14rem;">
-            <div class="card-img-top"><img src="https://get.pxhere.com/photo/development-icon-development-concept-code-web-development-growth-programmer-software-development-technology-developing-logo-personal-development-notebook-computer-laptop-isolated-tablet-laptop-icon-ipad-laptop-screen-laptop-on-desk-vector-laptop-laptop-on-table-cartoon-character-idea-human-behavior-communication-business-megaphone-conversation-font-organization-illustration-1437801.jpg"
+            <div class="card-img-top"><img
+                src="https://get.pxhere.com/photo/development-icon-development-concept-code-web-development-growth-programmer-software-development-technology-developing-logo-personal-development-notebook-computer-laptop-isolated-tablet-laptop-icon-ipad-laptop-screen-laptop-on-desk-vector-laptop-laptop-on-table-cartoon-character-idea-human-behavior-communication-business-megaphone-conversation-font-organization-illustration-1437801.jpg"
                 alt="Imagem de capa do card"></div>
             <div class="card-body">
               <h6 class="card-title text-center">Gestão de Projetos</h6>
               <p class="text-right"><strong>[40 Horas]</strong></p>
-              <p class="card-text">Gerir projetos é muito importante. Aprenda como trabalhar em equipe e administrar o tempo[...]</p>
-              <a href="#" class="btn btn-md container botao-busca bg-body-secondary disabled" tabindex="-1" role="button" aria-disabled="true"> <i class="bi bi-clock-history px-2"></i> Em breve...</a>
+              <p class="card-text">Gerir projetos é muito importante. Aprenda como trabalhar em equipe e administrar o
+                tempo[...]</p>
+              <a href="#" class="btn btn-md container botao-busca bg-body-secondary disabled" tabindex="-1"
+                role="button" aria-disabled="true"> <i class="bi bi-clock-history px-2"></i> Em breve...</a>
             </div>
           </div>
         </section>
@@ -262,76 +271,77 @@
       </div>
     </main>
   </div>
-  
+
   <!-- Apoie -->
-  
-    <div class="apoie text-center">
-      <div class="imagem-apoie container">
-        <img src="../images/Design_sem_nome-removebg-preview.png" alt="Imagem da logo Libras Academy">
-      </div>
-      <div class="conteudo-apoie p-3">
-        <h3>Seja um apoiador institucional e ajude este projeto a crescer</h3>
-        <div class="text-center botao-apoie">
-          <a href="/contato"><button type="button" class="btn btn-lg btn-outline-dark">Apoie nossa instituição</button></a>
-        </div>        
+
+  <div class="apoie text-center">
+    <div class="imagem-apoie container">
+      <img src="../images/Design_sem_nome-removebg-preview.png" alt="Imagem da logo Libras Academy">
+    </div>
+    <div class="conteudo-apoie p-3">
+      <h3>Seja um apoiador institucional e ajude este projeto a crescer</h3>
+      <div class="text-center botao-apoie">
+        <a href="/contato"><button type="button" class="btn btn-lg btn-outline-dark">Apoie nossa
+            instituição</button></a>
       </div>
     </div>
-  
+  </div>
+
   <!-- Fim apoie -->
-    <!-- footer -->
-    <footer class="text-white py-3 px-5 bg-info">
-      <div class="row justify-content-center">
-        <div class="text-left p-3 d-flex align-items-center" style="width: 130px;">
-          <img src="./images/favicon_2.ico" style="width: 100%;" alt="">
-        </div>
-        <div class="col-sm-12 col-md-5 mb-3 text-left">
-          <h3 class="text-center">Libras Academy</h3>
-          <ul class="nav flex-column text-center align-content-center text-white">
-            <li class="nav-link pb-1"><a href="/" class="nav-link p-0 fs-5 text-white">Home</a></li>
-            <li class="nav-link pb-1"><a href="/sobre" class="nav-link p-0 fs-5 text-white">Sobre</a></li>
-            <li class="nav-link pb-1"><a href="/curso" class="nav-link p-0 fs-5 text-white">Cursos</a></li>
-            <li class="nav-link pb-1"><a href="/contato" class="nav-link p-0 fs-5 text-white">Contato</a></li>
-
-          </ul>
-        </div>
-
-
-        <div class="col-sm-12 col-md-5 mb-3 text-center">
-          <form>
-            <h3 class="text-center">Inscreva-se</h3>
-            <p class="mt-5">E receba notícias e novidades do Libras Academy</p>
-            <div class="d-flex flex-column flex-sm-row w-100 gap-2">
-              <label for="newsletter1" class="visually-hidden">Seu e-mail</label>
-              <input id="newsletter1" type="text" class="form-control" placeholder="Email address">
-              <button class="btn btn-dark fw-bolder " type="button">Enviar</button>
-            </div>
-          </form>
-        </div>
+  <!-- footer -->
+  <footer class="text-white py-3 px-5 bg-info">
+    <div class="row justify-content-center">
+      <div class="text-left p-3 d-flex align-items-center" style="width: 130px;">
+        <img src="./images/favicon_2.ico" style="width: 100%;" alt="">
       </div>
-      <div class="border-top"></div>
-      <div class="d-flex justify-content-center mt-4 ">
-        <p class="text-center">© 2024 Libras Academy. Todos os direitos reservados.</p>
-      </div>
-    </footer>
-    <!-- footer end -->
+      <div class="col-sm-12 col-md-5 mb-3 text-left">
+        <h3 class="text-center">Libras Academy</h3>
+        <ul class="nav flex-column text-center align-content-center text-white">
+          <li class="nav-link pb-1"><a href="/" class="nav-link p-0 fs-5 text-white">Home</a></li>
+          <li class="nav-link pb-1"><a href="/sobre" class="nav-link p-0 fs-5 text-white">Sobre</a></li>
+          <li class="nav-link pb-1"><a href="/curso" class="nav-link p-0 fs-5 text-white">Cursos</a></li>
+          <li class="nav-link pb-1"><a href="/contato" class="nav-link p-0 fs-5 text-white">Contato</a></li>
 
-    <!-- VLibras -->
-    <div vw class="enabled position-fixed">
-      <div vw-access-button class="active"></div>
-      <div vw-plugin-wrapper>
-        <div class="vw-plugin-top-wrapper"></div>
+        </ul>
+      </div>
+
+
+      <div class="col-sm-12 col-md-5 mb-3 text-center">
+        <form>
+          <h3 class="text-center">Inscreva-se</h3>
+          <p class="mt-5">E receba notícias e novidades do Libras Academy</p>
+          <div class="d-flex flex-column flex-sm-row w-100 gap-2">
+            <label for="newsletter1" class="visually-hidden">Seu e-mail</label>
+            <input id="newsletter1" type="text" class="form-control" placeholder="Email address">
+            <button class="btn btn-dark fw-bolder " type="button">Enviar</button>
+          </div>
+        </form>
       </div>
     </div>
-    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
-    <script>
-      new window.VLibras.Widget('https://vlibras.gov.br/app');
-    </script>
-    <!-- VLibras end -->
+    <div class="border-top"></div>
+    <div class="d-flex justify-content-center mt-4 ">
+      <p class="text-center">© 2024 Libras Academy. Todos os direitos reservados.</p>
+    </div>
+  </footer>
+  <!-- footer end -->
 
-    <a href="#" class="up-scroll active d-flex align-items-center justify-content-center"><i
-        class="bi bi-arrow-up-short"></i></a>
+  <!-- VLibras -->
+  <div vw class="enabled position-fixed">
+    <div vw-access-button class="active"></div>
+    <div vw-plugin-wrapper>
+      <div class="vw-plugin-top-wrapper"></div>
+    </div>
+  </div>
+  <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+  <script>
+    new window.VLibras.Widget('https://vlibras.gov.br/app');
+  </script>
+  <!-- VLibras end -->
 
-    <script src="../scripts/script.js"></script>
+  <a href="#" class="up-scroll active d-flex align-items-center justify-content-center"><i
+      class="bi bi-arrow-up-short"></i></a>
+
+  <script src="../scripts/script.js"></script>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
