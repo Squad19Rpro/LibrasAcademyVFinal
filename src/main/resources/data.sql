@@ -41,12 +41,6 @@ CREATE TABLE IF NOT EXISTS curso_aluno (
     curso_id INT
 );
 
--- Inserção de dados na tabela "curso_aluno" se não existirem
-INSERT INTO curso_aluno (id, aluno_id, curso_id)
-VALUES 
-    (1, 1, 1)
-    ON CONFLICT (id) DO NOTHING;
-
 -- Criação da tabela "cursos" se não existir
 CREATE TABLE IF NOT EXISTS cursos (
     id serial PRIMARY KEY,
@@ -72,12 +66,6 @@ CREATE TABLE IF NOT EXISTS fale_conosco (
     mensagem TEXT,
     nome VARCHAR(255)
 );
-
--- Inserção de dados na tabela "fale_conosco" se não existirem
-INSERT INTO fale_conosco (id, assunto, email, mensagem, nome)
-VALUES 
-    (1, 'Teste 2024', 'heitorpimentel@hotmail.com', 'Olá', 'Heitor Pimentel')
-    ON CONFLICT (id) DO NOTHING;
 
 -- Criação da tabela "funcionario" se não existir
 CREATE TABLE IF NOT EXISTS funcionario (
