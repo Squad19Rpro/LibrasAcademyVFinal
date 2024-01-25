@@ -15,7 +15,7 @@ Esta é a aplicação final do Libras Academy. Abaixo terá instruções de uso 
 Arquivo: application.properties
 - Comente com '#' as linhas 7 a 11
 - Retire o comentário '#' das linhas 2 a 4
-- Para o depoly inverta as instruções anteriores e comente as linhas 2 a 4 e descomente as linhas 7 a 11
+- Nas linhas 3 e 4 insisra suas informações de usuario e senha locais
 ![image](https://github.com/Squad19Rpro/LibrasAcademyVFinal/assets/130229709/fd11bdec-671a-4de4-90bd-df8dccfa2b96)
 
 ## Acesso ao projeto como Administrador
