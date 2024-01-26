@@ -63,7 +63,8 @@ Os usuários podem enviar mensagens que são armazenadas no banco de dados e tam
 A seguir, modelagem do projeto:
 
 ### Parte 1: Modelo Conceitual
-![conceitual_libras_academy](https://github.com/Squad19Rpro/LibrasAcademyVFinal/assets/130229709/0f74f0e7-0db0-4795-b29b-735beff7a0e1)
+![conceitual_libras_academy](https://github.com/Squad19Rpro/LibrasAcademyVFinal/assets/130229709/c1cff2eb-f63c-498b-a183-b83836e7c440)
+
 
 ### Parte 2: Modelo Lógico
 ![logico_libras_academy](https://github.com/Squad19Rpro/LibrasAcademyVFinal/assets/130229709/8dad0e65-09f9-4a96-8546-0f01c1dd3e3f)
