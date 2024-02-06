@@ -11,16 +11,7 @@ Esta é a aplicação final do Libras Academy. Abaixo terá instruções de uso 
 </div>
   
  ## Acesso ao Sistema
-### Desenvolvedor, aqui vão algumas instruções se você for rodar na sua máquina local
-Arquivo: application.properties
-- Comente com '#' as linhas 7 a 11
-- Retire o comentário '#' das linhas 2 a 4
-- Nas linhas 3 e 4 insisra suas informações de usuario e senha locais
-![image](https://github.com/Squad19Rpro/LibrasAcademyVFinal/assets/130229709/fd11bdec-671a-4de4-90bd-df8dccfa2b96)
-
-## Acesso ao projeto como Administrador
-#### Essas instruções servem para o site que está no ar e para o funcionamento na máquina local
-Por padrão, as seguintes crendenciais serão inseridas automaticamente:
+Você pode acessar com as seguintes credenciais:
 - **Usuário:** admin@academy.com
 - **Senha:** 12345
 
@@ -58,19 +49,21 @@ Administradores têm acesso total à plataforma.
 Os usuários podem enviar mensagens que são armazenadas no banco de dados e também recebem um e-mail de confirmação com detalhes da mensagem.
 ![image](https://github.com/Squad19Rpro/LibrasAcademyVFinal/assets/130229709/5008c9da-c1f1-45c0-a2ed-e1d99112f8d4)
 
-## Modelagem
+## Fique à vontade para esclarecer quaisquer dúvidas
 
-A seguir, modelagem do projeto:
-
-### Parte 1: Modelo Conceitual
-![conceitual_libras_academy](https://github.com/Squad19Rpro/LibrasAcademyVFinal/assets/130229709/c1cff2eb-f63c-498b-a183-b83836e7c440)
-
-
-### Parte 2: Modelo Lógico
-![logico_libras_academy](https://github.com/Squad19Rpro/LibrasAcademyVFinal/assets/130229709/8dad0e65-09f9-4a96-8546-0f01c1dd3e3f)
-
-
-### Fique à vontade para esclarecer quaisquer dúvidas
 <div style="display: inline_block">
  <a href =mailto:heitorpimentel@hotmail.com"><img src="https://img.shields.io/badge/-Outlook-%23333?style=for-the-badge&logo=gmail&logoColor=white" target="_blank"></a>
 </div>
+
+#### Heitor Pimentel
+- GitHub: [Repositório Pessoal](https://github.com/heitorpimentel)
+- Contato: (84) 98606-1727 - [WhatsApp](https://wa.me/5584986061727)
+#### Hagar Telles
+- GitHub: [Repositório Pessoal](https://github.com/hagartelles)
+- Contato: (21) 99906-0262 - [WhatsApp](https://wa.me/5521999060262)
+#### Helder Lopes
+- GitHub: [Repositório Pessoal](https://github.com/heldersoares97)
+- Contato: (31) 98217-1090 - [WhatsApp](https://wa.me/5531982171090)
+#### Jadson Canuto
+- GitHub: [Repositório Pessoal](https://github.com/buracha)
+- Contato: (88) 98808-5024 - [WhatsApp](https://wa.me/5588988085024)
